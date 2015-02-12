@@ -55,7 +55,13 @@
           </div>
 
           <div role="tabpanel" class="tab-pane fade" id="login">
-            <p> Login screen (for Arkady to post blogs) </p>
+            <div class="container">
+                <h2 class="form-signin-heading">Please sign in, if you are Arkady</h2>
+                <input type="password" id="inputPassword" class="form-control" placeholder="Password" required autofocus>
+                <button class="btn btn-lg btn-primary btn-block" onclick="signIn()" type="submit">Sign in</button>
+                <br></br>
+                <p id="signInMessage"></p>
+            </div> 
           </div>
         </div>
       </div>
@@ -67,11 +73,33 @@
     </footer>
 
 
+    <!-- Encryption library -->
+    <script src="http://crypto-js.googlecode.com/svn/tags/3.1.2/build/rollups/sha256.js"></script>
+
+    <script>
+      function signIn() {
+        var signInMessage = document.getElementById("signInMessage");
+        var passwordField = document.getElementById("inputPassword");
+        var password = passwordField.value;
+        console.log(CryptoJS.SHA256(password).toString())
+        if (CryptoJS.SHA256(password) == '5d6e0eecd32302adf4ad5e712f8f4e1db7cd9f9d37b0a1c1503aca6ee8ea7e44') {
+          passwordField.style.color = "black";
+          signInMessage.innerHTML = "Good to see you again, Arkady";
+        } else {
+          passwordField.style.color = "red";
+          signInMessage.innerHTML = "You suck, you probably shouldn't try again";
+        }
+      }
+    </script>
+
     <!-- Bootstrap core JavaScript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
       <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+
+    <!-- load firebase! -->
+    <script src='https://cdn.firebase.com/js/client/2.0.4/firebase.js'></script>
 
   </body>
 </html>
