@@ -43,7 +43,7 @@
           </div>
 
           <div role="tabpanel" class="tab-pane fade" id="thoughts">
-            <p> Thoughts! </p>
+            <div id="blog-posts-div"></div>
           </div>
 
           <div role="tabpanel" class="tab-pane fade" id="projects">
@@ -81,15 +81,16 @@
         var signInMessage = document.getElementById("signInMessage");
         var passwordField = document.getElementById("inputPassword");
         var password = passwordField.value;
-        console.log(CryptoJS.SHA256(password).toString())
         if (CryptoJS.SHA256(password) == '5d6e0eecd32302adf4ad5e712f8f4e1db7cd9f9d37b0a1c1503aca6ee8ea7e44') {
           passwordField.style.color = "black";
           signInMessage.innerHTML = "Good to see you again, Arkady";
+          // Should probably do this with cookies
+          window.location.href = "admin.html"
         } else {
           passwordField.style.color = "red";
           signInMessage.innerHTML = "You suck, you probably shouldn't try again";
         }
-      }
+      } 
     </script>
 
     <!-- Bootstrap core JavaScript
@@ -100,6 +101,17 @@
 
     <!-- load firebase! -->
     <script src='https://cdn.firebase.com/js/client/2.0.4/firebase.js'></script>
-
+    <script>
+      // Load posts from firebase
+      var ref = new Firebase("https://arkadyark.firebaseio.com/blog-posts");
+      // Attach an asynchronous callback to read the data at our posts reference
+      ref.on("value", function(snapshot) {
+        var val = snapshot.val()
+        console.log(val["post"])
+        document.getElementById("blog-posts-div").innerHTML += val["post"]
+      }, function (errorObject) {
+        console.log("The read failed: " + errorObject.code);
+      });
+    </script>
   </body>
 </html>
