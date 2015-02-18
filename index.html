@@ -46,11 +46,11 @@
           </div>
 
           <div role="tabpanel" class="tab-pane fade" id="projects">
-            <p> Projects! </p>
+            <div id="project-posts-div"></div>
           </div>
           
           <div role="tabpanel" class="tab-pane fade" id="interests">
-            <p> Dakota Tucker </p>
+            <div id="interest-posts-div"></div>
           </div>
         </div>
       </div>
@@ -71,12 +71,28 @@
     <script src='https://cdn.firebase.com/js/client/2.0.4/firebase.js'></script>
     <script>
       // Load posts from firebase
-      var ref = new Firebase("https://arkadyark.firebaseio.com/blog-posts");
+      var ref = new Firebase("https://arkadyark.firebaseio.com");
+      var blogs = ref.child("blog-posts")
+      var projects = ref.child("project-posts")
+      var interests = ref.child("interest-posts")
       // Attach an asynchronous callback to read the data at our posts reference
-      ref.on("value", function(snapshot) {
+      blogs.on("child_added", function(snapshot) {
         var val = snapshot.val()
-        console.log(val["post"])
         document.getElementById("blog-posts-div").innerHTML += "<div class=\"blog-post\">" + val["post"] + "</div>"
+      }, function (errorObject) {
+        console.log("The read failed: " + errorObject.code);
+      });
+      // Attach an asynchronous callback to read the data at our posts reference
+      projects.on("child_added", function(snapshot) {
+        var val = snapshot.val()
+        document.getElementById("project-posts-div").innerHTML += "<div class=\"blog-post\">" + val["post"] + "</div>"
+      }, function (errorObject) {
+        console.log("The read failed: " + errorObject.code);
+      });
+      // Attach an asynchronous callback to read the data at our posts reference
+      interests.on("child_added", function(snapshot) {
+        var val = snapshot.val()
+        document.getElementById("interest-posts-div").innerHTML += "<div class=\"blog-post\">" + val["post"] + "</div>"
       }, function (errorObject) {
         console.log("The read failed: " + errorObject.code);
       });
