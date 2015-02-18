@@ -38,7 +38,6 @@
         <div class="tab-content">
           <div role="tabpanel" class="tab-pane fade in active" id="home">
             <p> About me! </p>
-            <p> About me! </p>
           </div>
 
           <div role="tabpanel" class="tab-pane fade" id="thoughts">
@@ -78,21 +77,21 @@
       // Attach an asynchronous callback to read the data at our posts reference
       blogs.on("child_added", function(snapshot) {
         var val = snapshot.val()
-        document.getElementById("blog-posts-div").innerHTML += "<div class=\"blog-post\">" + val["post"] + "</div>"
+        document.getElementById("blog-posts-div").innerHTML = "<div class=\"blog-post\">" + val["post"] + "</div>" + document.getElementById("blog-posts-div").innerHTML
       }, function (errorObject) {
         console.log("The read failed: " + errorObject.code);
       });
       // Attach an asynchronous callback to read the data at our posts reference
       projects.on("child_added", function(snapshot) {
         var val = snapshot.val()
-        document.getElementById("project-posts-div").innerHTML += "<div class=\"blog-post\">" + val["post"] + "</div>"
+        document.getElementById("project-posts-div").innerHTML = "<div class=\"blog-post\">" + val["post"] + "</div>" + document.getElementById("project-posts-div").innerHTML
       }, function (errorObject) {
         console.log("The read failed: " + errorObject.code);
       });
       // Attach an asynchronous callback to read the data at our posts reference
       interests.on("child_added", function(snapshot) {
         var val = snapshot.val()
-        document.getElementById("interest-posts-div").innerHTML += "<div class=\"blog-post\">" + val["post"] + "</div>"
+        document.getElementById("interest-posts-div").innerHTML = "<div class=\"blog-post\">" + val["post"] + "</div>" + document.getElementById("interest-posts-div").innerHTML
       }, function (errorObject) {
         console.log("The read failed: " + errorObject.code);
       });
