@@ -5,17 +5,18 @@
   This file just handles form submissions for this example.
 */
 
-
 (function() {
 
   $(function() {
     return $("button.submit").on("click", function(e) {
-      var myDataRef = new Firebase('https://arkadyark.firebaseio.com/blog-posts')
-      var html;
-      e.preventDefault();
-      html = $("textarea.mdhtmlform-html").val();
-      myDataRef.set({post: html});
-      console.log("hey!");
+      password = $("input.form-control").val();
+      if (CryptoJS.SHA256(password).toString() == '5d6e0eecd32302adf4ad5e712f8f4e1db7cd9f9d37b0a1c1503aca6ee8ea7e44') {
+        var myDataRef = new Firebase('https://arkadyark.firebaseio.com/blog-posts')
+        var html;
+        html = $("textarea.mdhtmlform-html").val();
+        myDataRef.push({post: html});
+        console.log("hey!");
+      } 
     });
   });
 

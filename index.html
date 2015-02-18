@@ -27,7 +27,6 @@
             <li role="presentation"><a href="#thoughts" aria-controls="thoughts"  role="tab" data-toggle="tab">What I think</a></li>
             <li role="presentation"><a href="#projects" aria-controls="projects" role="tab" data-toggle="tab">What I do</a></li>
             <li role="presentation"><a href="#interests" aria-controls="interests"  role="tab" data-toggle="tab">What I like</a></li> 
-            <li role="presentation"><a href="#login" aria-controls="login"  role="tab" data-toggle="tab">Login</a></li> 
           </ul>
         </nav>
 
@@ -53,16 +52,6 @@
           <div role="tabpanel" class="tab-pane fade" id="interests">
             <p> Dakota Tucker </p>
           </div>
-
-          <div role="tabpanel" class="tab-pane fade" id="login">
-            <div class="container">
-                <h2 class="form-signin-heading">Please sign in, if you are Arkady</h2>
-                <input type="password" id="inputPassword" class="form-control" placeholder="Password" required autofocus>
-                <button class="btn btn-lg btn-primary btn-block" onclick="signIn()" type="submit">Sign in</button>
-                <br></br>
-                <p id="signInMessage"></p>
-            </div> 
-          </div>
         </div>
       </div>
 
@@ -71,27 +60,6 @@
         <br></br>
         <p> Last updated: February 2015 </p>
     </footer>
-
-
-    <!-- Encryption library -->
-    <script src="http://crypto-js.googlecode.com/svn/tags/3.1.2/build/rollups/sha256.js"></script>
-
-    <script>
-      function signIn() {
-        var signInMessage = document.getElementById("signInMessage");
-        var passwordField = document.getElementById("inputPassword");
-        var password = passwordField.value;
-        if (CryptoJS.SHA256(password) == '5d6e0eecd32302adf4ad5e712f8f4e1db7cd9f9d37b0a1c1503aca6ee8ea7e44') {
-          passwordField.style.color = "black";
-          signInMessage.innerHTML = "Good to see you again, Arkady";
-          // Should probably do this with cookies
-          window.location.href = "admin.html"
-        } else {
-          passwordField.style.color = "red";
-          signInMessage.innerHTML = "You suck, you probably shouldn't try again";
-        }
-      } 
-    </script>
 
     <!-- Bootstrap core JavaScript
     ================================================== -->
@@ -108,7 +76,7 @@
       ref.on("value", function(snapshot) {
         var val = snapshot.val()
         console.log(val["post"])
-        document.getElementById("blog-posts-div").innerHTML += val["post"]
+        document.getElementById("blog-posts-div").innerHTML += "<div class=\"blog-post\">" + val["post"] + "</div>"
       }, function (errorObject) {
         console.log("The read failed: " + errorObject.code);
       });

@@ -29,6 +29,7 @@
             <!-- And insert converted html for submission here... -->
             <textarea class="mdhtmlform-html" style="display: none;"></textarea>
             <br /><br />
+            <input type="password" id="inputPassword" class="form-control" placeholder="Password" required autofocus>
             <button class="submit">Submit</button>
         </form>
     </div>
@@ -44,6 +45,9 @@
     <script src="js/vendor/showdown.js"></script> <!-- Include Showdown before mdhtmlform! -->
     <script src="js/mdhtmlform.js"></script> <!-- The main mdhtmlform file -->
     <!-- end mdhtmlform Dependencies -->
+    
+    <!-- Encryption library -->
+    <script src="http://crypto-js.googlecode.com/svn/tags/3.1.2/build/rollups/sha256.js"></script>
     
     <script src="js/example.js"></script> <!-- The js for this example -->
     <!-- Bootstrap core JavaScript
