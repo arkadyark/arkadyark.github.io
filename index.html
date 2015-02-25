@@ -96,6 +96,14 @@
     <script>
       // Load posts from firebase
       var ref = new Firebase("https://arkadyark.firebaseio.com");
+
+      // Simple hit counter
+      var hits = ref.child("hits")
+      hits.once("value", function(snapshot) {
+        var numHits = snapshot.val()
+        ref.update({hits:numHits+1});
+      })
+
       var blogs = ref.child("blog-posts")
       var projects = ref.child("project-posts")
       var interests = ref.child("interest-posts")
