@@ -11,7 +11,9 @@
         var myDataRef = new Firebase('https://arkadyark.firebaseio.com/' + selected);
         var postTitle = $("input.titleField").val();
         var html = $("textarea.mdhtmlform-html").val();
-        myDataRef.push({title: postTitle, post: html});
+        myDataRef.push({title: postTitle, post: html}, function() {
+          window.alert("Posted!");
+        });
       } 
     });
   });
