@@ -9,12 +9,13 @@
     <meta property="og:description" name="description" content="Personal Website for Arkady Arkhangorodsky">
     <meta name="keywords" content="Student, engineering, UofT, Toronto, Programming, Hackathons, Arsenal">
 
-    <link rel="icon" href="../../favicon.ico">
+    <link rel="icon" href="img/favicon.ico">
 
     <title>Arkady Arkhangorodsky</title>
 
     <!-- Bootstrap core CSS -->
-    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/bootcards.css">
+    <link rel="stylesheet" href="css/bootstrap.css">
 
     <!-- Custom styles for this template -->
     <link href="blog.css" rel="stylesheet">
@@ -40,7 +41,9 @@
 
         <div class="tab-content">
           <div role="tabpanel" class="tab-pane fade in active" id="home">
-            <p> About me! </p>
+            <p> I'm Arkady ('R-kah-dee') Arkhangorodsky (nope). I'm a student in my first year of Engineering Science at the University of Toronto. interested in programming, music, history, people, robots, and a whole lot more. I like to play piano when I get the chance. </p>
+            <p> On this site you'll find my thoughts, projects, interests and more. I like to think that I have a lot of them. </p>
+            <p> I'm mostly using this as a sandbox to pick up some web development skills, so things will be changing here pretty constantly. </p>
           </div>
 
           <div role="tabpanel" class="tab-pane fade" id="thoughts">
@@ -91,6 +94,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
       <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
 
+
     <!-- load firebase! -->
     <script src='https://cdn.firebase.com/js/client/2.0.4/firebase.js'></script>
     <script>
@@ -110,21 +114,30 @@
       // Attach an asynchronous callback to read the data at our posts reference
       blogs.on("child_added", function(snapshot) {
         var val = snapshot.val()
-        document.getElementById("blog-posts-div").innerHTML = "<div class=\"blog-post-title\">" + val["title"] + "</div> <div class=\"blog-post\">" + val["post"] + "</div>" + document.getElementById("blog-posts-div").innerHTML
+        document.getElementById("blog-posts-div").innerHTML = 
+          "<div class=\"panel panel-default\"><div class=\"panel-heading clearfix\"><h3 style=\"font-size:24px;color:white\" class=\"panel-title pull-left\">" 
+            + val["title"] + "</h3></div><div class=\"panel-body\"><p>"
+            + val["post"] + "</p></div></div>" + document.getElementById("blog-posts-div").innerHTML
       }, function (errorObject) {
         console.log("The read failed: " + errorObject.code);
       });
       // Attach an asynchronous callback to read the data at our posts reference
       projects.on("child_added", function(snapshot) {
         var val = snapshot.val()
-        document.getElementById("project-posts-div").innerHTML = "<div class=\"blog-post-title\">" + val["title"] + "</div> <div class=\"blog-post\">" + val["post"] + "</div>" + document.getElementById("project-posts-div").innerHTML
+        document.getElementById("project-posts-div").innerHTML = 
+          "<div class=\"panel panel-default\"><div class=\"panel-heading clearfix\"><h3 style=\"font-size:24px;color:white\" class=\"panel-title pull-left\">" 
+            + val["title"] + "</h3></div><div class=\"panel-body\"><p>"
+            + val["post"] + "</p></div></div>" + document.getElementById("project-posts-div").innerHTML
       }, function (errorObject) {
         console.log("The read failed: " + errorObject.code);
       });
       // Attach an asynchronous callback to read the data at our posts reference
       interests.on("child_added", function(snapshot) {
         var val = snapshot.val()
-        document.getElementById("interest-posts-div").innerHTML = "<div class=\"blog-post-title\">" + val["title"] + "</div> <div class=\"blog-post\">" + val["post"] + "</div>" + document.getElementById("interest-posts-div").innerHTML
+        document.getElementById("interest-posts-div").innerHTML = 
+          "<div class=\"panel panel-default\"><div class=\"panel-heading clearfix\"><h3 style=\"font-size:24px;color:white\" class=\"panel-title pull-left\">" 
+            + val["title"] + "</h3></div><div class=\"panel-body\"><p>"
+            + val["post"] + "</p></div></div>" + document.getElementById("interest-posts-div").innerHTML
       }, function (errorObject) {
         console.log("The read failed: " + errorObject.code);
       });
