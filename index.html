@@ -120,30 +120,29 @@
       // Attach an asynchronous callback to read the data at our posts reference
       blogs.on("child_added", function(snapshot) {
         var val = snapshot.val()
-        document.getElementById("blog-posts-div").innerHTML =
+        $("#blog-posts-div").prepend(
           "<div class=\"content-card\"><div class=\"content-title\"><h3>"
             + val["title"] + "</h3></div><div class=\"panel-body\"><p>"
-            + val["post"] + "</p></div></div>" + document.getElementById("blog-posts-div").innerHTML
+            + val["post"] + "</p></div></div>");
       }, function (errorObject) {
         console.log("The read failed: " + errorObject.code);
       });
       // Attach an asynchronous callback to read the data at our posts reference
       projects.on("child_added", function(snapshot) {
         var val = snapshot.val()
-        document.getElementById("project-posts-div").innerHTML =
-          "<div class=\"content-card\"><div class=\"content-title\"><h3>"
+        $("#project-posts-div").prepend("<div class=\"content-card\"><div class=\"content-title\"><h3>"
             + val["title"] + "</h3></div><div class=\"panel-body\"><p>"
-            + val["post"] + "</p></div></div>" + document.getElementById("project-posts-div").innerHTML
+            + val["post"] + "</p></div></div>")
       }, function (errorObject) {
         console.log("The read failed: " + errorObject.code);
       });
       // Attach an asynchronous callback to read the data at our posts reference
       interests.on("child_added", function(snapshot) {
         var val = snapshot.val()
-        document.getElementById("interest-posts-div").innerHTML =
+        $("#interest-posts-div").prepend(
           "<div class=\"content-card\"><div class=\"content-title\"><h3>"
             + val["title"] + "</h3></div><div class=\"panel-body\"><p>"
-            + val["post"] + "</p></div></div>" + document.getElementById("interest-posts-div").innerHTML
+            + val["post"] + "</p></div></div>")
       }, function (errorObject) {
         console.log("The read failed: " + errorObject.code);
       });
