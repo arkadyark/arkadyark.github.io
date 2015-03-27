@@ -12,92 +12,98 @@
     <link rel="icon" href="img/favicon.ico">
 
     <title>Arkady Arkhangorodsky</title>
-
-    <!-- Bootstrap core CSS -->
-    <link rel="stylesheet" href="css/bootcards.css">
-    <link rel="stylesheet" href="css/bootstrap.css">
-
-    <!-- Custom styles for this template -->
-    <link href="blog.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
   </head>
 
   <body>
 
-      <div class="container" role="tabpanel">
+        <ul class="tabs">
+          <li class="tab-link current" data-tab="about">
+            <a href="#about"> About me </a>
+         </li>
+          <li class="tab-link" data-tab="thoughts">
+            <a href="#thoughts"> What I think </a>
+          </li>
+          <li class="tab-link" data-tab="projects">
+            <a href="#projects"> What I do </a>
+          </li>
+          <li class="tab-link" data-tab="interests">
+            <a href="#interests"> What I like </a>
+          </li>
+        </ul>
 
-        <nav class="nav navbar-default">
-          <ul class="nav nav-pills">
-            <li role="presentation" class="active"><a href="#home" aria-controls="  Home" role="tab" data-toggle="tab">Home</a></li>
-            <li role="presentation"><a href="#thoughts" aria-controls="thoughts"  role="tab" data-toggle="tab">What I think</a></li>
-            <li role="presentation"><a href="#projects" aria-controls="projects" role="tab" data-toggle="tab">What I do</a></li>
-            <li role="presentation"><a href="#interests" aria-controls="interests"  role="tab" data-toggle="tab">What I like</a></li> 
-          </ul>
-        </nav>
-
-        <div class="blog-header">
-          <h1 class="blog-title">Arkady</h1>
-          <p class="lead blog-description">Welcome to my little piece of the internet.</p>
+        <div class="header">
+          <h1 class="title">Arkady</h1>
+          <p class="subtitle">Welcome to my little piece of the internet.</p>
         </div>
 
-        <div class="tab-content">
-          <div role="tabpanel" class="tab-pane fade in active" id="home">
-            <p> I'm Arkady ('R-kah-dee') Arkhangorodsky (nope). I'm a student in my first year of Engineering Science at the University of Toronto. interested in programming, music, history, people, robots, and a whole lot more. I like to play piano when I get the chance. </p>
+        <div class="tab-content about current" id="about">
+          <div class="content-card">
+            <p> My name is Arkady ('R-kah-dee') Arkhangorodsky (nope). I'm a student in my first year of Engineering Science at the University of Toronto. interested in programming, music, history, people, robots, and a whole lot more. I like to play piano when I get the chance. </p>
             <p> On this site you'll find my thoughts, projects, interests and more. I like to think that I have a lot of them. </p>
             <p> I'm mostly using this as a sandbox to pick up some web development skills, so things will be changing here pretty constantly. </p>
           </div>
-
-          <div role="tabpanel" class="tab-pane fade" id="thoughts">
-            <div id="blog-posts-div"></div>
-          </div>
-
-          <div role="tabpanel" class="tab-pane fade" id="projects">
-            <div id="project-posts-div"></div>
-          </div>
-          
-          <div role="tabpanel" class="tab-pane fade" id="interests">
-            <div id="interest-posts-div"></div>
-          </div>
         </div>
-      </div>
+
+        <div class="tab-content thoughts" id="thoughts">
+          <div id="blog-posts-div"></div>
+        </div>
+
+        <div class="tab-content projects" id="projects">
+          <div id="project-posts-div"></div>
+        </div>
+
+        <div class="tab-content interests" id="interests">
+          <div id="interest-posts-div"></div>
+        </div>
 
     <footer class="blog-footer">
+
+        <div> 
+          <a href="http://www.github.com/arkadyark">
+            <img src="img/github.png"/>
+          </a>
+
+          <a href="http://www.facebook.com/ArkadyArkhangorodsky">
+            <img src="img/facebook.png"/>
+          </a>
+
+          <a href="res/resume.pdf">
+            <img src="img/resume.png"/>
+          </a>
+
+          <a href="http://www.twitter.com/arkadyark">
+            <img src="img/twitter.png"/>
+          </a>
+        </div>
+
         <a href="#">Back to top</a>
 
-        <br/>
-        <br/>
-
-        <a href="http://www.github.com/arkadyark">
-          <img src="img/github.png"/>
-        </a>
-
-        <a href="http://www.facebook.com/ArkadyArkhangorodsky">
-          <img src="img/facebook.png"/>
-        </a>
-
-        <a href="res/resume.pdf">
-          <img src="img/resume.png"/>
-        </a>
-
-        <a href="http://www.twitter.com/arkadyark">
-          <img src="img/twitter.png"/>
-        </a>
-
-        <br/>        
-        <br/>
-
         <p> Last updated: February 2015 </p>
+
     </footer>
 
     <!-- Bootstrap core JavaScript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-      <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
 
 
     <!-- load firebase! -->
     <script src='https://cdn.firebase.com/js/client/2.0.4/firebase.js'></script>
     <script>
+        $(document).ready(function(){
+          $('ul.tabs li').click(function(){
+            var tab_id = $(this).attr('data-tab');
+
+            $('ul.tabs li').removeClass('current');
+            $('.tab-content').removeClass('current');
+
+            $(this).addClass('current');
+            $("#"+tab_id).addClass('current');
+            })
+        })
+
       // Load posts from firebase
       var ref = new Firebase("https://arkadyark.firebaseio.com");
 
@@ -114,8 +120,8 @@
       // Attach an asynchronous callback to read the data at our posts reference
       blogs.on("child_added", function(snapshot) {
         var val = snapshot.val()
-        document.getElementById("blog-posts-div").innerHTML = 
-          "<div class=\"panel panel-default\"><div class=\"panel-heading clearfix\"><h3 style=\"font-size:24px;color:white\" class=\"panel-title pull-left\">" 
+        document.getElementById("blog-posts-div").innerHTML =
+          "<div class=\"content-card\"><div class=\"content-title\"><h3>"
             + val["title"] + "</h3></div><div class=\"panel-body\"><p>"
             + val["post"] + "</p></div></div>" + document.getElementById("blog-posts-div").innerHTML
       }, function (errorObject) {
@@ -124,8 +130,8 @@
       // Attach an asynchronous callback to read the data at our posts reference
       projects.on("child_added", function(snapshot) {
         var val = snapshot.val()
-        document.getElementById("project-posts-div").innerHTML = 
-          "<div class=\"panel panel-default\"><div class=\"panel-heading clearfix\"><h3 style=\"font-size:24px;color:white\" class=\"panel-title pull-left\">" 
+        document.getElementById("project-posts-div").innerHTML =
+          "<div class=\"content-card\"><div class=\"content-title\"><h3>"
             + val["title"] + "</h3></div><div class=\"panel-body\"><p>"
             + val["post"] + "</p></div></div>" + document.getElementById("project-posts-div").innerHTML
       }, function (errorObject) {
@@ -134,8 +140,8 @@
       // Attach an asynchronous callback to read the data at our posts reference
       interests.on("child_added", function(snapshot) {
         var val = snapshot.val()
-        document.getElementById("interest-posts-div").innerHTML = 
-          "<div class=\"panel panel-default\"><div class=\"panel-heading clearfix\"><h3 style=\"font-size:24px;color:white\" class=\"panel-title pull-left\">" 
+        document.getElementById("interest-posts-div").innerHTML =
+          "<div class=\"content-card\"><div class=\"content-title\"><h3>"
             + val["title"] + "</h3></div><div class=\"panel-body\"><p>"
             + val["post"] + "</p></div></div>" + document.getElementById("interest-posts-div").innerHTML
       }, function (errorObject) {
