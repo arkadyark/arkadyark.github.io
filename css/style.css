@@ -439,6 +439,12 @@ there.
 /* Larger than Desktop HD */
 @media (min-width: 1200px) {}
 
+body {
+  color: #325050;
+  background-color: rgba(138,188,159,0.5);
+  font-family: 'Libre Baskerville', sans-serif;
+}
+
 /* Tabs */
 ul.tabs{
   float:right;
@@ -468,12 +474,17 @@ ul.tabs li.current a{
 
 .tab-content{
   display: none;
-  background: #ededed;
   padding: 15px;
 }
 
 .tab-content.current{
   display: inherit;
+}
+
+.tab-title {
+  margin-left: 10%;
+  margin-bottom: 10px;
+  font-style: italic;
 }
 
 div img {
@@ -493,13 +504,18 @@ footer a {
 }
 
 .content-title {
+  background-color: #d0ebc0;
   margin-top: 10px;
 }
 
 .content-card {
+  background-color: #d0ebc0;
+  border-radius: 10px;
   width: 80%;
+  padding: 10px 30px;
+  margin-bottom: 20px;
   margin-left: auto;
   margin-right: auto;
-  border-bottom: thin solid #000;;
+  box-shadow: 5px 5px 15px;
 }
 
