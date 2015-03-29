@@ -94,14 +94,18 @@ Modified from Skeleton.css 2.0.4 */
 html is set to 62.5% so that all the REM measurements throughout Skeleton
 are based on 10px sizing. So basically 1.5rem = 15px :) */
 html {
-  font-size: 62.5%; }
+  font-size: 62.5%; 
+}
+
 body {
+  color: #325050;
+  background-color: rgba(138,188,159,0.5);
   font-size: 1.5em; /* currently ems cause chrome bug misinterpreting rems on body element */
   line-height: 1.6;
   font-weight: 400;
-  font-family: "Raleway", "HelveticaNeue", "Helvetica Neue", Helvetica, Arial, sans-serif;
-  color: #222; }
-
+  font-family: 'Libre Baskerville', sans-serif;
+  color: #222; 
+}
 
 /* Typography
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
@@ -439,12 +443,6 @@ there.
 /* Larger than Desktop HD */
 @media (min-width: 1200px) {}
 
-body {
-  color: #325050;
-  background-color: rgba(138,188,159,0.5);
-  font-family: 'Libre Baskerville', sans-serif;
-}
-
 /* Tabs */
 ul.tabs{
   float:right;
@@ -487,7 +485,7 @@ ul.tabs li.current a{
   font-style: italic;
 }
 
-div img {
+.content-card img {
   max-width: 80%;
   margin-left: 10%;
   margin-right: 10%;
@@ -503,6 +501,10 @@ footer a {
   text-decoration: none;
 }
 
+footer img {
+  margin: 0px 7px;
+}
+
 .content-title {
   background-color: #d0ebc0;
   margin-top: 10px;
@@ -510,12 +512,23 @@ footer a {
 
 .content-card {
   background-color: #d0ebc0;
-  border-radius: 10px;
+  border-radius: 5px;
   width: 80%;
   padding: 10px 30px;
   margin-bottom: 20px;
   margin-left: auto;
   margin-right: auto;
-  box-shadow: 5px 5px 15px;
+  box-shadow: 3px 3px 8px;
 }
 
+#background {
+  position: fixed; 
+  top: -50%; 
+  left: -50%; 
+  width: 200%; 
+  height: 200%;
+  z-index: -1;
+  opacity: 0.1;
+}
+
+*{box-sizing: border-box;}
