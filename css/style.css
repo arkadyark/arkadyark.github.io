@@ -98,8 +98,7 @@ html {
 }
 
 body {
-  color: #325050;
-  background-color: rgba(138,188,159,0.5);
+  background-color: rgba(158,188,130,0.4);
   font-size: 1.5em; /* currently ems cause chrome bug misinterpreting rems on body element */
   line-height: 1.6;
   font-weight: 400;
