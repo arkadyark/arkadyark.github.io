@@ -1,9 +1,8 @@
 TODO
 
-1. Reorganize urls/links to be meaningful
-2. Add comment functionality
+1. Add comment functionality
+2.
 3.
 4.
 5.
 6.
-7.

@@ -478,8 +478,7 @@ ul.tabs li.current a{
 .tab-content{
   display: none;
   padding: 15px;
-  position: relative;
-  top: 100px;
+  margin-top: 100px;
 }
 
 .tab-content.current{
@@ -499,7 +498,6 @@ ul.tabs li.current a{
 }
 
 footer {
-  margin-top: 10%;
   text-align: center;
   line-height: 30px;
 }
