@@ -19,7 +19,7 @@
         <img src="img/bg.png" id="background">
 
         <div class="header">
-          <h1 class="title">Arkady</h1>
+          <h1 class="title"><a href="" onClick='clickTab("#about")'>Arkady</a></h1>
           <p class="subtitle">Welcome to my little piece of the internet.</p>
           <ul class="tabs">
             <li class="tab-link current" data-tab="about">
@@ -93,7 +93,8 @@
     <!-- load firebase! -->
     <script src='https://cdn.firebase.com/js/client/2.0.4/firebase.js'></script>
     <script>
-        $(document).ready(function(){
+        function clickTab(href) {
+          console.log(href);
           $('ul.tabs li a').click(function(){
             var tab_id = $(this).parent().attr('data-tab');
 
@@ -103,8 +104,13 @@
             $(this).parent().addClass('current');
             $("#"+tab_id).addClass('current');
             })
-        $('[href=#' + window.location.href.split("#")[1] + ']').click();
+          $('[href=#' + href("#")[1] + ']').click();
+        }
 
+        // Make the urls work
+        $(document).ready(function(){
+          console.log(window.location.href);
+          clickTab(window.location.href);
         })
 
       // Load posts from firebase
@@ -117,37 +123,30 @@
         ref.update({hits:numHits+1});
       })
 
+      // Helper to load content
+      function content(val) {
+        return "<div class=\"content-card\"><div class=\"content-title\"><h3>"
+            + val["title"] + "</h3></div><div class=\"panel-body\"><p>"
+            + val["post"] + "</p></div></div>"
+      }
+      
+      // Load content
       var blogs = ref.child("blog-posts")
-      var projects = ref.child("project-posts")
-      var interests = ref.child("interest-posts")
-      // Attach an asynchronous callback to read the data at our posts reference
       blogs.on("child_added", function(snapshot) {
         var val = snapshot.val()
-        $("#blog-posts-div").prepend(
-          "<div class=\"content-card\"><div class=\"content-title\"><h3>"
-            + val["title"] + "</h3></div><div class=\"panel-body\"><p>"
-            + val["post"] + "</p></div></div>");
-      }, function (errorObject) {
-        console.log("The read failed: " + errorObject.code);
+        $("#blog-posts-div").prepend(content(val));
       });
-      // Attach an asynchronous callback to read the data at our posts reference
+
+      var projects = ref.child("project-posts")
       projects.on("child_added", function(snapshot) {
         var val = snapshot.val()
-        $("#project-posts-div").prepend("<div class=\"content-card\"><div class=\"content-title\"><h3>"
-            + val["title"] + "</h3></div><div class=\"panel-body\"><p>"
-            + val["post"] + "</p></div></div>")
-      }, function (errorObject) {
-        console.log("The read failed: " + errorObject.code);
+        $("#project-posts-div").prepend(content(val))
       });
-      // Attach an asynchronous callback to read the data at our posts reference
+
+      var interests = ref.child("interest-posts")
       interests.on("child_added", function(snapshot) {
         var val = snapshot.val()
-        $("#interest-posts-div").prepend(
-          "<div class=\"content-card\"><div class=\"content-title\"><h3>"
-            + val["title"] + "</h3></div><div class=\"panel-body\"><p>"
-            + val["post"] + "</p></div></div>")
-      }, function (errorObject) {
-        console.log("The read failed: " + errorObject.code);
+        $("#interest-posts-div").prepend(content(val))
       });
     </script>
   </body>
