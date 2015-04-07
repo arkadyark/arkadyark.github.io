@@ -94,7 +94,6 @@
     <script src='https://cdn.firebase.com/js/client/2.0.4/firebase.js'></script>
     <script>
         function clickTab(href) {
-          console.log(href);
           $('ul.tabs li a').click(function(){
             var tab_id = $(this).parent().attr('data-tab');
 
@@ -104,12 +103,11 @@
             $(this).parent().addClass('current');
             $("#"+tab_id).addClass('current');
             })
-          $('[href=#' + href("#")[1] + ']').click();
+          $('[href=#' + href.split("#")[1] + ']').click();
         }
 
         // Make the urls work
         $(document).ready(function(){
-          console.log(window.location.href);
           clickTab(window.location.href);
         })
 
@@ -125,9 +123,15 @@
 
       // Helper to load content
       function content(val) {
-        return "<div class=\"content-card\"><div class=\"content-title\"><h3>"
-            + val["title"] + "</h3></div><div class=\"panel-body\"><p>"
-            + val["post"] + "</p></div></div>"
+        var post = "<div class=\"content-card\">"
+        post += "<div class=\"content-header\">"
+        post += "<h3>" + val["title"] + "</h3>"
+        post += "<p>" + val["date"] + "</p>"
+        post += "</div>"
+        post += "<div class=\"panel-body\">"
+        post += "<p>" + val["post"] + "</p>"
+        post += "</div></div>"
+        return post;
       }
       
       // Load content

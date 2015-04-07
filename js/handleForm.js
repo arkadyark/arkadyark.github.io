@@ -11,7 +11,14 @@
         var myDataRef = new Firebase('https://arkadyark.firebaseio.com/' + selected);
         var postTitle = $("input.titleField").val();
         var html = $("textarea.mdhtmlform-html").val();
-        myDataRef.push({title: postTitle, post: html}, function() {
+        var today = new Date();
+        var dd = today.getDate();
+        var mm = today.getMonth();
+        months = ["January", "February", "March", "April", "May", "June",
+                  "July", "August", "September", "October", "November", "December"];
+        var yyyy = today.getFullYear();
+        var today = months[mm] + ' ' + dd + ', ' + yyyy;
+        myDataRef.push({title: postTitle, post: html, date: today}, function() {
           window.alert("Posted!");
         });
       } 

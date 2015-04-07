@@ -1,6 +1,8 @@
 TODO
 
 1. Add comment functionality
-3. Hover bold tab links
-4. Add dates to the posts
+2. Blur the background a bit and make it an svg
+3. Hover bold tab link
 5. Float away the top bar on scroll-down, float back in on scroll-up
+6. Infinite scroll bruh
+7. Only load posts as needed
