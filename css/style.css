@@ -462,6 +462,11 @@ ul.tabs li{
   font-weight: lighter;
 }
 
+
+ul.tabs li :hover {
+  font-weight: normal;
+}
+
 ul.tabs li a {
   text-decoration: none;
   color: #222;
@@ -472,7 +477,7 @@ ul.tabs li.current{
 }
 
 ul.tabs li.current a{
-  font-weight: normal;
+  font-weight: bold;
 }
 
 .tab-content{

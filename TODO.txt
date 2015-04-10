@@ -6,3 +6,4 @@ TODO
 5. Float away the top bar on scroll-down, float back in on scroll-up
 6. Infinite scroll bruh
 7. Only load posts as needed
+8. Give each post its own url
