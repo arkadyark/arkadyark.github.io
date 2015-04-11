@@ -1,9 +1,9 @@
 TODO
 
-1. Add comment functionality
-2. Blur the background a bit and make it an svg
-3. Hover bold tab link
-5. Float away the top bar on scroll-down, float back in on scroll-up
-6. Infinite scroll bruh
-7. Only load posts as needed
-8. Give each post its own url
+- Add comment functionality
+- Blur the background a bit and make it an svg
+- Float away the top bar on scroll-down, float back in on scroll-up
+- Infinite scroll bruh
+- Only load posts as needed
+- Give each post its own url
+- Use ajax to load posts
