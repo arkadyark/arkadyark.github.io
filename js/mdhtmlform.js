@@ -14,6 +14,12 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 
 
 (function() {
+  angular.module('myApp', [])
+  .controller('myController', function ($scope, $http) {
+    $scope.textfieldContent = "## Write Markdown here!"
+  });
+
+
   var MdHtmlForm;
 
   MdHtmlForm = (function() {
