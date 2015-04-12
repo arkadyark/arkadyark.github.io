@@ -128,7 +128,7 @@
         post += "</div>"
         
         // Display comments - will get populated
-        post += "<div class=\"content-comments\"> </div>"
+        post += "<div class=\"commentContainer\" id=\"" + key + "-comments\"> </div>"
 
         // Comment form
         post += "<label>Leave a comment:</label>"
@@ -160,9 +160,18 @@
         var key = snapshot.key()
         var val = snapshot.val()
         $("#blog-posts-div").prepend(content(key, val));
+                  var dataRef = blogs.child(key).child("comments")
+          dataRef.on("child_added", function(snapshot) {
+            var commentsDiv = $("#" + key + "-comments")
+            var commentVal = snapshot.val()
+            var name = commentVal["name"]
+            var comment = commentVal["comment"]
+            var commentHtml = '<p><b>' + name + ':</b>'
+            commentHtml += ' ' + comment + '</p>'
+            commentsDiv.prepend($(commentHtml))
+          })
         // Bind the comment field to a listener for each post
         $("#" + key + "-commentInput").keyup(function (e) {
-          var dataRef = blogs.child(key).child("comments")
           // Submit comment on enter
           if (e.keyCode == 13) {
             submitComment(dataRef, $(this))
@@ -178,9 +187,18 @@
         var key = snapshot.key()
         var val = snapshot.val()
         $("#project-posts-div").prepend(content(key, val))
+                  var dataRef = projects.child(key).child("comments")
+            dataRef.on("child_added", function(snapshot) {
+            var commentsDiv = $("#" + key + "-comments")
+            var commentVal = snapshot.val()
+            var name = commentVal["name"]
+            var comment = commentVal["comment"]
+            var commentHtml = '<p><b>' + name + ':</b>'
+            commentHtml += ' ' + comment + '</p>'
+            commentsDiv.prepend($(commentHtml))
+          })
         // Bind the comment field to a listener for each post
         $("#" + key + "-commentInput").keyup(function (e) {
-          var dataRef = projects.child(key).child("comments")
           // Submit comment on enter
           if (e.keyCode == 13) {
             submitComment(dataRef, $(this))
@@ -195,15 +213,19 @@
         var key = snapshot.key()
         var val = snapshot.val()
         $("#interest-posts-div").prepend(content(key, val))
+        var dataRef = interests.child(key).child("comments")
+        dataRef.on("child_added", function(snapshot) {
+          var commentsDiv = $("#" + key + "-comments")
+          var commentVal = snapshot.val()
+          var name = commentVal["name"]
+          var comment = commentVal["comment"]
+          var commentHtml = '<p><b>' + name + ':</b>'
+          commentHtml += ' ' + comment + '</p>'
+          commentsDiv.prepend($(commentHtml))
+        })
+
         // Bind the comment field to a listener for each post
         $("#" + key + "-commentInput").keyup(function (e) {
-          var dataRef = interests.child(key).child("comments")
-          dataRef.on("child_added", function(snapshot) {
-            var commentsDiv = $(this).prev().prev()
-            console.log(commentsDiv)
-            console.log(val["comments"])
-            commentsDiv.append(val["comments"])
-          })
           // Submit comment on enter
           if (e.keyCode == 13) {
             submitComment(dataRef, $(this))
