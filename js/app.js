@@ -47,8 +47,25 @@ function content(key, val) {
 // Make the urls work
 $(document).ready(function(){
   clickTab(window.location.href);
+
 })
 
+// Make disappearing top bar
+// Note - two scroll histories are needed to prevent fading out on redirect
+var lastScrollTop = 0;
+var secondLastScrollTop = 0;
+$(window).scroll(function() {
+  var currentScrollTop = $(this).scrollTop();
+  if (currentScrollTop > lastScrollTop && lastScrollTop > secondLastScrollTop) {
+    // Scrolling down
+    $('#header').fadeOut('fast')
+  } else {
+    // Scrolling up
+    $('#header').fadeIn()
+  }
+  secondLastScrollTop = lastScrollTop;
+  lastScrollTop = currentScrollTop;
+})
 
 // Main Firebase reference, lots of children from here
 var ref = new Firebase("https://arkadyark.firebaseio.com");
