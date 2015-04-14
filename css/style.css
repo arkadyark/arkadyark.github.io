@@ -445,7 +445,7 @@ ul.tabs{
   position: fixed;
   top: 0px;
   right: 0px;
-  margin: 18px 0px;
+  margin: 15px 0px;
   list-style: none;
 }
 
@@ -561,12 +561,16 @@ footer img {
 #header h1,
 #header p {
   margin-left: 10px;
-  margin-bottom: 0.5rem;
+  margin-bottom: 0rem;
 }
 
-#header h1 a {
+#header a {
   color: rgb(34, 34, 34);
   text-decoration: none;
+}
+
+#header p a {
+  font-style: italic;
 }
 
 .commentContainer {
