@@ -7,12 +7,22 @@
         <image x="0" y="0" width="500" height="500"
                                          xlink:href="board.gif"/>
     </svg>
-    <h1> Win rate and frequency of chess first moves </h1>
+    <h1> Win rate and frequency of opening chess moves </h1>
     <h4> Hover over pieces to try it out! </h4>
-    <p>The size of the circles drawn represents the frequency of the move</p>
+    <p>The size of the circles drawn represents the frequency of the move.</p>
     <p>Chess games taken from <a href="http://www.top-5000.nl/pgn.htm">millionbase</a></p>
     <script src="http://d3js.org/d3.v3.min.js"></script>
     <script type="text/javascript" charset="utf-8">
+
+    // Main Firebase reference, lots of children from here
+    var ref = new Firebase("https://arkadyark.firebaseio.com");
+
+    // Simple hit counter
+    var hits = ref.child("hits")
+    hits.once("value", function(snapshot) {
+      var numHits = snapshot.val()
+      ref.update({hits:numHits+1});
+    })
         
     d3.json('results.json', function(data) {
         var white = data.white
