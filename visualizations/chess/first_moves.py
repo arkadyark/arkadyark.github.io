@@ -2,7 +2,7 @@ import json
 
 f = file('/Users/arkadyark/Google Drive/Code/chess_stats/millionbase.txt')
 # For testing
-#f = file('/Users/arkadyark/Google Drive/Code/chess_stats/small.txt')
+f = file('/Users/arkadyark/Google Drive/Code/chess_stats/small.txt')
 
 results_map = {'1-0' : 1, '1/2-1/2' : 0, '0-1' : -1, '*' : 0}
 white_move_results = {

@@ -1,0 +1,52 @@
+import json
+
+f = file('/Users/arkadyark/Google Drive/Code/chess_stats/millionbase.txt')
+# For testing
+f = file('/Users/arkadyark/Google Drive/Code/chess_stats/small.txt')
+
+class Game(object):
+    """Class to represent the game"""
+    def __init__(self):
+        meta = []
+        game = []
+
+    def add_move(self, move):
+        """add a new move"""
+        game.append(move)
+
+    def print_game(self):
+        print 'Meta:'
+        for metadata in meta:
+            print metadata + ': ' + meta[metadata]
+        print 'Game:'
+        for move in game:
+            print move
+
+
+if __name__ == '__main__':
+    # File alternates between metadata and game data
+    game = False
+    # Go through the game line by line
+    for line in f:
+        if line == '\n':
+            game = not game
+            if game:
+                # New game started
+                current_game = Game()
+            continue
+        if game:
+            # Goes in patterns of three - move number, white move, black move
+            # Special case - end of the game
+            split_line = line.strip().split(' ')
+            i = 0
+            while i < len(split_line):
+                i += 1 # Skip the turn number
+                # White move
+                current_game.add_move(split_line[i])
+                i += 1 
+                # Black move
+                current_game.add_move(split_line[i])
+                i += 1
+        else:
+            print 'Meta:', line[1:-2]
+
