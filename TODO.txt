@@ -1,7 +1,6 @@
 TODO
 
 - Blur the background a bit and make it an svg
-- Float away the top bar on scroll-down, float back in on scroll-up
 - Infinite scroll bruh
 - Only load posts as needed
 - Give each post its own url

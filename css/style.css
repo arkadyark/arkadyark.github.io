@@ -370,7 +370,7 @@ hr {
 
 #titles {
     height : 100px;
-    width : 40%;
+    width : 60%;
     float : left;
 }
 
@@ -388,6 +388,10 @@ hr {
   padding: 10px 30px;
   margin: 22px auto;
   box-shadow: 3px 3px 8px;
+}
+
+.content-card img {
+    width : 100%;
 }
 
 .menu-button {
@@ -433,6 +437,19 @@ ul.tabs li.current{
 
 ul.tabs li.current a{
   font-weight: bold;
+}
+
+ul.mobile-tabs {
+    position : fixed;
+    top : 100px;
+    right : 0;
+    padding : 15px 10px 0px 10px;
+    background-color: #D6F192;
+    list-style : none;
+    border : solid thin;
+    border-top : none;
+    border-radius : 0px 0px 0px 5px;
+    display : none;
 }
 
 .tab-content{

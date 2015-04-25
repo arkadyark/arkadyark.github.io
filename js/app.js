@@ -1,5 +1,4 @@
-function clickTab(href) {
-  $('ul.tabs li a').click(function(){
+$('ul.tabs li a').click(function(){
     var tab_id = $(this).parent().attr('data-tab');
 
     $('ul.tabs li').removeClass('current');
@@ -7,7 +6,20 @@ function clickTab(href) {
 
     $(this).parent().addClass('current');
     $("#"+tab_id).addClass('current');
-    })
+})
+
+$('ul.mobile-tabs li a').click(function(){
+    var tab_id = $(this).parent().attr('data-tab');
+
+    $('ul.mobile-tabs li').removeClass('current');
+    $('.tab-content').removeClass('current');
+
+    $(this).parent().addClass('current');
+    $("#"+tab_id).addClass('current');
+    $('ul.mobile-tabs').slideUp();
+})
+
+function clickTab(href) {
   $('[href=#' + href.split("#")[1] + ']').click();
 }
 
