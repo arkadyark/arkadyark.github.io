@@ -68,7 +68,7 @@ def get_collabs(root_artist, already_seen, explored, queue, all_collaborations)
                                     collabs[name] = {}
                                     collabs[name]["number"] = 1
                                     collabs[name]["songs"] = [song.title]
-                                    queue.push(name)
+                                    queue.push(artist)
                                 end
                             end
                         end
@@ -106,7 +106,7 @@ end
 song = RapGenius::Song.find(482233)
 queue = [song.artist]
 
-already_seen = ["Rap Genius", "Rock Genius", "Pop Genius", "Fashion Genius", "Producer Genius", "Sports Genius", "Billboard", "XXL Magazine", "Rolling Stone"] # Keep track of every artist we've seen so far
+already_seen = ["Rap Genius", "Rock Genius", "Pop Genius", "Fashion Genius", "Producer Genius", "Sports Genius", "Billboard", "XXL Magazine", "Rolling Stone", "Paul McCartney", "Elton John"] # Keep track of every artist we've seen so far
 # Also used as an initial veto list
 explored = [] # Keep track of every artist we've gotten collaborations for
 all_collaborations = {} # Keep track of all of the collaborations

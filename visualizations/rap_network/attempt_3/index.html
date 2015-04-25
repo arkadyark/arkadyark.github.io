@@ -61,7 +61,7 @@ svg {
     <script>
 
 var width = 960,
-    height = 950;
+    height = 650;
 
 var artistName = $("#artist-name")
 var artistPicture = $("#artist-picture")
@@ -103,7 +103,7 @@ var color = d3.scale.category20();
             .enter().append("path")
             .attr("class", "link")
             .attr("stroke-width", function(d) {
-                return Math.sqrt(d[3])/3
+                return Math.sqrt(Math.sqrt(d[3]))
             })
 
         var node = svg.selectAll(".node")
