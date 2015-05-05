@@ -453,13 +453,8 @@ ul.mobile-tabs {
 }
 
 .tab-content{
-  display: none;
   padding: 15px;
   padding-top: 100px;
-}
-
-.tab-content.current{
-  display: inherit;
 }
 
 footer {

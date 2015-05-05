@@ -9,7 +9,7 @@
         <meta property="og:description" name="description" content="Personal Website for Arkady Arkhangorodsky">
         <meta name="keywords" content="Student, engineering, UofT, Toronto, Programming, Hackathons, Arsenal">
 
-        <link rel="icon" href="img/favicon.ico">
+        <link rel="icon" href="/img/favicon.ico">
 
         <title>Arkady Arkhangorodsky</title>
         <link href="/css/style.css" rel="stylesheet">
@@ -24,7 +24,7 @@
                 <p class="subtitle"><a href="http://www.www3.reocities.com/SiliconValley/heights/2305/">Welcome to my place in the Web</a></p>
             </div>
             <ul class="tabs">
-                <li class="tab-link current">
+                <li class="tab-link">
                     <a href="/"> About me </a>
                 </li>
                 <li class="tab-link">
@@ -33,7 +33,7 @@
                 <li class="tab-link">
                     <a href="/projects"> What I do </a>
                 </li>
-                <li class="tab-link">
+                <li class="tab-link current">
                     <a href="/interests"> What I like </a>
                 </li>
                 <li class="tab-menu">
@@ -58,12 +58,8 @@
         </div>
 
         <div class="tab-content">
-            <h2 class="tab-title">About me</h2>
-            <div class="content-card">
-                <p> My name is Arkady ('R-kah-dee') Arkhangorodsky (nope). I'm a student in my first year of Engineering Science at the University of Toronto, interested in programming, music, history, people, robots, and a whole lot more. I like to play piano when I get the chance. </p>
-                <p> On this site you'll find my thoughts, projects, interests and more. I like to think that I have a lot of them. </p>
-                <p> I'm mostly using this as a sandbox to pick up some web development skills, so things will be changing here pretty constantly. </p>
-            </div>
+            <h2 class="tab-title">Interests</h2>
+            <div id="interest-posts-div"></div>
         </div>
 
         <footer class="blog-footer">
@@ -82,6 +78,9 @@
                 </a>
             </div>
 
+            <div class="elevator-button">
+                Back to top</div>
+
             <p> Last updated: May 2015 </p>
         </footer>
 
@@ -90,5 +89,18 @@
         <!-- load firebase! -->
         <script src='https://cdn.firebase.com/js/client/2.0.4/firebase.js'></script>
         <script src='/js/app.js'></script>
+        <script src='/js/elevator.js'></script>
+        <script>
+// Elevator script included on the page, already.
+
+window.onload = function() {
+    var elevator = new Elevator({
+        element: document.querySelector('.elevator-button'),
+        mainAudio: '/res/music/elevator-music.mp3',
+        endAudio: '/res/music/ding.mp3',
+        duration: 5000 // milliseconds
+    });
+}
+        </script>
     </body>
 </html>
