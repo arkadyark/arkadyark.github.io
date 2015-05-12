@@ -91,7 +91,7 @@ function Graph(){
 }
 
 
-fs.readFile('network_medium_threshold_no_producers.json', 'utf8', function (err,data) {
+fs.readFile('network_handpicked.json', 'utf8', function (err,data) {
     if (err) {
         return console.log(err);
     }
@@ -109,12 +109,14 @@ fs.readFile('network_medium_threshold_no_producers.json', 'utf8', function (err,
     }
 
     for (var i = 0, l = links.length; i < l; i ++) {
-        source = nodes[links[i].source].name
-        target = nodes[links[i].target].name
-        edges[source][target] = 1
-        collabs[source][target] = links[i].songs
-        edges[target][source] = 1
-        collabs[target][source] = links[i].songs
+        if (links[i].target != null) {
+            source = nodes[links[i].source].name
+            target = nodes[links[i].target].name
+            edges[source][target] = 1
+            collabs[source][target] = links[i].songs
+            edges[target][source] = 1
+            collabs[target][source] = links[i].songs
+        }
     }
 
     for (var artist in edges) {
