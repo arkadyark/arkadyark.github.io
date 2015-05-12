@@ -45,11 +45,36 @@ svg {
     width : 25%;
 }
 
+#artist_name {
+    background : none;
+    border : none;
+    font-size : 42px;
+    height : 100%;
+    padding : 0;
+    color : black;
+}
+
+::-webkit-input-placeholder {
+    color: black;
+}
+
+:-moz-placeholder { /* Firefox 18- */
+    color: black;  
+}
+
+::-moz-placeholder {  /* Firefox 19+ */
+    color: black;  
+}
+
+:-ms-input-placeholder {  
+    color: black;  
+}
+
 </style>
 <body>
     <div id="top">
         <div>
-            <h2>The Oracle of <span style="">Yeezy</span></h1>
+            <h2>The Oracle of <input type='text' id="artist_name" placeholder='Yeezy'></input></h1>
             <p>Made by <a href="/#about"> Arkady Arkhangorodsky </a></p>
         </div>
         <p> Collaboration threshold: <span id="threshold-label"></span> </p>
@@ -79,6 +104,11 @@ var artistPicture = $("#artist-picture")
 var yeezyNumber = $("#yeezy-number")
 var yeezyPath = $("#path-to-yeezy")
 
+$(document).ready(function ()
+    {  
+        $("#artist_name").focus()
+    });
+
 var color = d3.scale.category20();
 
 var force = d3.layout.force()
@@ -89,15 +119,25 @@ var force = d3.layout.force()
     .attr("height", height);
 
     d3.json("yeezified_network.json", function(error, graph) {
+        
+        thresholdValue = 25;
+        artist_name = "Kanye West";
+
+        $("#artist_name").change(function(evt) {
+            artist_name = $("#artist_name").val();
+            makeGraph(graph, thresholdValue, artist_name);
+        });
+
         d3.select('#threshold-slider').call(d3.slider()
-                .value(25)
+                .value(thresholdValue)
                 .on("slide", function(evt, value) {
-                    makeGraph(graph, value);
+                    thresholdValue = value;
+                    makeGraph(graph, value, artist_name);
                 }))
-        makeGraph(graph, 25);
+        makeGraph(graph, thresholdValue, artist_name);
     })
 
-function makeGraph(graph, value) {
+function makeGraph(graph, value, artist_name) {
     svg.selectAll('*').remove();
     var nodes = graph.nodes.slice(),
     links = [],
@@ -137,8 +177,14 @@ function makeGraph(graph, value) {
         .enter().append("circle")
         .attr("class", "node")
         .attr("r", 4)
-        .style("fill", function(d) { return color(d.group); })
-        .call(force.drag);
+        .style("fill", function(d) { 
+            if (d.name == artist_name) {
+                return d3.rgb(255, 0, 0);
+            } else {
+                return d3.rgb(30, 119, 180); 
+            }
+        })
+    .call(force.drag);
 
     node.append("title")
         .text(function(d) { return d.name; });
@@ -147,17 +193,29 @@ function makeGraph(graph, value) {
         d3.select(this).attr("r", 6)
             artistName.html(d.name)
             artistPicture.attr("src", d.image)
-            yeezyNumber.html(d.yeezy_number)
-            $.each(d.yeezy_path, function(key, value) {
-                var sentence = "<p>"
-                    sentence += value.from
-                    sentence += " and "
-                    sentence += value.to
-                    sentence += " collaborated on "
-                    sentence += value.song
+
+            if (d.name == artist_name) {
+                console.log("FOUND HIM HERE TOO")
+                    var sentence = "<p>"
+                    sentence += d.name
+                    sentence += " doesn't need a "
+                    sentence += d.name
+                    sentence += " number, bitch."
                     sentence += "</p>"
-                    yeezyPath.append($(sentence))
-            })
+                    yeezyPath.append($(sentence));
+            } else {
+                yeezyNumber.html(d.yeezy_number)
+                    $.each(d.yeezy_path, function(key, value) {
+                        var sentence = "<p>"
+                            sentence += value.from
+                            sentence += " and "
+                            sentence += value.to
+                            sentence += " collaborated on "
+                            sentence += value.song
+                            sentence += "</p>"
+                            yeezyPath.append($(sentence))
+                    })
+            }
     }).on("mouseout", function(d) {
         d3.select(this).attr("r", 4)
             artistName.html("Hover over an artist!")
