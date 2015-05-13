@@ -120,6 +120,7 @@ for artist_name in $all_artists
 
     # Add the artist's image
     artist_info.push({"name" => artist_name, "image" => artist.image})
+    seen.push(artist_name);
 
     # Go through each song looking at features
     for song in all_songs

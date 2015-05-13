@@ -104,6 +104,8 @@ var artistPicture = $("#artist-picture")
 var yeezyNumber = $("#yeezy-number")
 var yeezyPath = $("#path-to-yeezy")
 
+var artist_names = ["Kanye West", "Jay Z", "Kendrick Lamar", "Diddy", "Drake", "Lil Wayne", "Big Sean", "Jeezy", "Pusha T", "J. Cole", "Common", "2 Chainz", "Nicki Minaj", "Tyler, The Creator", "Ludacris", "Talib Kweli", "Cam'ron", "Nas", "KRS-ONE", "RZA", "T.I.", "Rick Ross", "Lupe Fiasco", "Yasiin Bey", "Eminem", "Raekwon", "Scarface", "Busta Rhymes", "Chief Keef", "E-40", "Jadakiss", "Future", "Ol' Dirty Bastard", "Frank Ocean", "Ghostface Killah", "Twista", "Pete Rock", "Wale", "Ty Dolla $ign", "Dr. Dre", "The Notorious B.I.G.", "Ja Rule", "Outkast", "Killer Mike", "DMX", "50 Cent", "Meek Mill", "Lil Kim", "Kurupt", "YG", "Nipsey Hu$$le", "Birdman", "ScHoolboy Q", "Wiz Khalifa", "2Pac", "Young Thug", "Juicy J", "Master P", "Boosie Badazz", "Rich Homie Quan", "A$AP Rocky", "Royce Da 5'9\"", "Yelawolf", "Big KRIT", "Danny Brown", "Action Bronson", "Joey BADA$$", "Ab-Soul", "Ace Hood", "Jay Rock", "Tech N9ne", "B.o.B", "Mac Miller", "Snoop Dogg", "Childish Gambino", "Curren$y", "Murs", "The Roots", "Gucci Mane", "Logic", "Fat Joe", "LL Cool J", "Nelly", "Bone Thugs-n-Harmony", "Waka Flocka Flame", "Trey Songz", "Mystikal", "Bun B", "Soulja Boy", "Krizz Kaliko", "Lil B", "Wyclef Jean", "Chance The Rapper", "Kevin Gates", "Hodgy Beats", "Prodigy (Mobb Deep)", "Asher Roth", "Ice Cube", "Nate Dogg", "El-P", "AZ", "Mobb Deep", "Havoc", "De La Soul", "Beastie Boys", "Xzibit", "Kool G. Rap", "Inspectah Deck", "MC Guru", "Freddie Gibbs", "Killah Priest", "Wu-Tang Clan", "Method Man", "MF DOOM", "Cappadonna", "Madlib", "RiFF RAFF", "Masta Ace", "Krayzie Bone", "Brother Ali", "Redman", "Outlawz", "Ice-T", "Three 6 Mafia", "Ras Kass", "Aesop Rock", "Cunninlynguists", "Prince Paul", "Erick Sermon", "E.P.M.D.", "Atmosphere", "Rakim", "A Tribe Called Quest", "Run-D.M.C.", "Eyedea", "Cannibal Ox", "UGK", "Pimp C", "GZA", "Kool Keith", "Das EFX", "Gang Starr", "Goodie Mob", "Cypress Hill", "Clipse", "Biz Markie", "Jungle Brothers", "Jay Electronica", "Del the Funky Homosapien", "Jeru the Damaja", 'Devin the Dude', "Canibus", "Earl Sweatshirt", "U-God", "Masta Killa", "Eazy-E", "Big L", "Lauryn Hill", "Big Punisher", "Slick Rick", "Public Enemy", "Chuck D", "Big Boi", "Andre 3000", "Black Thought", "The Underachievers", "Flatbush Zombies", "Capital STEEZ", "CJ Fly", "Casey Veggies", "Big Daddy Kane", "Immortal Technique", "Pharoahe Monch", "MC Lyte", "Kool Moe Dee", "Queen Latifah", "Beanie Sigel", "Domo Genesis", "Game"];
+
 $(document).ready(function ()
     {  
         $("#artist_name").focus()
@@ -123,9 +125,20 @@ var force = d3.layout.force()
         thresholdValue = 25;
         artist_name = "Kanye West";
 
-        $("#artist_name").change(function(evt) {
+        $("#artist_name").bind('input', function(evt) {
+            if ($("#artist_name").val().length > artist_name.length) {
+                artist_name = $("#artist_name").val();
+                console.log(artist_name)
+                var filtered = artist_names.filter(function(s) {
+                    return s.toLowerCase().startsWith(artist_name.toLowerCase());
+                });
+                if (filtered.length == 1) {
+                    artist_name = filtered[0];
+                    $(this).val(artist_name);
+                    makeGraph(graph, thresholdValue, artist_name);
+                }
+            }
             artist_name = $("#artist_name").val();
-            makeGraph(graph, thresholdValue, artist_name);
         });
 
         d3.select('#threshold-slider').call(d3.slider()
