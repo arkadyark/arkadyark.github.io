@@ -9,16 +9,8 @@
     box-sizing : border-box;
 }
 
-#top {
-    border-bottom : solid;
-}
-
 #artist-picture {
     width : 100%;
--webkit-box-shadow: 0px 7px 24px 0px rgba(0,0,0,0.75);
--moz-box-shadow: 0px 7px 24px 0px rgba(0,0,0,0.75);
-box-shadow: 0px 7px 24px 0px rgba(0,0,0,0.75);
-    margin-bottom : 1em;
 }
 
 #sidebar {
@@ -28,12 +20,15 @@ box-shadow: 0px 7px 24px 0px rgba(0,0,0,0.75);
     padding-right : 10px;
 }
 
-h6 {
+p {
     margin-bottom : 1rem;
 }
 
 svg {
-    border-left : solid;
+    width : 75%;
+    float : left;
+    border-left : solid thin;
+    box-sizing : border-box;
 }
 
 .node {
@@ -46,65 +41,46 @@ svg {
     stroke: #bbb;
 }
 
-#threshold-label-wrapper {
-    padding: 0.7em 0;
+#threshold-slider {
+    width : 25%;
 }
 
-#autocomplete {
-    max-width : 50%;
-    padding-left : 0px;
-    height : 100%;
-    display : inline;
-    font-size : 4.2rem;
-    border : none;
+#artist_name {
     background : none;
+    border : none;
+    font-size : 42px;
+    height : 100%;
+    padding : 0;
+    color : black;
 }
 
-.ui-autocomplete {
-    max-width : 25%;
-    list-style : none;
-    background : lightgrey;
-    border-radius : 0 0 10px 10px;
-}
-
-.ui-menu-item {
-    font-weight : 200;
-    font-size : 2em;
-    margin-bottom : 0;
-    padding-left : 0.4em;
-}
-
-.ui-state-focus {
-    background : grey;
-}
-
-.ui-helper-hidden-accessible {
-    display : none;
+#artist_name_suggestion {
+    display : inline;
+    position : absolute;
+    top : 1%;
+    left : 18%;
 }
 
 </style>
 <body>
-    <div id="top" class="row">
-        <div class="banner eight columns">
+    <div id="top">
+        <div class="banner">
             <h2>The Oracle of 
-                <input type="text" name="centre_node" placeholder="Yeezy" id="autocomplete"/>
+                <p id="artist_name_suggestion">Yeezy</p>
+                <input type='text' id="artist_name" value = ''></input>
             </h2>
-            <h6>Made by <a href="/#about"> Arkady Arkhangorodsky </a></h6>
+            <p>Made by <a href="/#about"> Arkady Arkhangorodsky </a></p>
         </div>
-        <div class="slider-wrapper four columns">
-            <h5 id="threshold-label-wrapper"> Collaboration threshold: <span id="threshold-label"></span> </h5>
-            <div id="threshold-slider"></div>
-        </div>
+        <p> Collaboration threshold: <span id="threshold-label"></span> </p>
+        <div id="threshold-slider"></div>
     </div>
-    <div id="main-content" class="row">
-        <div id="sidebar" class="four columns">
-            <h4 id="artist-name"> Hover over an artist! </h4>
+    <div id="main-content">
+        <div id="sidebar">
+            <h3 id="artist-name"> Hover over an artist! </h3>
             <img src="http://a5.mzstatic.com/us/r30/Purple1/v4/bc/8e/81/bc8e8110-9b14-5e5f-a6b7-9a6d18adac6f/icon320x320.jpeg" alt="" id="artist-picture"/>
             <p>Yeezy Number: <span id="yeezy-number"></span></p>
             <div id="path-to-yeezy">
             </div>
-        </div>
-        <div id="svg-wrapper" class="eight columns">
         </div>
     </div>
 
@@ -112,11 +88,10 @@ svg {
     <script src="http://d3js.org/d3.v3.min.js"></script>
     <script src="/visualizations/rap_network/d3.slider.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-    <script src="https://code.jquery.com/ui/1.11.3/jquery-ui.min.js"></script>
     <script>
 
 var width = 960,
-    height = 610;
+    height = 950;
 
 var artistName = $("#artist-name")
 var artistNameSuggestion = $("#artist_name_suggestion")
@@ -127,65 +102,52 @@ var yeezyPath = $("#path-to-yeezy")
 var artist_names = ["Kanye West", "Jay Z", "Kendrick Lamar", "Diddy", "Drake", "Lil Wayne", "Big Sean", "Jeezy", "Pusha T", "J. Cole", "Common", "2 Chainz", "Nicki Minaj", "Tyler, The Creator", "Ludacris", "Talib Kweli", "Cam'ron", "Nas", "KRS-ONE", "RZA", "T.I.", "Rick Ross", "Lupe Fiasco", "Yasiin Bey", "Eminem", "Raekwon", "Scarface", "Busta Rhymes", "Chief Keef", "E-40", "Jadakiss", "Future", "Ol' Dirty Bastard", "Frank Ocean", "Ghostface Killah", "Twista", "Pete Rock", "Wale", "Ty Dolla $ign", "Dr. Dre", "The Notorious B.I.G.", "Ja Rule", "Outkast", "Killer Mike", "DMX", "50 Cent", "Meek Mill", "Lil Kim", "Kurupt", "YG", "Nipsey Hu$$le", "Birdman", "ScHoolboy Q", "Wiz Khalifa", "2Pac", "Young Thug", "Juicy J", "Master P", "Boosie Badazz", "Rich Homie Quan", "A$AP Rocky", "Royce Da 5'9\"", "Yelawolf", "Big KRIT", "Danny Brown", "Action Bronson", "Joey BADA$$", "Ab-Soul", "Ace Hood", "Jay Rock", "Tech N9ne", "B.o.B", "Mac Miller", "Snoop Dogg", "Childish Gambino", "Curren$y", "Murs", "The Roots", "Gucci Mane", "Logic", "Fat Joe", "LL Cool J", "Nelly", "Bone Thugs-n-Harmony", "Waka Flocka Flame", "Trey Songz", "Mystikal", "Bun B", "Soulja Boy", "Krizz Kaliko", "Lil B", "Wyclef Jean", "Chance The Rapper", "Kevin Gates", "Hodgy Beats", "Prodigy (Mobb Deep)", "Asher Roth", "Ice Cube", "Nate Dogg", "El-P", "AZ", "Mobb Deep", "Havoc", "De La Soul", "Beastie Boys", "Xzibit", "Kool G. Rap", "Inspectah Deck", "MC Guru", "Freddie Gibbs", "Killah Priest", "Wu-Tang Clan", "Method Man", "MF DOOM", "Cappadonna", "Madlib", "RiFF RAFF", "Masta Ace", "Krayzie Bone", "Brother Ali", "Redman", "Outlawz", "Ice-T", "Three 6 Mafia", "Ras Kass", "Aesop Rock", "Cunninlynguists", "Prince Paul", "Erick Sermon", "E.P.M.D.", "Atmosphere", "Rakim", "A Tribe Called Quest", "Run-D.M.C.", "Eyedea", "Cannibal Ox", "UGK", "Pimp C", "GZA", "Kool Keith", "Das EFX", "Gang Starr", "Goodie Mob", "Cypress Hill", "Clipse", "Biz Markie", "Jungle Brothers", "Jay Electronica", "Del the Funky Homosapien", "Jeru the Damaja", 'Devin the Dude', "Canibus", "Earl Sweatshirt", "U-God", "Masta Killa", "Eazy-E", "Big L", "Lauryn Hill", "Big Punisher", "Slick Rick", "Public Enemy", "Chuck D", "Big Boi", "Andre 3000", "Black Thought", "The Underachievers", "Flatbush Zombies", "Capital STEEZ", "CJ Fly", "Casey Veggies", "Big Daddy Kane", "Immortal Technique", "Pharoahe Monch", "MC Lyte", "Kool Moe Dee", "Queen Latifah", "Beanie Sigel", "Domo Genesis", "Game"];
 
 $(document).ready(function ()
-        {  
-            $("#autocomplete").focus()
-        });
+    {  
+        $("#artist_name").focus()
+    });
 
 var color = d3.scale.category20();
 
-// rescale g
-function rescale() {
-    trans=d3.event.translate;
-    scale=d3.event.scale;
+var force = d3.layout.force()
+    .size([width, height]);
 
-    vis.attr("transform",
-            "translate(" + trans + ")"
-            + " scale(" + scale + ")");
-}
-
-function mousedown() {
-    vis.call(d3.behavior.zoom().on("zoom"), rescale);
-    return;
-}
-
-var force = d3.layout.force().size([width, height]);
-
-var svg = d3.select("#svg-wrapper").append("svg")
+    var svg = d3.select("#main-content").append("svg")
     .attr("width", width)
-    .attr("height", height)
+    .attr("height", height);
 
-var vis = svg.append('svg:g')
+    d3.json("yeezified_network.json", function(error, graph) {
+        
+        thresholdValue = 25;
+        artist_name = "Kanye West";
 
-svg.call(d3.behavior.zoom().on("zoom", rescale))
-    .on("dblclick.zoom", null)
+        $("#artist_name").bind('input', function(evt) {
+            if ($("#artist_name").val().length > artist_name.length) {
+                artist_name = $("#artist_name").val();
+                console.log(artist_name)
+                var filtered = artist_names.filter(function(s) {
+                    return s.toLowerCase().startsWith(artist_name.toLowerCase());
+                });
+                if (filtered.length == 1) {
+                    artist_name = filtered[0];
+                    console.log(artist_name)
+                    artistNameSuggestion.html(artist_name);
+                    makeGraph(graph, thresholdValue, artist_name);
+                }
+            }
+            artist_name = $("#artist_name").val();
+        });
 
-d3.json("yeezified_network.json", function(error, graph) {
-
-    thresholdValue = 25;
-    artist_name = "Kanye West";
-
-    $('#autocomplete').autocomplete({
-        source: function(request, response) {
-            var results = $.ui.autocomplete.filter(artist_names, request.term);
-            response(results.slice(0, 4));
-        },
-        select : function(event, ui) {
-            artist_name = ui.item.value;
-            makeGraph(graph, thresholdValue, artist_name);
-        }
-    });
-
-    d3.select('#threshold-slider').call(d3.slider()
-            .value(thresholdValue)
-            .on("slide", function(evt, value) {
-                thresholdValue = value;
-                makeGraph(graph, value, artist_name);
-            }))
-    makeGraph(graph, thresholdValue, artist_name);
-})
+        d3.select('#threshold-slider').call(d3.slider()
+                .value(thresholdValue)
+                .on("slide", function(evt, value) {
+                    thresholdValue = value;
+                    makeGraph(graph, value, artist_name);
+                }))
+        makeGraph(graph, thresholdValue, artist_name);
+    })
 
 function makeGraph(graph, value, artist_name) {
-    vis.selectAll('*').remove();
+    svg.selectAll('*').remove();
     var nodes = graph.nodes.slice(),
     links = [],
         bilinks = [];
@@ -211,7 +173,7 @@ function makeGraph(graph, value, artist_name) {
         .links(links)
         .start();
 
-    var link = vis.selectAll(".link")
+    var link = svg.selectAll(".link")
         .data(bilinks)
         .enter().append("path")
         .attr("class", "link")
@@ -219,7 +181,7 @@ function makeGraph(graph, value, artist_name) {
             return Math.sqrt(d[3])/5
         })
 
-    var node = vis.selectAll(".node")
+    var node = svg.selectAll(".node")
         .data(graph.nodes)
         .enter().append("circle")
         .attr("class", "node")
@@ -242,7 +204,8 @@ function makeGraph(graph, value, artist_name) {
             artistPicture.attr("src", d.image)
 
             if (d.name == artist_name) {
-                var sentence = "<p>"
+                console.log("FOUND HIM HERE TOO")
+                    var sentence = "<p>"
                     sentence += d.name
                     sentence += " doesn't need a "
                     sentence += d.name

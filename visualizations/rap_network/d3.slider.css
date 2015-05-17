@@ -1,5 +1,5 @@
 .d3-slider {
-    background-color: blue;
+    background-color : #313133;
     position: relative;
     font-family: Verdana,Arial,sans-serif;
     font-size: 1.1em;
@@ -15,15 +15,11 @@
     position: absolute;
     width: 1.2em;
     height: 1.2em;
-    border: 1px solid #d3d3d3;
+    border: 1px solid #403F3D;
     border-radius: 4px;
-    background: #eee;
+    background: #7F7E7A;
     background: linear-gradient(to bottom, #eee 0%, #ddd 100%);
     z-index: 3;
-}
-
-.d3-slider-handle:hover {
-    border: 1px solid #999999;
 }
 
 .d3-slider-horizontal .d3-slider-handle {
