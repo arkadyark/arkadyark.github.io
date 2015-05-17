@@ -113,7 +113,7 @@ fs.readFile('../attempt_4/network_handpicked.json', 'utf8', function (err,data) 
     }
 
     for (var i = 0, l = links.length; i < l; i ++) {
-        if (links[i].target != null && links[i].value > 1) {
+        if (links[i].target != null && links[i].value > 2) {
             source = nodes[links[i].source].name
             target = nodes[links[i].target].name
             edges[source][target] = 1
