@@ -91,7 +91,7 @@ function Graph(){
 }
 
 
-fs.readFile('../attempt_4/network_handpicked.json', 'utf8', function (err,data) {
+fs.readFile('network_handpicked.json', 'utf8', function (err,data) {
     if (err) {
         return console.log(err);
     }
@@ -113,7 +113,7 @@ fs.readFile('../attempt_4/network_handpicked.json', 'utf8', function (err,data) 
     }
 
     for (var i = 0, l = links.length; i < l; i ++) {
-        if (links[i].target != null && links[i].value > 2) {
+        if (links[i].target != null) {
             source = nodes[links[i].source].name
             target = nodes[links[i].target].name
             edges[source][target] = 1
@@ -146,6 +146,7 @@ fs.readFile('../attempt_4/network_handpicked.json', 'utf8', function (err,data) 
             nodes[j]["yeezy_number"][central_artist] = path.length - 1
             nodes[j]["yeezy_path"][central_artist] = path_to_yeezy
         }
+        /*
         sum = 0;
         for (var j = 0, l = nodes.length; j < l; j ++) {
             var artist = nodes[j];
@@ -153,6 +154,7 @@ fs.readFile('../attempt_4/network_handpicked.json', 'utf8', function (err,data) 
         }
         sum = sum/nodes.length
         console.log(central_artist + ": " + sum);
+        */
     }
     console.log(JSON.stringify({"nodes":nodes, "links":links}))
 });
