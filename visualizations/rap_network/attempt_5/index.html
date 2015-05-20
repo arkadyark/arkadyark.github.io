@@ -60,6 +60,11 @@ h6 {
     stroke: #bbb;
 }
 
+.path-to-centre {
+    fill: none;
+    stroke: #f00;
+}
+
 #threshold-label-wrapper {
     padding: 0.7em 0;
 }
@@ -90,6 +95,10 @@ h6 {
 
 .ui-state-focus {
     background : grey;
+}
+
+.ui-state-focus:last-child {
+    border-radius : 0 0 10px 10px;
 }
 
 .ui-helper-hidden-accessible {
@@ -126,6 +135,7 @@ h6 {
     <script src="/visualizations/rap_network/d3.slider.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
     <script src="https://code.jquery.com/ui/1.11.3/jquery-ui.min.js"></script>
+    <script src="http://crypto-js.googlecode.com/svn/tags/3.1.2/build/rollups/sha1.js"></script>
     <script>
 
 var width = 960,
@@ -208,18 +218,25 @@ function makeGraph(graph, value, artist_name) {
     vis.selectAll('*').remove();
     var nodes = graph.nodes.slice(),
     links = [],
-    bilinks = [];
+    bilinks = [],
+    intermediateNodes = [],
+    coloredEdges = [];
+    // Label artist/threshold
     d3.select("#artist-label").html(artist_name);
     d3.select("#threshold-label").html(Math.ceil(Math.pow(value/10, 2)));
     var slider_threshold = Math.pow(value/10, 2);
+    // Create intermediate nodes for bezier curves
     graph.links.forEach(function(link) {
         if (link.value > slider_threshold) {
             var s = nodes[link.source],
                 t = nodes[link.target],
             i = {}; // intermediate node
             nodes.push(i);
-            links.push({source: s, target: i, weight : link.value}, {source: i, target: t, weight: link.value});
-            bilinks.push([s, i, t, link.value, link.songs]);
+            var firstHalf = {source : s, target : i, weight : link.value}
+            var secondHalf = {source : i, target : t, weight : link.value}
+            var bilink = [s, i, t, link.value, link.songs];
+            links.push(firstHalf, secondHalf);
+            bilinks.push(bilink);
         }
     });
 
@@ -236,6 +253,9 @@ function makeGraph(graph, value, artist_name) {
         .data(bilinks)
         .enter().append("path")
         .attr("class", "link")
+        .attr("id", function(d) {
+            return 'a' + CryptoJS.SHA1(d[0].name) + CryptoJS.SHA1(d[2].name)
+        })
         .attr("stroke-width", function(d) {
             return Math.sqrt(d[3])/5
         })
@@ -244,6 +264,9 @@ function makeGraph(graph, value, artist_name) {
         .data(graph.nodes)
         .enter().append("circle")
         .attr("class", "node")
+        .attr("id", function(d) {
+            return "a" + CryptoJS.SHA1(d.name)
+        })
         .attr("r", 4)
         .style("fill", function(d) { 
             if (d.name == artist_name) {
@@ -259,6 +282,7 @@ function makeGraph(graph, value, artist_name) {
 
     node.on("mouseover", function(d) {
         svg.attr("class", "pointer-cursor")
+
         d3.select(this).attr("r", 6)
             artistName.html(d.name)
             artistPicture.attr("src", d.image)
@@ -274,6 +298,37 @@ function makeGraph(graph, value, artist_name) {
             } else {
                 yeezyNumber.html(d.yeezy_number[artist_name])
                     $.each(d.yeezy_path[artist_name], function(key, value) {
+                        // Color edges on the way to the centre
+                        var edge = d3.select("#a" + CryptoJS.SHA1(value.to) + CryptoJS.SHA1(value.from))
+                        if (edge[0][0]) {
+                            edge.attr("class", "path-to-centre")
+                            .attr("stroke-width", function(d) {
+                                return Math.sqrt(d[3])
+                            })
+                            coloredEdges.push(edge)
+                        } else {
+                            var edge = d3.select("#a" + CryptoJS.SHA1(value.from) + CryptoJS.SHA1(value.to))
+                            if (edge[0][0]) {
+                                edge.attr("class", "path-to-centre")
+                                .attr("stroke-width", function(d) {
+                                    return Math.sqrt(d[3])
+                                })
+                                coloredEdges.push(edge)
+                            } 
+                        }
+
+                        // Color nodes on the way to the centre
+                        var intermediateNode = d3.select("#a" + CryptoJS.SHA1(value.to))
+                            intermediateNode.style("fill", function(d) {
+                                if (d.name != artist_name) {
+                                    return d3.rgb(255, 106, 71);
+                                } else {
+                                    return d3.rgb(255, 0, 0);
+                                }
+                            })
+                        intermediateNodes.push(intermediateNode)
+
+                        // Write out the path
                         var sentence = "<p>"
                             sentence += value.from
                             sentence += " and "
@@ -291,6 +346,30 @@ function makeGraph(graph, value, artist_name) {
             artistPicture.attr("src", "http://a5.mzstatic.com/us/r30/Purple1/v4/bc/8e/81/bc8e8110-9b14-5e5f-a6b7-9a6d18adac6f/icon320x320.jpeg")
             yeezyNumber.html("")
             yeezyPath.html("")
+
+        // Uncolor edges
+        $.each(coloredEdges, function(key, value) {
+            // Color edges on the way to the centre
+            value.attr("class", "link")
+            .attr("stroke-width", function(d) {
+                return Math.sqrt(d[3])/5
+            })
+        })
+        coloredEdges = []
+
+        // Uncolor nodes 
+        $.each(intermediateNodes, function(key, value) {
+            // Color edges on the way to the centre
+            value.style("fill", function(d) { 
+                if (d.name == artist_name) {
+                    return d3.rgb(255, 0, 0);
+                } else {
+                    return d3.rgb(30, 119, 180); 
+                }
+            })
+        })
+        intermediateNodes = []
+
     });
 
     force.on("tick", function() {
