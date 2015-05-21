@@ -7,10 +7,38 @@ html, body {
     height : 100%;
 }
 
-#main-content {
+#graph-content {
     position : relative;
     width : 100%;
     box-sizing : border-box;
+}
+
+#writing-content {
+    margin-top : 2em;
+}
+
+#writing-content p {
+    font-size : 1.2em;
+}
+
+#wu-tang-header {
+    text-decoration : none;
+    color : black;
+}
+
+#wu-tang-header:hover {
+    font-weight : bolder;
+    color : 111;
+}
+
+.container {
+    width : 50%;
+}
+
+.section-divider {
+    margin : 2em auto;
+    border-top : solid 2px grey;
+    width : 300px;
 }
 
 #top {
@@ -44,10 +72,6 @@ box-shadow: 0px 7px 24px 0px rgba(0,0,0,0.75);
     box-sizing : border-box;
     padding-right : 10px;
     border-right : solid;
-}
-
-h6 {
-    margin-bottom : 1rem;
 }
 
 .node {
@@ -117,22 +141,82 @@ h6 {
             <h2>The Oracle of 
                 <input type="text" name="centre_node" placeholder="Yeezy" id="autocomplete"/>
             </h2>
-            <h6>Made by <a href="/#about"> Arkady Arkhangorodsky </a></h6>
+            <p>Made by <a href="/#about"> Arkady Arkhangorodsky </a></p>
         </div>
         <div class="slider-wrapper four columns">
             <h5 id="threshold-label-wrapper"> Collaboration threshold: <span id="threshold-label"></span> </h5>
             <div id="threshold-slider"></div>
         </div>
     </div>
-    <div id="main-content" class="row">
+    <div id="graph-content" class="row">
         <div id="sidebar" class="three columns">
             <h4 id="artist-name"> Hover over an artist! </h4>
             <img src="http://a5.mzstatic.com/us/r30/Purple1/v4/bc/8e/81/bc8e8110-9b14-5e5f-a6b7-9a6d18adac6f/icon320x320.jpeg" alt="" id="artist-picture"/>
-            <p><span id="artist-label">Yeezy</span> Number: <span id="yeezy-number"></span></p>
+            <p id="artist-number-label" style="display:none"><span id="artist-label">Yeezy</span> Number: <span id="yeezy-number"></span></p>
             <div id="path-to-yeezy">
             </div>
         </div>
         <div id="svg-wrapper"></div>
+    </div>
+    <div id="writing-content" class="container">
+        <div class="section-divider"></div>
+        <p>
+        We all know <a href="https://oracleofbacon.org">The Oracle of Bacon</a> - the game where you try to connect any actor to Kevin Bacon in fewer than 6 jumps. Similar Oracles have been made for other fields, with things like the Erdős number for mathematicians, or even the <a href="http://static.echonest.com/SixDegreesOfBlackSabbath/index.html"> Black Sabbath number</a>. 
+        </p>
+
+        <p>
+        I found the Black Sabbath site to be out of date, lacking a visualization, and not hip-hop focused, so I thought it would be cool to pull data from RapGenius to show all of the collaborations between famous rappers. A <a href="http://arxiv.org/pdf/physics/0511215.pdf">similar study</a> was performed back in 2006, but it too had no visual component and as we are all well aware, much has changed in the game in 9 years.
+        </p>
+        <div class="section-divider"></div>
+        
+        <h3>What am I looking at right now?</h3>
+        <p>
+        blahbadee blah blah talk about methods and what edges are and stuff, answer some FAQs
+        </p>
+        <div class="section-divider"></div>
+        <h3>Major takeaways</h3>
+        <h5><a id="wu-tang-header" href="https://youtu.be/INh0FUnCDK4?t=6m16s">The Wu got somethin'</a></h5>
+        <p>
+            Hip-hop is a genre where membership in groups is a huge thing. How cohesive the Wu-Tang Clan has been still remains unmatched, 20+ years on. A few more recent groups have come close, but no group has been so large, while still remaining so connected.
+        </p>
+        <p>
+            You can see this by bumping the threshold up higher, to about 10 or so. At this point, every single one of the 10 Wu-Tang members (counting the "Unofficial Tenth" Cappadonna) stays together. No group so large is able to stay so close, and also so balanced.
+        </p>
+            IMAGE of wu tang at 15
+            GRAPH of % of members/clique-ness as a function of collaboration threshold for a few groups.
+        </p>
+            
+        <h5>Hip-hop has no centre</h5>
+        <p>
+            While the '06 study found Snoop Dogg to be the most central artist, my initial guess was that a study in 2015 would find Kanye at the centre.
+            GRAPH of centralities distribution.
+        </p>
+        <h5>Collaborations are bigger than ever</h5>
+        <p>
+            In making this I also wanted to be able to see how the prevalence of collaborations in hip-hop has changed throughout its history.
+            <em>GRAPH of year distribution through time</em>.
+        </p>
+        <div class="section-divider"></div>
+        <h3>Interesting tidbits</h3>
+        <h5>Krizz Kaliko and Tech N9ne, <em>damn</em>.</h5>
+        <p>
+            Cranking the threshold up to 65, and slowly bringing it up past that, you start to witness an epic showdown between Ghostface-Raekwon and Krizz Kaliko-Tech Nine. Both pairs of artists have done an insane amount of work together.
+        </p>
+        <h5>Least central artists</h5>
+        <p>
+            A few artists who tragically died before really making the mark they probably could have.
+            Eyedea, Capital STEEZ, Eazy-E.
+            Also, Kool Keith, as we probably already knew, is <em>way</em> out there.
+        </p>
+        
+        <div class="section-divider"></div>
+        <p>
+            Thanks a bunch for checking this out. For the more tech-interested readers, all of the source code is over <a href="https://github.com/arkadyark/arkadyark.github.io/tree/master/visualizations/rap_network">on my Github</a>. Fork this and make something cool!
+        </p>
+        <p>
+        I love hip-hop, and I love data analysis. I appreciate any feedback or suggestions (anybody big I left out?), so drop a comment down below to let me know.
+        </p>
+        <div class="section-divider"></div>
     </div>
 
     <link rel="stylesheet" href="/visualizations/rap_network/d3.slider.css" />
@@ -297,6 +381,7 @@ function makeGraph(graph, value, artist_name) {
             artistPicture.attr("src", d.image)
 
             if (d.name == artist_name) {
+                d3.select("#artist-number-label").style("display", "none")
                 var sentence = "<p>"
                     sentence += d.name
                     sentence += " doesn't need a "
@@ -305,6 +390,7 @@ function makeGraph(graph, value, artist_name) {
                     sentence += "</p>"
                     yeezyPath.append($(sentence));
             } else {
+                d3.select("#artist-number-label").style("display", "inline")
                 yeezyNumber.html(d.yeezy_number[artist_name])
                     $.each(d.yeezy_path[artist_name], function(key, value) {
                         // Color edges on the way to the centre
@@ -367,6 +453,7 @@ function makeGraph(graph, value, artist_name) {
                     })
             }
     }).on("mouseout", function(d) {
+        d3.select("#artist-number-label").style("display", "inline")
         svg.attr("class", "open-hand-cursor")
             d3.select(this).attr("r", 4)
             artistName.html("Hover over an artist!")
@@ -423,22 +510,4 @@ function makeGraph(graph, value, artist_name) {
 }
 
     </script>
-    <footer class="blog-footer">
-
-
-        <div> 
-            <a href="http://www.github.com/arkadyark">
-                <img src="/img/github.png"/>
-            </a>
-
-            <a href="http://www.facebook.com/ArkadyArkhangorodsky">
-                <img src="/img/facebook.png"/>
-            </a>
-
-            <a href="/res/resume.pdf">
-                <img src="/img/resume.png"/>
-            </a>
-        </div>
-
-    </footer>
 </body>
