@@ -16,6 +16,9 @@ Modified from Skeleton.css 2.0.4 */
   float: left;
   box-sizing: border-box; }
 
+.three.columns                  { width: 22%;            }
+.eight.columns                  { width: 65.3333333333%; }
+
 /* For devices larger than 400px */
 @media (min-width: 400px) {
   .container {
