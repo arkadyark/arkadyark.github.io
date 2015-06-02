@@ -127,6 +127,7 @@ fs.readFile('network_handpicked.json', 'utf8', function (err,data) {
         g.addVertex(artist, edges[artist])
     }
 
+    artist_centralities = {};
     for (var i = 0, l = nodes.length; i < l; i ++) {
         // Centre the graph at each artist
         var central_artist = nodes[i].name;
@@ -146,16 +147,20 @@ fs.readFile('network_handpicked.json', 'utf8', function (err,data) {
             nodes[j]["yeezy_number"][central_artist] = path.length - 1
             nodes[j]["yeezy_path"][central_artist] = path_to_yeezy
         }
-        /*
         sum = 0;
+        nodes_included = 0;
         for (var j = 0, l = nodes.length; j < l; j ++) {
             var artist = nodes[j];
             sum += artist["yeezy_number"][central_artist]
+            if (artist["yeezy_number"][central_artist] > 0) {
+                nodes_included += 1;
+            }
         }
-        sum = sum/nodes.length
-        console.log(central_artist + ": " + sum);
-        */
+        sum = sum/nodes_included;
+        artist_centralities[central_artist] = sum;
+        //console.log(central_artist + ": " + sum);
     }
-    console.log(JSON.stringify({"nodes":nodes, "links":links}))
+    console.log(JSON.stringify(artist_centralities));
+    //console.log(JSON.stringify({"nodes":nodes, "links":links}))
 });
 

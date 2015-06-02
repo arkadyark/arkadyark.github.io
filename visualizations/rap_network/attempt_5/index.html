@@ -227,7 +227,7 @@ box-shadow: 0px 7px 24px 0px rgba(0,0,0,0.75);
         
         <h3>What am I looking at right now?</h3>
         <p>
-        Every point in this network represents a hip-hop artist. I included some groups (even sometimes together with their constituent members - Outkast is an example of this) if they tended to be listed on RapGenius as the group. Every link between two points represents collaborations between the artists. A thicker link means more collaborations between the pair. 
+        Every point in this network represents a hip-hop artist. I included some groups (even sometimes together with their constituent members - Outkast is an example of this) if they tended to be listed on RapGenius as the group. Every link between two points represents collaborations between the artists. A thicker link means more collaborations between the pair. Thicker links between two artists will bring them closer together.
         </p>
         <p>
         The 'Collaboration threshold' tunes how many collaborations two artists need to have had together to be linked. Intuitively this parameter controls how 'coarse' the network is: a higher threshold leaves just the strongly linked artists together and shows the bigger picture, while a low threshold shows the small-scale interactions between more artists.
@@ -340,8 +340,12 @@ function rescale() {
             + " scale(" + scale + ")");
 }
 
+var zoom = d3.behavior.zoom()
+    .scaleExtent([0.5, 10])
+    .on("zoom", rescale);
+
 function mousedown() {
-    vis.call(d3.behavior.zoom().on("zoom"), rescale);
+    vis.call(zoom);
     return;
 }
 
@@ -365,7 +369,7 @@ vis.attr("transform",
         "translate(100,150)"
         + " scale(.8)");
 
-svg.call(d3.behavior.zoom().on("zoom", rescale))
+svg.call(zoom)
 .on("dblclick.zoom", null)
 
 d3.json("yeezified_network.json", function(error, graph) {
@@ -446,7 +450,7 @@ function makeGraph(graph, value, artist_name) {
         .attr("id", function(d) {
             return "a" + CryptoJS.SHA1(d.name)
         })
-    .attr("r", 4)
+    .attr("r", 5)
         .style("fill", function(d) { 
             if (d.name == artist_name) {
                 return d3.rgb(255, 0, 0);
@@ -466,7 +470,7 @@ function makeGraph(graph, value, artist_name) {
     node.on("mouseover", function(d) {
         svg.attr("class", "pointer-cursor")
 
-            d3.select(this).attr("r", 8)
+            d3.select(this).attr("r", 9)
             artistName.attr("value", d.name)
             artistPicture.attr("src", d.image)
 
@@ -547,7 +551,7 @@ function makeGraph(graph, value, artist_name) {
         d3.select("#bitch").html("").style("display", "none");
         d3.select("#artist-number-label").style("display", "none")
         svg.attr("class", "open-hand-cursor")
-            d3.select(this).attr("r", 4)
+            d3.select(this).attr("r", 5)
             artistName.attr("value", "")
             artistPicture.attr("src", "http://a5.mzstatic.com/us/r30/Purple1/v4/bc/8e/81/bc8e8110-9b14-5e5f-a6b7-9a6d18adac6f/icon320x320.jpeg")
             yeezyNumber.html("")
