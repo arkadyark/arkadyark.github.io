@@ -1,0 +1,176 @@
+html, body {
+    height : 100%;
+}
+
+#graph-content {
+    position : relative;
+    width : 100%;
+    box-sizing : border-box;
+}
+
+#writing-content {
+    margin-top : 2em;
+}
+
+#writing-content h2,h3 {
+    font-weight : bolder;
+    margin-bottom : 0.4em;
+}
+
+#writing-content h2 {
+    font-size : 4em;
+}
+
+#writing-content p {
+    font-size : 1.2em;
+}
+
+#wu-tang-header {
+    text-decoration : none;
+    color : black;
+}
+
+#wu-tang-header:hover {
+    font-weight : bolder;
+    color : 111;
+}
+
+.container {
+    width : 50%;
+}
+
+@media screen and (max-width : 800px) {
+    .container {
+        width : 90%;
+    }
+}
+
+.section-divider {
+    margin : 4em auto;
+    border-top : solid 1px grey;
+    width : 350px;
+}
+
+#top {
+    border-bottom : solid;
+}
+
+.open-hand-cursor {
+    cursor : url(http://maps.gstatic.com/mapfiles/openhand_8_8.cur), default;
+}
+
+.closed-hand-cursor {
+    cursor : url(http://maps.gstatic.com/mapfiles/closedhand_8_8.cur), default;
+}
+
+.pointer-cursor {
+    cursor : pointer;
+}
+
+#artist-picture {
+    width : 100%;
+-webkit-box-shadow: 0px 7px 24px 0px rgba(0,0,0,0.75);
+-moz-box-shadow: 0px 7px 24px 0px rgba(0,0,0,0.75);
+box-shadow: 0px 7px 24px 0px rgba(0,0,0,0.75);
+    margin-bottom : 1em;
+}
+
+#artist-number-label {
+    font-style : italic;
+}
+
+#path-to-yeezy {
+    margin-top : 1.5em;
+}
+
+#path-to-yeezy p {
+    margin-top : 0.5em;
+    margin-bottom : 0.5em;
+}
+
+
+#sidebar {
+    height : 610px;
+    float : left;
+    box-sizing : border-box;
+    padding-right : 10px;
+    border-right : solid;
+}
+
+.node {
+    stroke: #fff;
+    stroke-width: 1.5px;
+}
+
+.link {
+    fill: none;
+    stroke: #bbb;
+}
+
+.dashed-link {
+    fill: none;
+    stroke: #f00;
+}
+
+.path-to-centre {
+    fill: none;
+    stroke: #f00;
+}
+
+#threshold-label-wrapper {
+    padding: 0.7em 0;
+}
+
+#threshold-slider {
+    margin-bottom : 1em;
+}
+
+#autocomplete {
+    max-width : 50%;
+    padding-left : 0px;
+    height : 100%;
+    display : inline;
+    font-size : 4.2rem;
+    border : none;
+    background : none;
+}
+
+#autocomplete-second {
+    width : 100%;
+    height : 50px;
+    padding-left : 0px;
+    font-size : 2.7rem;
+    border : none;
+    background : none;
+}
+
+.ui-autocomplete {
+    max-width : 25%;
+    list-style : none;
+    background : lightgrey;
+    border-radius : 0 0 10px 10px;
+}
+
+.ui-menu-item {
+    font-weight : 200;
+    font-size : 2em;
+    margin-bottom : 0;
+    padding-left : 0.4em;
+}
+
+.ui-state-focus {
+    background : grey;
+}
+
+.ui-state-focus:last-child {
+    border-radius : 0 0 10px 10px;
+}
+
+.ui-helper-hidden-accessible {
+    display : none;
+}
+
+.twitter-share-button {
+    margin-right : 1em;
+}
+

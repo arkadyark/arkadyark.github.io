@@ -1,609 +1,143 @@
 <!DOCTYPE html>
-<meta charset="utf-8">
-<link href="/css/style.css" rel="stylesheet">
-<style>
-
-html, body {
-    height : 100%;
-}
-
-#graph-content {
-    position : relative;
-    width : 100%;
-    box-sizing : border-box;
-}
-
-#writing-content {
-    margin-top : 2em;
-}
-
-#writing-content h2,h3 {
-    font-weight : bolder;
-    margin-bottom : 0.4em;
-}
-
-#writing-content h2 {
-    font-size : 4em;
-}
-
-#writing-content p {
-    font-size : 1.2em;
-}
-
-#wu-tang-header {
-    text-decoration : none;
-    color : black;
-}
-
-#wu-tang-header:hover {
-    font-weight : bolder;
-    color : 111;
-}
-
-.container {
-    width : 50%;
-}
-
-@media screen and (max-width : 800px) {
-    .container {
-        width : 90%;
-    }
-}
-
-.section-divider {
-    margin : 4em auto;
-    border-top : solid 1px grey;
-    width : 350px;
-}
-
-#top {
-    border-bottom : solid;
-}
-
-.open-hand-cursor {
-    cursor : url(http://maps.gstatic.com/mapfiles/openhand_8_8.cur), default;
-}
-
-.closed-hand-cursor {
-    cursor : url(http://maps.gstatic.com/mapfiles/closedhand_8_8.cur), default;
-}
-
-.pointer-cursor {
-    cursor : pointer;
-}
-
-#artist-picture {
-    width : 100%;
--webkit-box-shadow: 0px 7px 24px 0px rgba(0,0,0,0.75);
--moz-box-shadow: 0px 7px 24px 0px rgba(0,0,0,0.75);
-box-shadow: 0px 7px 24px 0px rgba(0,0,0,0.75);
-    margin-bottom : 1em;
-}
-
-#artist-number-label {
-    font-style : italic;
-}
-
-#path-to-yeezy {
-    margin-top : 1.5em;
-}
-
-#path-to-yeezy p {
-    margin-top : 0.5em;
-    margin-bottom : 0.5em;
-}
-
-
-#sidebar {
-    height : 610px;
-    float : left;
-    box-sizing : border-box;
-    padding-right : 10px;
-    border-right : solid;
-}
-
-.node {
-    stroke: #fff;
-    stroke-width: 1.5px;
-}
-
-.link {
-    fill: none;
-    stroke: #bbb;
-}
-
-.dashed-link {
-    fill: none;
-    stroke: #f00;
-}
-
-.path-to-centre {
-    fill: none;
-    stroke: #f00;
-}
-
-#threshold-label-wrapper {
-    padding: 0.7em 0;
-}
-
-#threshold-slider {
-    margin-bottom : 1em;
-}
-
-#autocomplete {
-    max-width : 50%;
-    padding-left : 0px;
-    height : 100%;
-    display : inline;
-    font-size : 4.2rem;
-    border : none;
-    background : none;
-}
-
-#autocomplete-second {
-    width : 100%;
-    height : 50px;
-    padding-left : 0px;
-    font-size : 2.7rem;
-    border : none;
-    background : none;
-}
-
-.ui-autocomplete {
-    max-width : 25%;
-    list-style : none;
-    background : lightgrey;
-    border-radius : 0 0 10px 10px;
-}
-
-.ui-menu-item {
-    font-weight : 200;
-    font-size : 2em;
-    margin-bottom : 0;
-    padding-left : 0.4em;
-}
-
-.ui-state-focus {
-    background : grey;
-}
-
-.ui-state-focus:last-child {
-    border-radius : 0 0 10px 10px;
-}
-
-.ui-helper-hidden-accessible {
-    display : none;
-}
-
-.twitter-share-button {
-    margin-right : 1em;
-}
-
-</style>
-<body>
-    <div id="fb-root"></div>
-    <script>(function(d, s, id) {
-  var js, fjs = d.getElementsByTagName(s)[0];
+<html>
+    <head>
+        <meta charset="utf-8">
+        <link href="/css/style.css" rel="stylesheet">
+        <link href="style.css" rel="stylesheet">
+    </head>
+    <body>
+        <div id="fb-root"></div>
+        <script>
+(function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
     if (d.getElementById(id)) return;
-      js = d.createElement(s); js.id = id;
-        js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.3";
-          fjs.parentNode.insertBefore(js, fjs);
-    }(document, 'script', 'facebook-jssdk'));</script>
-    <div id="top" class="row">
-        <div class="banner eight columns">
-            <h2>The Oracle of 
-                <input type="text" name="centre_node" placeholder="Yeezy" id="autocomplete"/>
+    js = d.createElement(s); js.id = id;
+    js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.3";
+    fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));
+        </script>
+        <div id="top" class="row">
+            <div class="banner eight columns">
+                <h2>The Oracle of 
+                    <input type="text" name="centre_node" placeholder="Yeezy" id="autocomplete"/>
+                </h2>
+                <p>Made by <a href="/#about"> Arkady Arkhangorodsky </a></p>
+            </div>
+            <div class="slider-wrapper four columns">
+                <h5 id="threshold-label-wrapper"> Collaboration threshold: <span id="threshold-label"></span> </h5>
+                <div id="threshold-slider"></div>
+            </div>
+        </div>
+        <div id="graph-content" class="row">
+            <div id="sidebar" class="three columns">
+                <input type="text" name="second_artist" placeholder="Jay Z" id="autocomplete-second"/>
+                <img src="http://a5.mzstatic.com/us/r30/Purple1/v4/bc/8e/81/bc8e8110-9b14-5e5f-a6b7-9a6d18adac6f/icon320x320.jpeg" alt="" id="artist-picture"/>
+                <p id="bitch"></p>
+                <p id="artist-number-label" style="display:none"><span id="artist-label">Yeezy</span> Number: <span id="yeezy-number"></span></p>
+                <div id="path-to-yeezy"></div>
+            </div>
+            <div id="svg-wrapper" class="eight columns"></div>
+        </div>
+        <div id="writing-content" class="container">
+            <div class="section-divider"></div>
+            <h2>
+                The Oracle of Hip-Hop
             </h2>
-            <p>Made by <a href="/#about"> Arkady Arkhangorodsky </a></p>
-        </div>
-        <div class="slider-wrapper four columns">
-            <h5 id="threshold-label-wrapper"> Collaboration threshold: <span id="threshold-label"></span> </h5>
-            <div id="threshold-slider"></div>
-        </div>
-    </div>
-    <div id="graph-content" class="row">
-        <div id="sidebar" class="three columns">
-            <input type="text" name="second_artist" placeholder="Jay Z" id="autocomplete-second"/>
-            <img src="http://a5.mzstatic.com/us/r30/Purple1/v4/bc/8e/81/bc8e8110-9b14-5e5f-a6b7-9a6d18adac6f/icon320x320.jpeg" alt="" id="artist-picture"/>
-            <p id="bitch"></p>
-            <p id="artist-number-label" style="display:none"><span id="artist-label">Yeezy</span> Number: <span id="yeezy-number"></span></p>
-            <div id="path-to-yeezy"></div>
-        </div>
-        <div id="svg-wrapper" class="eight columns"></div>
-    </div>
-    <div id="writing-content" class="container">
-        <div class="section-divider"></div>
-        <h2>
-            The Oracle of Hip-Hop
-        </h2>
-        <p>
-        We all know <a href="https://oracleofbacon.org">The Oracle of Bacon</a> - the game where you try to connect any actor to Kevin Bacon in as few jumps as possible. Similar Oracles have been made for other fields, with things like the Erdős number for mathematicians, or even the <a href="http://static.echonest.com/SixDegreesOfBlackSabbath/index.html"> Black Sabbath number</a>. 
-        </p>
+            <p>
+            We all know <a href="https://oracleofbacon.org">The Oracle of Bacon</a> - the game where you try to connect any actor to Kevin Bacon in as few jumps as possible. Similar Oracles have been made for other fields, with things like the Erdős number for mathematicians, or even the <a href="http://static.echonest.com/SixDegreesOfBlackSabbath/index.html"> Black Sabbath number</a>. 
+            </p>
 
-        <p>
-        I found the Black Sabbath site to be out of date, lacking a visualization, and not hip-hop focused. I thought it would be cool to pull data from RapGenius to show all of the collaborations between famous rappers. A <a href="http://arxiv.org/pdf/physics/0511215.pdf">similar study</a> was performed back in 2006, but it too had no visual component and as we are all well aware, much has changed in the game in 9 years.
-        </p>
-        <div class="section-divider"></div>
-        
-        <h3>What am I looking at right now?</h3>
-        <p>
-        Every point in this network represents a hip-hop artist. I included some groups (even sometimes together with their constituent members - Outkast is an example of this) if they tended to be listed on RapGenius as the group. Every link between two points represents collaborations between the artists. A thicker link means more collaborations between the pair. Thicker links between two artists will bring them closer together.
-        </p>
-        <p>
-        The 'Collaboration threshold' tunes how many collaborations two artists need to have had together to be linked. Intuitively this parameter controls how 'coarse' the network is: a higher threshold leaves just the strongly linked artists together and shows the bigger picture, while a low threshold shows the small-scale interactions between more artists.
-        </p>
-        <p>
-        Hovering over an artist highlights the shortest path (potentially one of many) between them and the central artist. When a link represents fewer collaborations than the threshold, but still appears on the path to the centre, it is shown as a dotted line.
-        </p>
-        <div class="section-divider"></div>
-        <h3>Major takeaways</h3>
-        <h5><a id="wu-tang-header" href="https://youtu.be/INh0FUnCDK4?t=6m16s">The Wu got somethin'</a></h5>
-        <p>
+            <p>
+            I found the Black Sabbath site to be out of date, lacking a visualization, and not hip-hop focused. I thought it would be cool to pull data from RapGenius to show all of the collaborations between famous rappers. A <a href="http://arxiv.org/pdf/physics/0511215.pdf">similar study</a> was performed back in 2006, but it too had no visual component and as we are all well aware, much has changed in the game in 9 years.
+            </p>
+            <div class="section-divider"></div>
+
+            <h3>What am I looking at right now?</h3>
+            <p>
+            Every point in this network represents a hip-hop artist. I included some groups (even sometimes together with their constituent members - Outkast is an example of this) if they tended to be listed on RapGenius as the group. Every link between two points represents collaborations between the artists. A thicker link means more collaborations between the pair. Thicker links between two artists will bring them closer together.
+            </p>
+            <p>
+            The 'Collaboration threshold' tunes how many collaborations two artists need to have had together to be linked. Intuitively this parameter controls how 'coarse' the network is: a higher threshold leaves just the strongly linked artists together and shows the bigger picture, while a low threshold shows the small-scale interactions between more artists.
+            </p>
+            <p>
+            Hovering over an artist highlights the shortest path (potentially one of many) between them and the central artist. When a link represents fewer collaborations than the threshold, but still appears on the path to the centre, it is shown as a dotted line.
+            </p>
+            <div class="section-divider"></div>
+            <h3>Major takeaways</h3>
+            <h5><a id="wu-tang-header" href="https://youtu.be/INh0FUnCDK4?t=6m16s">The Wu got somethin'</a></h5>
+            <p>
             Hip-hop is a genre where membership in groups means a lot. How cohesive the Wu-Tang Clan has been still remains unmatched, 20+ years on. A few more recent groups have come close, but no group has been so large, while still remaining so connected.
-        </p>
-        <p>
+            </p>
+            <p>
             You can see this by bumping the threshold up higher, to about 10 or so. At this point, every single one of the 10 Wu-Tang members (counting the "Unofficial Tenth" Cappadonna) stays together. No group so large is able to stay so close, and also so balanced.
-        </p>
+            </p>
             IMAGE of wu tang at 15
             GRAPH of % of members/clique-ness as a function of collaboration threshold for a few groups.
-        </p>
-            
-        <h5>Hip-hop has no centre</h5>
-        <p>
+            </p>
+
+            <h5>Hip-hop has no centre</h5>
+            <p>
             While the '06 study found Snoop Dogg to be the most central artist, my initial guess was that a study in 2015 would find Kanye at the centre.
-            GRAPH of centralities distribution.
-        </p>
-        <h5>Collaborations are bigger than ever</h5>
-        <p>
+            </p>
+            <div id="centrality_histogram"></div>
+            <h5>Collaborations are bigger than ever</h5>
+            <p>
             In making this I also wanted to be able to see how the prevalence of collaborations in hip-hop has changed throughout its history.
             <em>GRAPH of year distribution through time</em>.
-        </p>
-        <div class="section-divider"></div>
-        <h3>Interesting tidbits</h3>
-        <h5>Krizz Kaliko and Tech N9ne, <em>damn</em>.</h5>
-        <p>
+            </p>
+            <div class="section-divider"></div>
+            <h3>Interesting tidbits</h3>
+            <h5>Krizz Kaliko and Tech N9ne, <em>damn</em>.</h5>
+            <p>
             Cranking the threshold up to 65, and slowly bringing it up past that, you start to witness an epic showdown between Ghostface-Raekwon and Krizz Kaliko-Tech N9ne. Both pairs of artists have done an insane amount of work together. Taking it all the way up, though, Krizz Kaliko and Tech N9ne are the last pair standing, and come in with a whopping 119 collaborations together listed on RapGenius.
-        </p>
-        <p>
+            </p>
+            <p>
             This is especially impressive when you consider that they were never formally a duo/members of a larger group. Also, for my network I left out producer collaborations, so on every one of the 119 collaborations, both artists contribute vocals. Both artists (Tech N9ne in particular) look like their fanbases continue to steadily grow late in their careers, so this number is probably going to keep on rising even higher.
-        </p>
-        <h5>Least central artists</h5>
-        <p>
+            </p>
+            <h5>Least central artists</h5>
+            <p>
             A few artists who tragically died before really making the mark they probably could have.
             Eyedea, Capital STEEZ, Eazy-E.
             Also, Kool Keith, as we probably already knew, is <em>way</em> out there.
-        </p>
-        
-        <div class="section-divider"></div>
-        <p>
-        Thanks a bunch for checking this out. A like/share would be appreciated. 
-        I love hip-hop, and I love data visualization. I appreciate any feedback or suggestions (anybody big I left out?), so drop a comment down below to let me know.
-        </p>
+            </p>
+
+            <div class="section-divider"></div>
+            <p>
+            Thanks a bunch for checking this out. A like/share would be appreciated. 
+            I love hip-hop, and I love data visualization. I appreciate any feedback or suggestions (anybody big I left out?), so drop a comment down below to let me know.
+            </p>
             <div class="fb-like" data-href="http://www.arkadyark.me/visualizations/oracle" data-layout="standard" data-action="like" data-show-faces="true" data-share="true"></div>
             <a class="twitter-share-button" data-size=large
-                  href="https://twitter.com/intent/tweet?text=hella%20cool%20data%20visualization">
+               href="https://twitter.com/intent/tweet?text=hella%20cool%20data%20visualization">
                 Tweet</a>
-        <div class="section-divider"></div>
-        <p><a href="http://www.arkadyark.me/visualizations/rap_network/attempt_1">As</a> <a href="http://www.arkadyark.me/visualizations/rap_network/attempt_2">you</a> <a href="http://www.arkadyark.me/visualizations/rap_network/attempt_3">can</a> <a href="http://www.arkadyark.me/visualizations/rap_network/attempt_4">see</a>, this project went through several iterations before it became what it currently is. For the more tech-interested readers, all of the source code is over <a href="https://github.com/arkadyark/arkadyark.github.io/tree/master/visualizations/rap_network">on my Github</a>. Fork this and make something cool!
-        <div class="section-divider"></div>
-    </div>
+            <div class="section-divider"></div>
+            <p><a href="http://www.arkadyark.me/visualizations/rap_network/attempt_1">As</a> <a href="http://www.arkadyark.me/visualizations/rap_network/attempt_2">you</a> <a href="http://www.arkadyark.me/visualizations/rap_network/attempt_3">can</a> <a href="http://www.arkadyark.me/visualizations/rap_network/attempt_4">see</a>, this project went through several iterations before it became what it currently is. For the more tech-interested readers, all of the source code is over <a href="https://github.com/arkadyark/arkadyark.github.io/tree/master/visualizations/rap_network">on my Github</a>. Fork this and make something cool!
+            <div class="section-divider"></div>
+        </div>
 
-    <link rel="stylesheet" href="/visualizations/rap_network/d3.slider.css" />
-    <script src="http://d3js.org/d3.v3.min.js"></script>
-    <script src="/visualizations/rap_network/d3.slider.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-    <script src="https://code.jquery.com/ui/1.11.3/jquery-ui.min.js"></script>
-    <script src="http://crypto-js.googlecode.com/svn/tags/3.1.2/build/rollups/sha1.js"></script>
-    <script>window.twttr = (function(d, s, id) {
-  var js, fjs = d.getElementsByTagName(s)[0],
+        <link rel="stylesheet" href="/visualizations/rap_network/d3.slider.css" />
+        <script src="http://d3js.org/d3.v3.min.js"></script>
+        <script src="/visualizations/rap_network/d3.slider.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+        <script src="https://code.jquery.com/ui/1.11.3/jquery-ui.min.js"></script>
+        <script src="http://crypto-js.googlecode.com/svn/tags/3.1.2/build/rollups/sha1.js"></script>
+        <script>window.twttr = (function(d, s, id) {
+var js, fjs = d.getElementsByTagName(s)[0],
             t = window.twttr || {};
-    if (d.getElementById(id)) return t;
-      js = d.createElement(s);
-        js.id = id;
-          js.src = "https://platform.twitter.com/widgets.js";
-            fjs.parentNode.insertBefore(js, fjs);
-             
-              t._e = [];
-                t.ready = function(f) {
-                        t._e.push(f);
-                          };
-                 
-                  return t;
-    }(document, "script", "twitter-wjs"));</script>
-    <script>
+if (d.getElementById(id)) return t;
+js = d.createElement(s);
+js.id = id;
+js.src = "https://platform.twitter.com/widgets.js";
+fjs.parentNode.insertBefore(js, fjs);
 
-var width = 960,
-    height = 610;
+t._e = [];
+t.ready = function(f) {
+    t._e.push(f);
+};
 
-var artistName = $("#autocomplete-second")
-var artistNameSuggestion = $("#artist_name_suggestion")
-var artistPicture = $("#artist-picture")
-var yeezyNumber = $("#yeezy-number")
-var yeezyPath = $("#path-to-yeezy")
-
-var artist_names = ["Kanye West", "Jay Z", "Kendrick Lamar", "Diddy", "Drake", "Lil Wayne", "Big Sean", "Jeezy", "Pusha T", "J. Cole", "Common", "2 Chainz", "Nicki Minaj", "Tyler, The Creator", "Ludacris", "Talib Kweli", "Cam'ron", "Nas", "KRS-ONE", "RZA", "T.I.", "Rick Ross", "Lupe Fiasco", "Yasiin Bey", "Eminem", "Raekwon", "Scarface", "Busta Rhymes", "Chief Keef", "E-40", "Jadakiss", "Future", "Ol' Dirty Bastard", "Frank Ocean", "Ghostface Killah", "Twista", "Pete Rock", "Wale", "Ty Dolla $ign", "Dr. Dre", "The Notorious B.I.G.", "Ja Rule", "Outkast", "Killer Mike", "DMX", "50 Cent", "Meek Mill", "Lil Kim", "Kurupt", "YG", "Nipsey Hu$$le", "Birdman", "ScHoolboy Q", "Wiz Khalifa", "2Pac", "Young Thug", "Juicy J", "Master P", "Boosie Badazz", "Rich Homie Quan", "A$AP Rocky", "Royce Da 5'9\"", "Yelawolf", "Big KRIT", "Danny Brown", "Action Bronson", "Joey BADA$$", "Ab-Soul", "Ace Hood", "Jay Rock", "Tech N9ne", "B.o.B", "Mac Miller", "Snoop Dogg", "Childish Gambino", "Curren$y", "Murs", "The Roots", "Gucci Mane", "Logic", "Fat Joe", "LL Cool J", "Nelly", "Bone Thugs-n-Harmony", "Waka Flocka Flame", "Trey Songz", "Mystikal", "Bun B", "Soulja Boy", "Krizz Kaliko", "Lil B", "Wyclef Jean", "Chance The Rapper", "Kevin Gates", "Hodgy Beats", "Prodigy (Mobb Deep)", "Asher Roth", "Ice Cube", "Nate Dogg", "El-P", "AZ", "Mobb Deep", "Havoc", "De La Soul", "Beastie Boys", "Xzibit", "Kool G. Rap", "Inspectah Deck", "MC Guru", "Freddie Gibbs", "Killah Priest", "Method Man", "MF DOOM", "Cappadonna", "Madlib", "RiFF RAFF", "Masta Ace", "Krayzie Bone", "Brother Ali", "Redman", "Outlawz", "Ice-T", "Three 6 Mafia", "Ras Kass", "Aesop Rock", "Cunninlynguists", "Prince Paul", "Erick Sermon", "E.P.M.D.", "Atmosphere", "Rakim", "A Tribe Called Quest", "Run-D.M.C.", "Eyedea", "Cannibal Ox", "UGK", "Pimp C", "GZA", "Kool Keith", "Das EFX", "Gang Starr", "Goodie Mob", "Cypress Hill", "Clipse", "Biz Markie", "Jungle Brothers", "Jay Electronica", "Jeru the Damaja", "Canibus", "Earl Sweatshirt", "U-God", "Masta Killa", "Eazy-E", "Big L", "Lauryn Hill", "Big Punisher", "Slick Rick", "Public Enemy", "Chuck D", "Big Boi", "Andre 3000", "Black Thought", "The Underachievers", "Flatbush Zombies", "Capital STEEZ", "CJ Fly", "Casey Veggies", "Big Daddy Kane", "Immortal Technique", "Pharoahe Monch", "MC Lyte", "Kool Moe Dee", "Queen Latifah", "Beanie Sigel", "Domo Genesis", "Game", "Rae Sremmurd"];
-
-$(document).ready(function ()
-        {  
-            $("#autocomplete").focus()
-        });
-
-var color = d3.scale.category20();
-
-// rescale g
-function rescale() {
-    trans=d3.event.translate;
-    scale=d3.event.scale;
-
-    vis.attr("transform",
-            "translate(" + trans + ")"
-            + " scale(" + scale + ")");
-}
-
-var zoom = d3.behavior.zoom()
-    .scaleExtent([0.5, 10])
-    .on("zoom", rescale);
-
-function mousedown() {
-    vis.call(zoom);
-    return;
-}
-
-var force = d3.layout.force().size([width, height]);
-
-var svg = d3.select("#svg-wrapper").append("svg")
-.attr("width", width)
-.attr("height", height)
-.attr("class", "open-hand-cursor");
-
-svg.on("mousedown.drag", function() {
-    svg.attr("class", "closed-hand-cursor");
-}).on("mouseup.drag", function() {
-    svg.attr("class", "open-hand-cursor");
-})
-
-var vis = svg.append('svg:g')
-
-// Set initial zoom/position
-vis.attr("transform",
-        "translate(100,150)"
-        + " scale(.8)");
-
-svg.call(zoom)
-.on("dblclick.zoom", null)
-
-d3.json("yeezified_network.json", function(error, graph) {
-
-    thresholdValue = 10;
-    artist_name = "Kanye West";
-
-    $('#autocomplete').autocomplete({
-        source: function(request, response) {
-            var results = $.ui.autocomplete.filter(artist_names, request.term);
-            response(results.slice(0, 4));
-        },
-        select : function(event, ui) {
-            artist_name = ui.item.value;
-            makeGraph(graph, thresholdValue, artist_name);
-        }
-    });
-
-    d3.select('#threshold-slider').call(d3.slider()
-            .value(thresholdValue)
-            .on("slide", function(evt, value) {
-                thresholdValue = value;
-                makeGraph(graph, value, artist_name);
-            }))
-    makeGraph(graph, thresholdValue, artist_name);
-})
-
-function makeGraph(graph, value, artist_name) {
-    vis.selectAll('*').remove();
-    var nodes = graph.nodes.slice(),
-    links = [],
-        bilinks = [],
-        intermediateNodes = [],
-            coloredEdges = [],
-            dashedEdges = [];
-    // Label artist/threshold
-    d3.select("#artist-label").html(artist_name);
-    d3.select("#threshold-label").html(Math.ceil(Math.pow(value/10, 2)) + 1);
-    var slider_threshold = Math.pow(value/10, 2);
-    // Create intermediate nodes for bezier curves
-    graph.links.forEach(function(link) {
-        if (link.value > slider_threshold) {
-            var s = nodes[link.source],
-                t = nodes[link.target],
-            i = {}; // intermediate node
-            nodes.push(i);
-            var firstHalf = {source : s, target : i, weight : link.value}
-            var secondHalf = {source : i, target : t, weight : link.value}
-            var bilink = [s, i, t, link.value, link.songs];
-            links.push(firstHalf, secondHalf);
-            bilinks.push(bilink);
-        }
-    });
-
-    force.linkStrength(function(d) {
-        return (1/d.weight^2);
-    })
-
-    force
-        .nodes(nodes)
-        .links(links)
-        .start();
-
-    var link = vis.selectAll(".link")
-        .data(bilinks)
-        .enter().append("path")
-        .attr("class", "link")
-        .attr("id", function(d) {
-            return 'a' + CryptoJS.SHA1(d[0].name) + CryptoJS.SHA1(d[2].name)
-        })
-    .attr("stroke-width", function(d) {
-        return Math.sqrt(d[3])/5
-    })
-    var node = vis.selectAll(".node")
-        .data(graph.nodes)
-        .enter().append("circle")
-        .attr("class", "node")
-        .attr("id", function(d) {
-            return "a" + CryptoJS.SHA1(d.name)
-        })
-    .attr("r", 5)
-        .style("fill", function(d) { 
-            if (d.name == artist_name) {
-                return d3.rgb(255, 0, 0);
-            } else {
-                return d3.rgb(30, 119, 180); 
-            }
-        })
-    .call(force.drag);
-
-    dashedLink = vis.selectAll(".dashed-link")
-        .data(dashedEdges)
-        .enter().append("path")
-
-        node.append("title")
-        .text(function(d) { return d.name; });
-
-    node.on("mouseover", function(d) {
-        svg.attr("class", "pointer-cursor")
-
-            d3.select(this).attr("r", 9)
-            artistName.attr("value", d.name)
-            artistPicture.attr("src", d.image)
-
-            if (d.name == artist_name) {
-                d3.select("#artist-number-label").style("display", "none")
-                var sentence = "<p>"
-                    sentence += d.name
-                    sentence += " doesn't need a "
-                    sentence += d.name
-                    sentence += " number, bitch."
-                    sentence += "</p>"
-                    d3.select("#bitch").html(sentence).style("display", "block");
-
-            } else {
-                d3.select("#artist-number-label").style("display", "inline")
-                yeezyNumber.html(d.yeezy_number[artist_name])
-                    $.each(d.yeezy_path[artist_name], function(key, value) {
-                        // Color edges on the way to the centre
-                        var edge = d3.select("#a" + CryptoJS.SHA1(value.to) + CryptoJS.SHA1(value.from))
-                            if (edge[0][0]) {
-                                edge.attr("class", "path-to-centre")
-                                    .attr("stroke-width", function(d) {
-                                        return Math.sqrt(d[3])
-                                    })
-                                coloredEdges.push(edge)
-                            } else {
-                                var edge = d3.select("#a" + CryptoJS.SHA1(value.from) + CryptoJS.SHA1(value.to))
-                                    if (edge[0][0]) {
-                                        edge.attr("class", "path-to-centre")
-                                            .attr("stroke-width", function(d) {
-                                                return Math.sqrt(d[3])
-                                            })
-                                        coloredEdges.push(edge)
-                                    } else {
-                                        // Edge not found (threshold too high)
-                                        dashedEdges.push({"source" : d3.select("#a" + CryptoJS.SHA1(value.from)), "target" : d3.select("#a" + CryptoJS.SHA1(value.to))})
-
-                                            dashedLink = vis.selectAll(".dashed-link")
-                                            .data(dashedEdges)
-                                            .enter().insert("path", ":first-child")
-                                            .attr("class", "dashed-link")
-                                            .attr("stroke-dasharray", "3,6")
-                                            .attr("stroke-width", "2")
-                                            .attr("d", function(d) {
-                                                var sourceX = d.source.attr("transform").split('(')[1].split(',')[0]
-                                                    var sourceY = d.source.attr("transform").split('(')[1].split(',')[1].replace(')', '')
-                                                    var targetX = d.target.attr("transform").split('(')[1].split(',')[0]
-                                                    var targetY = d.target.attr("transform").split('(')[1].split(',')[1].replace(')', '')
-                                                    return "M" + sourceX + "," + sourceY
-                                                    + "L" + targetX + "," + targetY;
-                                            });
-                                    }
-                            }
-
-                        // Color nodes on the way to the centre
-                        var intermediateNode = d3.select("#a" + CryptoJS.SHA1(value.to))
-                            intermediateNode.style("fill", function(d) {
-                                if (d.name != artist_name) {
-                                    return d3.rgb(255, 106, 71);
-                                } else {
-                                    return d3.rgb(255, 0, 0);
-                                }
-                            })
-                        intermediateNodes.push(intermediateNode)
-
-                            // Write out the path
-                            var sentence = "<p>"
-                            sentence += value.from
-                            sentence += " and "
-                            sentence += value.to
-                            sentence += " collaborated on "
-                            sentence += "<em>" + value.song + "</em>"
-                            sentence += "</p>"
-                            yeezyPath.append($(sentence))
-                    })
-            }
-    }).on("mouseout", function(d) {
-        d3.select("#bitch").html("").style("display", "none");
-        d3.select("#artist-number-label").style("display", "none")
-        svg.attr("class", "open-hand-cursor")
-            d3.select(this).attr("r", 5)
-            artistName.attr("value", "")
-            artistPicture.attr("src", "http://a5.mzstatic.com/us/r30/Purple1/v4/bc/8e/81/bc8e8110-9b14-5e5f-a6b7-9a6d18adac6f/icon320x320.jpeg")
-            yeezyNumber.html("")
-            yeezyPath.html("")
-
-            // Uncolor edges
-            $.each(coloredEdges, function(key, value) {
-                // Color edges on the way to the centre
-                value.attr("class", "link")
-                    .attr("stroke-width", function(d) {
-                        return Math.sqrt(d[3])/5
-                    })
-            })
-        coloredEdges = []
-
-            // Uncolor nodes 
-            $.each(intermediateNodes, function(key, value) {
-                // Color edges on the way to the centre
-                value.style("fill", function(d) { 
-                    if (d.name == artist_name) {
-                        return d3.rgb(255, 0, 0);
-                    } else {
-                        return d3.rgb(30, 119, 180); 
-                    }
-                })
-            })
-        intermediateNodes = []
-
-            d3.selectAll('.dashed-link').remove()
-            dashedEdges = []
-
-    });
-
-    force.on("tick", function() {
-        link.attr("d", function(d) {
-            return "M" + d[0].x + "," + d[0].y
-                + "S" + d[1].x + "," + d[1].y
-                + " " + d[2].x + "," + d[2].y;
-        });
-        node.attr("transform", function(d) {
-            return "translate(" + d.x + "," + d.y + ")";
-        });
-        dashedLink.attr("d", function(d) {
-            var sourceX = d.source.attr("transform").split('(')[1].split(',')[0]
-                var sourceY = d.source.attr("transform").split('(')[1].split(',')[1].replace(')', '')
-                var targetX = d.target.attr("transform").split('(')[1].split(',')[0]
-                var targetY = d.target.attr("transform").split('(')[1].split(',')[1].replace(')', '')
-                return "M" + sourceX + "," + sourceY
-                + "L" + targetX + "," + targetY;
-        });
-    });
-}
-
-    </script>
-</body>
+return t;
+}(document, "script", "twitter-wjs"));</script>
+        <script src="graph.js"></script>
+        <script src="centralities_histogram.js"></script>
+    </body>
+</html>

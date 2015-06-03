@@ -128,6 +128,8 @@ fs.readFile('network_handpicked.json', 'utf8', function (err,data) {
     }
 
     artist_centralities = {};
+    centralities_frequency = {};
+
     for (var i = 0, l = nodes.length; i < l; i ++) {
         // Centre the graph at each artist
         var central_artist = nodes[i].name;
@@ -158,9 +160,15 @@ fs.readFile('network_handpicked.json', 'utf8', function (err,data) {
         }
         sum = sum/nodes_included;
         artist_centralities[central_artist] = sum;
+        if (centralities_frequency[Math.floor(sum*10)/10] == null) {
+            centralities_frequency[Math.floor(sum*10)/10] = [central_artist]
+        } else {
+            centralities_frequency[Math.floor(sum*10)/10].push(central_artist)
+        }
         //console.log(central_artist + ": " + sum);
     }
-    console.log(JSON.stringify(artist_centralities));
+    //console.log(JSON.stringify(artist_centralities));
+    console.log(JSON.stringify(centralities_frequency));
     //console.log(JSON.stringify({"nodes":nodes, "links":links}))
 });
 
