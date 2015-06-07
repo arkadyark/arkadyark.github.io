@@ -6,11 +6,11 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <title>What I think</title>
-  <meta name="description" content="">
+  <title>Jekyll == magic</title>
+  <meta name="description" content="I just rewrote my entire site using Jekyll. I had been meaning to clean it up a lot for quite some time. I originally wanted to do everything from scratch so...">
 
   <link rel="stylesheet" href="/css/main.css">
-  <link rel="canonical" href="http://arkadyark.me/thoughts/">
+  <link rel="canonical" href="http://arkadyark.me/projects/jekyll-rewrite">
   <link rel="alternate" type="application/rss+xml" title="Arkady Arkhangorodsky" href="http://arkadyark.me/feed.xml" />
 </head>
 
@@ -65,53 +65,45 @@
 
     <div class="page-content">
       <div class="wrapper">
-        <div class="home">
+        <div class="post">
 
-    <h1 class="page-title">Thoughts</h1>
+    <header class="post-header">
+        <h1 class="post-title">Jekyll == magic</h1>
+        <p class="post-meta">Jun 7, 2015</p>
+    </header>
 
-    <ul class="post-list">
-        
-            
-        
-            
-            <li>
-                <span class="post-meta">May 10, 2015</span>
+    <article class="post-content">
+        <p>I just rewrote my entire site using <a href="http://jekyllrb.com">Jekyll</a>. I had been meaning to clean it up a lot for quite some time. I originally wanted to do everything from scratch so that I could really appreciate it once I switched to using proper tools, and <em>damn</em> do I appreciate it now.</p>
 
-                <h2>
-                    <a class="post-link" href="/thoughts/uses-and-thems">Us-es and thems</a>
-                </h2>
-            </li>
-            
-        
-            
-        
-            
-        
-            
-            <li>
-                <span class="post-meta">Mar 15, 2015</span>
+<p>After watching a bit of a new Treehouse class on the basics of Jekyll, I decided that I’d go for it today. I didn’t expect it to take under two hours to completely replicate from the ground up what took me quite some time to build myself.</p>
 
-                <h2>
-                    <a class="post-link" href="/thoughts/treehouse-review">Treehouse review: worth paying for</a>
-                </h2>
-            </li>
-            
-        
-            
-            <li>
-                <span class="post-meta">Mar 4, 2015</span>
+<p>If it were just a plain rewrite though I wouldn’t be raving as much, the especially cool part is that it’s actually better than it was before. A few things that Jekyll does/makes really easy, that I had been meaning to incorporate for a while:</p>
 
-                <h2>
-                    <a class="post-link" href="/thoughts/things-that-suck">Quick bathroom thought: stop only thinking about what sucks</a>
-                </h2>
-            </li>
-            
-        
-            
-        
-            
-        
-    </ul>
+<ol>
+  <li>Writing clean markdown - before I had no way of actually saving my posts. With Jekyll it is all really really organized, and lowers the cost of writing something to exactly the cost of actually writing it. No extra hassle of Firebase/a backend like I had before.</li>
+  <li>Sass - For work I have been using Less, and have been really loving what it offers over pure CSS. Sass is another CSS preprocessor which lets me write much more maintainable and organized styling.</li>
+  <li>Templating - Jekyll uses a templating syntax called Liquid, which is fairly simple but nevertheless cleans things up considerably. For all of the good reasons of keeping DRY, this is awesome.</li>
+  <li>Clean URLs/SEO - Because everything gets served up as static files with Jekyll, all of the posts can easily be given their own permalinks and can be found by search engines. Nice.</li>
+</ol>
+
+<p>These things make writing to and extending my site much more enjoyable, meaning I’ll actually touch it more often I hope. I still 100% stand by my previous decision of doing it the hard way first, because I wouldn’t have learned nearly as much by jumping straight to Jekyll and Jekyll would be much more mysterious whereas now I feel like I have a pretty solid grasp on how it works.</p>
+
+    </article>
+
+    <div id="disqus_thread"></div>
+    <script type="text/javascript">
+/* * * CONFIGURATION VARIABLES * * */
+var disqus_shortname = 'arkadyark';
+
+/* * * DON'T EDIT BELOW THIS LINE * * */
+(function() {
+    var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+})();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+
 </div>
 
       </div>
