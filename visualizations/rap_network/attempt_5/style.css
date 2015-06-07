@@ -2,6 +2,10 @@ html, body {
     height : 100%;
 }
 
+.banner, #sidebar {
+    padding-left : 10px;
+}
+
 #graph-content {
     position : relative;
     width : 100%;

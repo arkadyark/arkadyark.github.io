@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Hackillinois: dntbite.me!</title>
+  <meta name="description" content="This weekend was the third hackathon in three, and probably my last for a bit (my body needs a bit of a break). This time we put to life an idea that has bee...">
+
+  <link rel="stylesheet" href="/css/main.css">
+  <link rel="canonical" href="http://arkadyark.me/projects/hackillinois">
+  <link rel="alternate" type="application/rss+xml" title="Arkady Arkhangorodsky" href="http://arkadyark.me/feed.xml" />
+</head>
+
+
+  <body>
+
+    <header class="site-header">
+
+  <div class="wrapper">
+
+      <div class="title-wrapper">
+          <h1 class="site-title"><a href="/">Arkady</a></h1>
+        <a class="site-subtitle" href="http://www.www3.reocities.com/SiliconValley/heights/2305/">Welcome to my place in the web</a>
+      </div>
+
+    <nav class="site-nav">
+      <a href="#" class="menu-icon">
+        <svg viewBox="0 0 18 15">
+          <path fill="#424242" d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.031C17.335,0,18,0.665,18,1.484L18,1.484z"/>
+          <path fill="#424242" d="M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0c0-0.82,0.665-1.484,1.484-1.484 h15.031C17.335,6.031,18,6.696,18,7.516L18,7.516z"/>
+          <path fill="#424242" d="M18,13.516C18,14.335,17.335,15,16.516,15H1.484C0.665,15,0,14.335,0,13.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.031C17.335,12.031,18,12.696,18,13.516L18,13.516z"/>
+        </svg>
+      </a>
+
+      <div class="trigger">
+        
+          
+        
+          
+        
+          
+          <a class="page-link" href="/interests/">What I like</a>
+          
+        
+          
+        
+          
+          <a class="page-link" href="/projects/">What I do</a>
+          
+        
+          
+          <a class="page-link" href="/thoughts/">What I think</a>
+          
+        
+      </div>
+    </nav>
+
+  </div>
+
+</header>
+
+
+    <div class="page-content">
+      <div class="wrapper">
+        <div class="post">
+
+    <header class="post-header">
+        <h1 class="post-title">Hackillinois: dntbite.me!</h1>
+        <p class="post-meta">Mar 1, 2015</p>
+    </header>
+
+    <article class="post-content">
+        <p>This weekend was the third hackathon in three, and probably my last for a bit (my body needs a bit of a break). This time we put to life an idea that has been on my mind for a week or so now, since about the reading week. I’m on the bus back now, and I’ve got another ~12 hours until I’m back in Toronto so I figured this was a good time to write.</p>
+
+<p>I bite my nails, and have been for most of my life. That really sucks, for a whole bunch of reasons - it’s unhealthy (lots of germs on my fingers), it’s embarrassing, it’s just generally unpleasant. This is a habit I’ve been trying to kick for just about forever, with very limited success. All of the suggested remedies of dipping in lemon juice, applying nail-polish, tracking apps like <a href="\&quot;http://www.digitalsirup.com/apps/app_stopbite.html\&quot;">this</a> or <a href="\&quot;https://itunes.apple.com/us/app/stop-nail-biting/id474867877?mt=8\&quot;">this</a>, have never worked for me (I’ve tried them all).</p>
+
+<p><img src="/res/biting.jpg" alt="" /></p>
+
+<p>This weekend we made a prototype something that I think can once and for all make me (and hopefully others) stop. Inspired by <a href="\&quot;http://challengepost.com/software/hathack\&quot;">a project</a> I saw back at deltaHacks, we added a pressure sensor to a hat to rest right above the jaw on a muscle called the <em>masseter</em>. The masseter is one of the muscles most involved in chewing, so the sensor picks up every time that it flexes. We connected the sensor to a Spark Core (the one that I won earlier at deltaHacks) which connects to the internet. Using Twilio, we send you (future feature: also send to an accountability partner) an SMS every time you’re caught biting your nails, telling you to stop. We also made a <a href="\&quot;http://dntbiteme.herokuapp.com/\&quot;">website</a> which will show your progress on a graph, and also keep a ticker of how long you’ve been bite-free.</p>
+
+<p><img src="/res/biting-text.jpg" alt="" /></p>
+
+<p>So this is able to track nail-biting for you, without any self-accountability needed. We got lots of great feedback (in particular from fellow nailbiters) so I’m thinking of continuing to develop this a bit. It could definitely be made more seamless, and probably would work better on a different hat. This weekend we used the HackIllinois ones we were given, but that was just for coolness effect and not practice. We found these hats to be really loose, which made keeping the sensor pressed to the face difficult.</p>
+
+<p>It was nice to finally get away from Android, which I worked with for the last two weekends, and try out some hardware things for a change.</p>
+
+<p>Big shouts to Neil Parikh of uWaterloo and Hon Kwok of UMich, my teammates this weekend! We clicked really nicely and made something pretty cool.</p>
+
+    </article>
+
+    <div id="disqus_thread"></div>
+    <script type="text/javascript">
+/* * * CONFIGURATION VARIABLES * * */
+var disqus_shortname = 'arkadyark';
+
+/* * * DON'T EDIT BELOW THIS LINE * * */
+(function() {
+    var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+})();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+
+</div>
+
+      </div>
+    </div>
+
+    <footer class="site-footer">
+
+  <div class="wrapper">
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col  footer-col-1">
+        <ul class="contact-list">
+          <li>Arkady Arkhangorodsky</li>
+          <li><a href="mailto:aarkhangorodsky@gmail.com">aarkhangorodsky@gmail.com</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col  footer-col-2">
+        <ul class="social-media-list">
+          
+          <li>
+            <a href="https://github.com/arkadyark">
+              <span class="icon  icon--github">
+                <svg viewBox="0 0 16 16">
+                  <path fill="#828282" d="M7.999,0.431c-4.285,0-7.76,3.474-7.76,7.761 c0,3.428,2.223,6.337,5.307,7.363c0.388,0.071,0.53-0.168,0.53-0.374c0-0.184-0.007-0.672-0.01-1.32 c-2.159,0.469-2.614-1.04-2.614-1.04c-0.353-0.896-0.862-1.135-0.862-1.135c-0.705-0.481,0.053-0.472,0.053-0.472 c0.779,0.055,1.189,0.8,1.189,0.8c0.692,1.186,1.816,0.843,2.258,0.645c0.071-0.502,0.271-0.843,0.493-1.037 C4.86,11.425,3.049,10.76,3.049,7.786c0-0.847,0.302-1.54,0.799-2.082C3.768,5.507,3.501,4.718,3.924,3.65 c0,0,0.652-0.209,2.134,0.796C6.677,4.273,7.34,4.187,8,4.184c0.659,0.003,1.323,0.089,1.943,0.261 c1.482-1.004,2.132-0.796,2.132-0.796c0.423,1.068,0.157,1.857,0.077,2.054c0.497,0.542,0.798,1.235,0.798,2.082 c0,2.981-1.814,3.637-3.543,3.829c0.279,0.24,0.527,0.713,0.527,1.437c0,1.037-0.01,1.874-0.01,2.129 c0,0.208,0.14,0.449,0.534,0.373c3.081-1.028,5.302-3.935,5.302-7.362C15.76,3.906,12.285,0.431,7.999,0.431z"/>
+                </svg>
+              </span>
+
+              <span class="username">arkadyark</span>
+            </a>
+          </li>
+          
+        </ul>
+      </div>
+      <div class="footer-col-end">
+          <p class="rss-subscribe">subscribe <a href="/feed.xml">via RSS</a></p>
+      </div>
+    </div>
+
+  </div>
+
+</footer>
+
+
+    <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+              })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-63209221-1', 'auto');
+    ga('send', 'pageview');
+
+</script>
+
+  </body>
+
+</html>

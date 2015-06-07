@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Arkady Arkhangorodsky</title>
+    <description></description>
+    <link>http://arkadyark.me/</link>
+    <atom:link href="http://arkadyark.me/feed.xml" rel="self" type="application/rss+xml"/>
+    <pubDate>Sun, 07 Jun 2015 14:41:41 -0700</pubDate>
+    <lastBuildDate>Sun, 07 Jun 2015 14:41:41 -0700</lastBuildDate>
+    <generator>Jekyll v2.5.3</generator>
+    
+      <item>
+        <title>Us-es and thems</title>
+        <description>&lt;p&gt;I’m just settling into Vancouver now for my summer programming internship with &lt;a href=&quot;orbisaccess.co.uk&quot;&gt;Orbis Access&lt;/a&gt;. On Friday we had a corporate soccer league game that was surprisingly intense - my theory is the numerous British people at the company. Needless to say, like just about every soccer game ever, things quite quickly got aggressive and heated. That got me philosophizing (while I was subbed off, of course) about how this seems to happen all the time, practically without fail. I don’t think I’ve ever played in a game where I felt no strong positive emotion towards my teammates, and some negative emotion towards my opponents.&lt;/p&gt;
+
+&lt;p&gt;Where this gets weird is when you’re playing multiple games with the same groups of people, and shuffling up the teams so time is spent on the same team as people you were previously opposing. This will be happening with me this Monday, when we play an inter-company kick-around and I’ll be against some of the coworkers from Friday’s game.&lt;/p&gt;
+
+&lt;p&gt;This is a more general thing that I’ve seen people do all of the time, and that’s the classification of the world as having an ‘us’ and a ‘them’. Evolutionarily this makes perfect sense, since the uses would be people you’d be spending just about your whole life with, and the thems could be people who wanted to kill you and take everything you own. These groups would switch only pretty rarely (the old custom of a defeated side in a war having to send hostages that were children of higher-ups is an interesting counter-example). This meant that choosing an us quickly and sticking to it passionately was advantageous in the past, but today that instinct is responsible for a whole lot of problems. It appears to me that most of the hatred that people feel towards groups of people comes from this instinct - which in turn leads to all kinds of nasty things like wars and racism.&lt;/p&gt;
+
+&lt;p&gt;Just one more case of evolution working against us in our day-to-day lives. It did wonderfully to get us this far, but our innate instincts are a bit out of place now in a world of skyscrapers and international flights.&lt;/p&gt;
+</description>
+        <pubDate>Sun, 10 May 2015 00:00:00 -0700</pubDate>
+        <link>http://arkadyark.me/thoughts/uses-and-thems</link>
+        <guid isPermaLink="true">http://arkadyark.me/thoughts/uses-and-thems</guid>
+        
+        
+        <category>thoughts</category>
+        
+      </item>
+    
+      <item>
+        <title>Data Visualization: Opening moves in chess</title>
+        <description>&lt;h4 id=&quot;millionbase-and-d3js&quot;&gt;Millionbase and d3.js&lt;/h4&gt;
+
+&lt;p&gt;For quite some time now I’ve had the idea in my head to do something with the &lt;a href=&quot;http://www.top-5000.nl/pgn.htm&quot;&gt;MillionBase&lt;/a&gt; database that I found quite some time ago. Basically, it’s several million professional games of chess, over several decades, in an easy to parse format, available for free. It seemed a shame to leave it collecting dust, so I made a simple data visualization, which you can check out &lt;strong&gt;&lt;a href=&quot;http://arkadyark.me/visualizations/chess&quot;&gt;here&lt;/a&gt;&lt;/strong&gt;.&lt;/p&gt;
+
+&lt;p&gt;This also coincided with me just finishing another class on Treehouse, this time on the wonderful data visualization library &lt;a href=&quot;http://d3js.org&quot;&gt;d3.js&lt;/a&gt;. It is really powerful and has been used to great effect before to create some beautiful work that has gotten a lot of attention. However, to somebody just learning it, like I am, it comes across as having several moving parts and typical commands. If I didn’t do something with it quickly, most of what I learned from the class would fall right back out, so this came at a good time.&lt;/p&gt;
+
+&lt;h4 id=&quot;the-project-itself&quot;&gt;The project itself&lt;/h4&gt;
+
+&lt;p&gt;I chose to focus on the opening moves because I wanted something relatively simple; I didn’t want to go the full distance of making a complete chess engine. The chess games are stored in the PGN format, which appears to be the standard for chess data. One difficulty was the size of the file - since the file was so huge I wanted to parse it as a stream, so that I would only need one pass through the gigabyte of data. This made things a little bit annoying to deal with in the code and required a bit of a hack to deal with. I also had a few strange things coming up, like certain moves that couldn’t possibly have occurred in the first move. These are probably from bugs in my code though I haven’t quite yet diagnosed where they’re coming from.&lt;/p&gt;
+
+&lt;p&gt;After this, the d3 work was surprisingly easy, probably the easiest part. Very little was required and in general it was pretty intuitive. One difficult I’m having is getting the mouse coordinates in terms of the SVG of the chess board, rather than having them be absolute in terms of the page. That’s part of why I’m linking to it, rather than just showing the damn thing right here.&lt;/p&gt;
+
+&lt;p&gt;You can find all of the source for this project, as per usual, on &lt;a href=&quot;https://github.com/arkadyark/arkadyark.github.io/tree/master/visualizations/chess&quot;&gt;my Github&lt;/a&gt;. As you can see I did a bit more work afterwards to extend it a bit, since it really screams out for a full gameplay mode where you can see the probabilities/frequencies for any board state. Stay tuned for that, and another project I’m doing with d3 coming somewhat soon.&lt;/p&gt;
+</description>
+        <pubDate>Tue, 28 Apr 2015 00:00:00 -0700</pubDate>
+        <link>http://arkadyark.me/projects/data-visualization-chess</link>
+        <guid isPermaLink="true">http://arkadyark.me/projects/data-visualization-chess</guid>
+        
+        
+        <category>projects</category>
+        
+      </item>
+    
+      <item>
+        <title>Music and expressing oneself</title>
+        <description>&lt;p&gt;This morning as I was walking to class, more or less out of nowhere the following words appeared in my head:&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;Music is the highest form of art&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;Whoa. I was kind of taken aback, because I most definitely know enough about neither art forms nor music to make and defend a claim like that. It is, however, a testament to how much I love music.&lt;/p&gt;
+
+&lt;p&gt;Here’s a statement I can defend:&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;I &lt;strong&gt;really&lt;/strong&gt; love music&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;This has been true for quite a while, more or less since I first started listening to music I found myself. One aspect that I don’t think is acknowledged enough about music is that people can express themselves not only through the production of music, but through the music that themselves choose to listen to. I think that this can be an even more powerful form of self-expression than the production of music itself, and here’s why. While with making music, you are only really able to express yourself and what constitutes you. This, compared to all of the linear combinations of all of the different artists of past and present, is really nothing. For me personally, I would say with strong conviction that the fact that I listen to and deeply appreciate all of hip-hop, jazz, and classical music says more about me than any music I could possibly produce.&lt;/p&gt;
+
+&lt;p&gt;That’s all of the time I have for now, but I have a lot more to write on the subject and I plan to do so soon.&lt;/p&gt;
+</description>
+        <pubDate>Tue, 07 Apr 2015 00:00:00 -0700</pubDate>
+        <link>http://arkadyark.me/interests/music-expressing-oneself</link>
+        <guid isPermaLink="true">http://arkadyark.me/interests/music-expressing-oneself</guid>
+        
+        
+        <category>interests</category>
+        
+      </item>
+    
+      <item>
+        <title>Treehouse review: worth paying for</title>
+        <description>&lt;p&gt;About a month ago, my team and I came second at a hackathon at McMaster and won, among other awesome things, a 6 month subscription to an online education/training site, &lt;a href=&quot;https://teamtreehouse.com/&quot;&gt;Treehouse&lt;/a&gt;. Honestly, of the prizes we won that day that was the one I though least of - others included a year long Github plan and a super cool &lt;a href=&quot;https://store.spark.io/?product=spark-maker-kit&quot;&gt;Spark Core kit&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;But now that the subscription finally has been sent to us, it seems like this will probably be the prize I remember best. Since starting, I’ve completed 3 classes (making a simple PHP application, using databases in Python with the peewee library, and introductory Objective-C) and am working on another on introductory CSS. In less than a week, I’ve learned enough to be able to create a whole host of pretty cool things, and am filled with a tremendous excitement about what I’ll be able to do with 6 months of this.&lt;/p&gt;
+
+&lt;p&gt;Construal levels. What? In my engineering design class, &lt;a href=&quot;http://www.ncbi.nlm.nih.gov/pmc/articles/PMC3152826/&quot;&gt;an interesting paper&lt;/a&gt; came up. The main take-away was that what determines how long people procrastinate a task is not really how daunting it seems to be, but how precisely we can think about what needs to be done. I’m finding that this explains why I’d rather spend hours on Treehouse yesterday, rather than spend just a bit of time studying for my Calculus test tomorrow, which promises to be &lt;a href=&quot;http://skule.ca/courses/exams/MAT195H1_20141_621398541320mat195_t2_2014_solutions.pdf&quot;&gt;quite intense&lt;/a&gt;. Treehouse, and online education in general, leverage this to make you want to keep going, rather than put it off. You know exactly what you need to do next, at all times. If education is to be fixed (because it is badly broken), it will have to incorporate more of these amazing results about how we learn.&lt;/p&gt;
+
+&lt;p&gt;Treehouse is making me remember all of the things I loved about Coursera and EdX, back in the salad days of high school when I’d take ~10 classes at a time. What you pay for with Treehouse, and you don’t really get with Coursera and EdX, is a guaranteed quality. While I absolutely loved what I was able to study before, part of the reason I would take so many classes was (in a way weirdly reminiscent of astronomically high birth rates in developing countries) that I would expect to drop many of them. This was fine back when I had plenty of time, but now that school has become real I don’t quite have the same time to be so loose. I haven’t yet found a class on Treehouse to be anything less than expertly done and carefully crafted so as to be most engaging. We’ll see if this changes.&lt;/p&gt;
+
+&lt;p&gt;I probably wouldn’t have paid for it myself ever, but having Treehouse now makes me respect anew the ‘not 100% free’ model of open online education. Online education has had a massive positive impact on my life and a huge number of others. It absolutely has the power to cause a societal level change, that’s becoming increasingly urgent. This is something I firmly believe.&lt;/p&gt;
+</description>
+        <pubDate>Sun, 15 Mar 2015 00:00:00 -0700</pubDate>
+        <link>http://arkadyark.me/thoughts/treehouse-review</link>
+        <guid isPermaLink="true">http://arkadyark.me/thoughts/treehouse-review</guid>
+        
+        
+        <category>thoughts</category>
+        
+      </item>
+    
+      <item>
+        <title>Quick bathroom thought: stop only thinking about what sucks</title>
+        <description>&lt;p&gt;A while back, at deltaHacks, there was a pretty awesome talk given to us, courtesy of the inimitable &lt;a href=&quot;http://www.joelhilchey.com/&quot;&gt;Joel Hilchey&lt;/a&gt;. He had a lot of cool ideas about ideas - how to have them, how to develop them, etc. One of the things he said stuck a bit, and playing with it in my head more recently I discovered some issues I have with it. One of his ‘hacks’ to coming up with lots of ideas, some of which will be good (presumably), is to &lt;em&gt;focus on what sucks&lt;/em&gt;. He’s not the first to give the suggestion, it’s pretty much the most common solution for coming up with start-up/products ideas (&lt;a href=&quot;http://www.entrepreneur.com/article/225513&quot;&gt;here&lt;/a&gt;, &lt;a href=&quot;http://www.quora.com/How-do-entrepreneurs-come-up-with-new-startup-ideas&quot;&gt;here&lt;/a&gt;, and &lt;a href=&quot;http://www.lifehack.org/articles/work/7-ways-think-great-startup-ideas.html&quot;&gt;here&lt;/a&gt;)&lt;/p&gt;
+
+&lt;p&gt;So I tried that for a while, and have been doing so for a while pretty actively and writing down what I think of. I was definitely having lots of ideas, probably more than ever before. But I was noticing a whole lot of these ideas sucked, or were mediocre at best. A lot of them were hackathon type of stuff, that seem very appealing for a short time but could never be life-changing, a thing that people come back to and keep coming back to.&lt;/p&gt;
+
+&lt;p&gt;While this is a great way to come up with lots of ideas, and some mediocre ones that people can appreciate, it isn’t a way to make something really big, really life-changing. Facebook wasn’t a response to ‘connecting to people sucks’, Google wasn’t a response to ‘finding things on the internet sucks’, and Snapchat isn’t a response to ‘sharing pictures with people sucks’. These big ideas (and try thinking of other &lt;em&gt;really&lt;/em&gt; big ideas, you’ll find the same) were people thinking in the future, and seeing how the world could be better. There’s a difference there - focusing on today’s problems is bound to be short-sighted, while focusing on the future is how you change people’s lives. I like Paul Graham’s &lt;a href=&quot;http://paulgraham.com/startupideas.html&quot;&gt;advice&lt;/a&gt; of &quot;Live in the future, then build what’s missing.&quot;&lt;/p&gt;
+</description>
+        <pubDate>Wed, 04 Mar 2015 00:00:00 -0800</pubDate>
+        <link>http://arkadyark.me/thoughts/things-that-suck</link>
+        <guid isPermaLink="true">http://arkadyark.me/thoughts/things-that-suck</guid>
+        
+        
+        <category>thoughts</category>
+        
+      </item>
+    
+      <item>
+        <title>Hackillinois: dntbite.me!</title>
+        <description>&lt;p&gt;This weekend was the third hackathon in three, and probably my last for a bit (my body needs a bit of a break). This time we put to life an idea that has been on my mind for a week or so now, since about the reading week. I’m on the bus back now, and I’ve got another ~12 hours until I’m back in Toronto so I figured this was a good time to write.&lt;/p&gt;
+
+&lt;p&gt;I bite my nails, and have been for most of my life. That really sucks, for a whole bunch of reasons - it’s unhealthy (lots of germs on my fingers), it’s embarrassing, it’s just generally unpleasant. This is a habit I’ve been trying to kick for just about forever, with very limited success. All of the suggested remedies of dipping in lemon juice, applying nail-polish, tracking apps like &lt;a href=&quot;\&amp;quot;http://www.digitalsirup.com/apps/app_stopbite.html\&amp;quot;&quot;&gt;this&lt;/a&gt; or &lt;a href=&quot;\&amp;quot;https://itunes.apple.com/us/app/stop-nail-biting/id474867877?mt=8\&amp;quot;&quot;&gt;this&lt;/a&gt;, have never worked for me (I’ve tried them all).&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/res/biting.jpg&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;This weekend we made a prototype something that I think can once and for all make me (and hopefully others) stop. Inspired by &lt;a href=&quot;\&amp;quot;http://challengepost.com/software/hathack\&amp;quot;&quot;&gt;a project&lt;/a&gt; I saw back at deltaHacks, we added a pressure sensor to a hat to rest right above the jaw on a muscle called the &lt;em&gt;masseter&lt;/em&gt;. The masseter is one of the muscles most involved in chewing, so the sensor picks up every time that it flexes. We connected the sensor to a Spark Core (the one that I won earlier at deltaHacks) which connects to the internet. Using Twilio, we send you (future feature: also send to an accountability partner) an SMS every time you’re caught biting your nails, telling you to stop. We also made a &lt;a href=&quot;\&amp;quot;http://dntbiteme.herokuapp.com/\&amp;quot;&quot;&gt;website&lt;/a&gt; which will show your progress on a graph, and also keep a ticker of how long you’ve been bite-free.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/res/biting-text.jpg&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;So this is able to track nail-biting for you, without any self-accountability needed. We got lots of great feedback (in particular from fellow nailbiters) so I’m thinking of continuing to develop this a bit. It could definitely be made more seamless, and probably would work better on a different hat. This weekend we used the HackIllinois ones we were given, but that was just for coolness effect and not practice. We found these hats to be really loose, which made keeping the sensor pressed to the face difficult.&lt;/p&gt;
+
+&lt;p&gt;It was nice to finally get away from Android, which I worked with for the last two weekends, and try out some hardware things for a change.&lt;/p&gt;
+
+&lt;p&gt;Big shouts to Neil Parikh of uWaterloo and Hon Kwok of UMich, my teammates this weekend! We clicked really nicely and made something pretty cool.&lt;/p&gt;
+</description>
+        <pubDate>Sun, 01 Mar 2015 00:00:00 -0800</pubDate>
+        <link>http://arkadyark.me/projects/hackillinois</link>
+        <guid isPermaLink="true">http://arkadyark.me/projects/hackillinois</guid>
+        
+        
+        <category>projects</category>
+        
+      </item>
+    
+      <item>
+        <title>Reading week review: two hackathons!</title>
+        <description>&lt;p&gt;This past week I went to two hackathons, my second and third. The first was deltaHacks, taking place at McMaster. For the second I made went out all the way to Montreal for McHacks. Both were really awesome experiences, considerably better than my first. HackIllinois this coming weekend should be even awesomer (at least 50% more awesome, since it’s 36 hours rather than 24).&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;deltaHacks: Android sWear&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;I think the idea for this one first entered my head a while back, when I went to a Toastmasters meeting all the way at the beginning of the year. Thinking for my Praxis assignment, I wanted to find something that would help them improve their experiences. One of the most obvious ideas was something which would be able to listen for ums and ahs and the like, and count them for you (rather than what they currently have, which is somebody manually keeping count). The Android wear jumped out to me as the most natural platform for something like that, where it could be coupled also with the timekeeping that they do as well.&lt;/p&gt;
+
+&lt;p&gt;Another use case entered my thoughts from a different channel completely, from people telling me their resolutions for 2015. One thing I heard (I think more than once) was that people wanted to swear less. Subconsciously I blended the two together, and Android sWear was born. For a while I thought it wouldn’t be feasible to have something always listening because it would destroy battery, but I was given reassurance before the hackathon that the watch actually could have a pretty impressive battery. That was enough for me to want to try it at deltaHacks.&lt;/p&gt;
+
+&lt;p&gt;Together with an EngSci classmate (Grace Kumagai), a friend of hers at McMaster (Matt Leyland), and a friend of &lt;em&gt;his&lt;/em&gt; (Jack Ziemba), we made an Android app that accomplished more or less what I was going for. Using &lt;a href=&quot;http://cmusphinx.sourceforge.net/&quot;&gt;pocketsphinx&lt;/a&gt;, a project from Carnegie Mellon, we were able to do this in a way that didn’t guzzle battery, since we could define hotwords to listen for rather than just have it constantly doing a more general speech to text. Nice. We couldn’t get our hands on a proper Android wear device and so we just stuck to a phone app, but we plan to continue to develop it. To guarantee that we do so, we actually released it on the Play Store! We had to change the name to CensorMe, for ‘impersonation reasons’ of all things, but everything else checked out and it’s now available as a free download &lt;a href=&quot;https://play.google.com/store/apps/details?id=me.arkadyark.www&quot;&gt;here&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;Turns out people liked this idea, in fact enough for us to finish second place! That was pretty awesome, especially given that my three teammates all had really limited programming experience. It seems like the success of this inspired them a bit to want to do more hackathons and get better, so I’m happy as can be.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;McHacks: babystep&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;This last weekend was McHacks (looks like they got dibs on the name, forcing McMaster to have to get creative with theirs). I came wanting to do a web thing, since I had done Android the weekend before, but as things turned out I ended up making another Android app.&lt;/p&gt;
+
+&lt;p&gt;I showed up for the hackathon alone, with plans to go to the team making session and meet some new people. As change would have it, I reconnected with a guy I had met when I went to shadow a student at Waterloo a year ago. Somehow I recognized him, and was feeling spontaneous so I approached him and asked if he wanted to work together. And so a team was born.&lt;/p&gt;
+
+&lt;p&gt;The idea of this week was one I’d had in my head for a week or so. I still like the idea, but somehow it didn’t quite click when we put it together. I was thinking that a problem I have (and presumably quite a few others) is that I’m a bit stuck in my comfort zone. One thing that would help me is a tool that suggested things &lt;em&gt;slightly&lt;/em&gt; outside of my comfort zone. The rationale was that most suggestions I get are too far out of my comfort zone that I actually get pushed even deeper in.&lt;/p&gt;
+
+&lt;p&gt;So we hacked together such a tool, considerably more polished than what we made last week. We haven’t published it yet, and I’m not sure I like it enough to want to publish it, but I’ll share it &lt;a href=&quot;/res/babystep.apk&quot;&gt;here&lt;/a&gt; (Android .apk file).&lt;/p&gt;
+
+&lt;p&gt;Once again I had lots of fun and learned a metric shit-tonne, so I can’t complain. Up next, Hackillinois this weekend where I’m hoping to do anything but Android (maybe some hardware thing would be nice…).&lt;/p&gt;
+</description>
+        <pubDate>Fri, 27 Feb 2015 00:00:00 -0800</pubDate>
+        <link>http://arkadyark.me/projects/reading-week-hackathons</link>
+        <guid isPermaLink="true">http://arkadyark.me/projects/reading-week-hackathons</guid>
+        
+        
+        <category>projects</category>
+        
+      </item>
+    
+  </channel>
+</rss>

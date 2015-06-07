@@ -1,94 +1,17 @@
-<!DOCTYPE html>
-<html lang="en">
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta name="description" content="Personal site with my thoughts">
-        <meta name="author" content="Arkady Arkhangorodsky">
-        <meta property="og:description" name="description" content="Personal Website for Arkady Arkhangorodsky">
-        <meta name="keywords" content="Student, engineering, UofT, Toronto, Programming, Hackathons, Arsenal">
+---
+layout: default
+---
 
-        <link rel="icon" href="img/favicon.ico">
+<div class="home">
 
-        <title>Arkady Arkhangorodsky</title>
-        <link href="/css/style.css" rel="stylesheet">
-    </head>
+    <h1 class="post-title">About me</h1>
+    <p> My name is Arkady ('R-kah-dee') Arkhangorodsky (nope). I'm a student in my first year of Engineering Science at the University of Toronto, interested in programming, music, history, people, robots, and a whole lot more. I like to play piano when I get the chance.
+    <br />
+    <br />
+    On this site you'll find my thoughts, projects, interests and more. I like to think that I have a lot of them.
+    <br />
+    <br />
+    I'm mostly using this as a sandbox to pick up some web development skills, so things will be changing here pretty constantly.</p>
 
-    <body>
-        <img src="/img/bg.png" id="background">
+</div>
 
-        <div id="header">
-            <div id="titles">
-                <h1 class="title"><a href="/">Arkady</a></h1>
-                <p class="subtitle"><a href="http://www.www3.reocities.com/SiliconValley/heights/2305/">Welcome to my place in the Web</a></p>
-            </div>
-            <ul class="tabs">
-                <li class="tab-link current">
-                    <a href="/"> About me </a>
-                </li>
-                <li class="tab-link">
-                    <a href="/thoughts"> What I think </a>
-                </li>
-                <li class="tab-link">
-                    <a href="/projects"> What I do </a>
-                </li>
-                <li class="tab-link">
-                    <a href="/interests"> What I like </a>
-                </li>
-                <li class="tab-menu">
-                    <img src="/img/br_down.png" alt="Show menu" onClick='$(".mobile-tabs").slideToggle()'/>
-                </li>
-            </ul>
-
-            <ul class="mobile-tabs">
-                <li class="tab-link current">
-                    <a href="/"> About me </a>
-                </li>
-                <li class="tab-link">
-                    <a href="/thoughts"> What I think </a>
-                </li>
-                <li class="tab-link">
-                    <a href="/projects"> What I do </a>
-                </li>
-                <li class="tab-link">
-                    <a href="/interests"> What I like </a>
-                </li>
-            </ul>
-        </div>
-
-        <div class="tab-content">
-            <h2 class="tab-title">About me</h2>
-            <div class="content-card">
-                <p> My name is Arkady ('R-kah-dee') Arkhangorodsky (nope). I'm a student in my first year of Engineering Science at the University of Toronto, interested in programming, music, history, people, robots, and a whole lot more. I like to play piano when I get the chance. </p>
-                <p> On this site you'll find my thoughts, projects, interests and more. I like to think that I have a lot of them. </p>
-                <p> I'm mostly using this as a sandbox to pick up some web development skills, so things will be changing here pretty constantly. </p>
-            </div>
-        </div>
-
-        <footer class="blog-footer">
-
-            <div> 
-                <a href="http://www.github.com/arkadyark">
-                    <img src="/img/github.png"/>
-                </a>
-
-                <a href="http://www.facebook.com/ArkadyArkhangorodsky">
-                    <img src="/img/facebook.png"/>
-                </a>
-
-                <a href="/res/resume.pdf">
-                    <img src="/img/resume.png"/>
-                </a>
-            </div>
-
-            <p> Last updated: May 2015 </p>
-        </footer>
-
-
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-        <!-- load firebase! -->
-        <script src='https://cdn.firebase.com/js/client/2.0.4/firebase.js'></script>
-        <script src='/js/app.js'></script>
-    </body>
-</html>

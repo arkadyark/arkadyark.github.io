@@ -1,0 +1,10 @@
+# Site settings
+title: Arkady Arkhangorodsky
+email: aarkhangorodsky@gmail.com
+baseurl: "" # the subpath of your site, e.g. /blog/
+url: "http://arkadyark.me" # the base hostname & protocol for your site
+github_username: arkadyark 
+permalink: /:categories/:title
+
+# Build settings
+markdown: kramdown

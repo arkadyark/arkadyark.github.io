@@ -1,7 +1,0 @@
-TODO
-
-- Blur the background a bit and make it an svg
-- Infinite scroll bruh
-- Only load posts as needed
-- Give each post its own url
-- Use ajax to load posts

@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<link href="/css/style.css" rel="stylesheet">
+<style>
+
+html, body {
+    height : 100%;
+}
+
+#main-content {
+    position : relative;
+    width : 100%;
+    box-sizing : border-box;
+}
+
+#top {
+    border-bottom : solid;
+}
+
+.open-hand-cursor {
+    cursor : url(http://maps.gstatic.com/mapfiles/openhand_8_8.cur), default;
+}
+
+.closed-hand-cursor {
+    cursor : url(http://maps.gstatic.com/mapfiles/closedhand_8_8.cur), default;
+}
+
+.pointer-cursor {
+    cursor : pointer;
+}
+
+#artist-picture {
+    width : 100%;
+    -webkit-box-shadow: 0px 7px 24px 0px rgba(0,0,0,0.75);
+    -moz-box-shadow: 0px 7px 24px 0px rgba(0,0,0,0.75);
+    box-shadow: 0px 7px 24px 0px rgba(0,0,0,0.75);
+    margin-bottom : 1em;
+}
+
+#sidebar {
+    width : 25%;
+    height : 610px;
+    float : left;
+    box-sizing : border-box;
+    padding-right : 10px;
+    border-right : solid;
+}
+
+h6 {
+    margin-bottom : 1rem;
+}
+
+.node {
+    stroke: #fff;
+    stroke-width: 1.5px;
+}
+
+.link {
+    fill: none;
+    stroke: #bbb;
+}
+
+#threshold-label-wrapper {
+    padding: 0.7em 0;
+}
+
+#autocomplete {
+    max-width : 50%;
+    padding-left : 0px;
+    height : 100%;
+    display : inline;
+    font-size : 4.2rem;
+    border : none;
+    background : none;
+}
+
+.ui-autocomplete {
+    max-width : 25%;
+    list-style : none;
+    background : lightgrey;
+    border-radius : 0 0 10px 10px;
+}
+
+.ui-menu-item {
+    font-weight : 200;
+    font-size : 2em;
+    margin-bottom : 0;
+    padding-left : 0.4em;
+}
+
+.ui-state-focus {
+    background : grey;
+}
+
+.ui-helper-hidden-accessible {
+    display : none;
+}
+
+</style>
+<body>
+    <div id="top" class="row">
+        <div class="banner eight columns">
+            <h2>The Oracle of 
+                <input type="text" name="centre_node" placeholder="Yeezy" id="autocomplete"/>
+            </h2>
+            <h6>Made by <a href="/#about"> Arkady Arkhangorodsky </a></h6>
+        </div>
+        <div class="slider-wrapper four columns">
+            <h5 id="threshold-label-wrapper"> Collaboration threshold: <span id="threshold-label"></span> </h5>
+            <div id="threshold-slider"></div>
+        </div>
+    </div>
+    <div id="main-content" class="row">
+        <div id="sidebar" class="three columns">
+            <h4 id="artist-name"> Hover over an artist! </h4>
+            <img src="http://a5.mzstatic.com/us/r30/Purple1/v4/bc/8e/81/bc8e8110-9b14-5e5f-a6b7-9a6d18adac6f/icon320x320.jpeg" alt="" id="artist-picture"/>
+            <p>Yeezy Number: <span id="yeezy-number"></span></p>
+            <div id="path-to-yeezy">
+            </div>
+        </div>
+        <div id="svg-wrapper"></div>
+    </div>
+
+    <link rel="stylesheet" href="/visualizations/rap_network/d3.slider.css" />
+    <script src="http://d3js.org/d3.v3.min.js"></script>
+    <script src="/visualizations/rap_network/d3.slider.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.11.3/jquery-ui.min.js"></script>
+    <script>
+
+var width = 960,
+    height = 610;
+
+var artistName = $("#artist-name")
+var artistNameSuggestion = $("#artist_name_suggestion")
+var artistPicture = $("#artist-picture")
+var yeezyNumber = $("#yeezy-number")
+var yeezyPath = $("#path-to-yeezy")
+
+var artist_names = ["Kanye West", "Jay Z", "Kendrick Lamar", "Diddy", "Drake", "Lil Wayne", "Big Sean", "Jeezy", "Pusha T", "J. Cole", "Common", "2 Chainz", "Nicki Minaj", "Tyler, The Creator", "Ludacris", "Talib Kweli", "Cam'ron", "Nas", "KRS-ONE", "RZA", "T.I.", "Rick Ross", "Lupe Fiasco", "Yasiin Bey", "Eminem", "Raekwon", "Scarface", "Busta Rhymes", "Chief Keef", "E-40", "Jadakiss", "Future", "Ol' Dirty Bastard", "Frank Ocean", "Ghostface Killah", "Twista", "Pete Rock", "Wale", "Ty Dolla $ign", "Dr. Dre", "The Notorious B.I.G.", "Ja Rule", "Outkast", "Killer Mike", "DMX", "50 Cent", "Meek Mill", "Lil Kim", "Kurupt", "YG", "Nipsey Hu$$le", "Birdman", "ScHoolboy Q", "Wiz Khalifa", "2Pac", "Young Thug", "Juicy J", "Master P", "Boosie Badazz", "Rich Homie Quan", "A$AP Rocky", "Royce Da 5'9\"", "Yelawolf", "Big KRIT", "Danny Brown", "Action Bronson", "Joey BADA$$", "Ab-Soul", "Ace Hood", "Jay Rock", "Tech N9ne", "B.o.B", "Mac Miller", "Snoop Dogg", "Childish Gambino", "Curren$y", "Murs", "The Roots", "Gucci Mane", "Logic", "Fat Joe", "LL Cool J", "Nelly", "Bone Thugs-n-Harmony", "Waka Flocka Flame", "Trey Songz", "Mystikal", "Bun B", "Soulja Boy", "Krizz Kaliko", "Lil B", "Wyclef Jean", "Chance The Rapper", "Kevin Gates", "Hodgy Beats", "Prodigy (Mobb Deep)", "Asher Roth", "Ice Cube", "Nate Dogg", "El-P", "AZ", "Mobb Deep", "Havoc", "De La Soul", "Beastie Boys", "Xzibit", "Kool G. Rap", "Inspectah Deck", "MC Guru", "Freddie Gibbs", "Killah Priest", "Wu-Tang Clan", "Method Man", "MF DOOM", "Cappadonna", "Madlib", "RiFF RAFF", "Masta Ace", "Krayzie Bone", "Brother Ali", "Redman", "Outlawz", "Ice-T", "Three 6 Mafia", "Ras Kass", "Aesop Rock", "Cunninlynguists", "Prince Paul", "Erick Sermon", "E.P.M.D.", "Atmosphere", "Rakim", "A Tribe Called Quest", "Run-D.M.C.", "Eyedea", "Cannibal Ox", "UGK", "Pimp C", "GZA", "Kool Keith", "Das EFX", "Gang Starr", "Goodie Mob", "Cypress Hill", "Clipse", "Biz Markie", "Jungle Brothers", "Jay Electronica", "Del the Funky Homosapien", "Jeru the Damaja", 'Devin the Dude', "Canibus", "Earl Sweatshirt", "U-God", "Masta Killa", "Eazy-E", "Big L", "Lauryn Hill", "Big Punisher", "Slick Rick", "Public Enemy", "Chuck D", "Big Boi", "Andre 3000", "Black Thought", "The Underachievers", "Flatbush Zombies", "Capital STEEZ", "CJ Fly", "Casey Veggies", "Big Daddy Kane", "Immortal Technique", "Pharoahe Monch", "MC Lyte", "Kool Moe Dee", "Queen Latifah", "Beanie Sigel", "Domo Genesis", "Game"];
+
+$(document).ready(function ()
+        {  
+            $("#autocomplete").focus()
+        });
+
+var color = d3.scale.category20();
+
+// rescale g
+function rescale() {
+    trans=d3.event.translate;
+    scale=d3.event.scale;
+
+    vis.attr("transform",
+            "translate(" + trans + ")"
+            + " scale(" + scale + ")");
+}
+
+function mousedown() {
+    vis.call(d3.behavior.zoom().on("zoom"), rescale);
+    return;
+}
+
+var force = d3.layout.force().size([width, height]);
+
+var svg = d3.select("#svg-wrapper").append("svg")
+    .attr("width", width)
+    .attr("height", height)
+    .attr("class", "open-hand-cursor");
+
+svg.on("mousedown.drag", function() {
+    svg.attr("class", "closed-hand-cursor");
+}).on("mouseup.drag", function() {
+    svg.attr("class", "open-hand-cursor");
+})
+
+var vis = svg.append('svg:g')
+
+svg.call(d3.behavior.zoom().on("zoom", rescale))
+    .on("dblclick.zoom", null)
+
+d3.json("yeezified_network.json", function(error, graph) {
+
+    thresholdValue = 25;
+    artist_name = "Kanye West";
+
+    $('#autocomplete').autocomplete({
+        source: function(request, response) {
+            var results = $.ui.autocomplete.filter(artist_names, request.term);
+            response(results.slice(0, 4));
+        },
+        select : function(event, ui) {
+            artist_name = ui.item.value;
+            makeGraph(graph, thresholdValue, artist_name);
+        }
+    });
+
+    d3.select('#threshold-slider').call(d3.slider()
+            .value(thresholdValue)
+            .on("slide", function(evt, value) {
+                thresholdValue = value;
+                makeGraph(graph, value, artist_name);
+            }))
+    makeGraph(graph, thresholdValue, artist_name);
+})
+
+function makeGraph(graph, value, artist_name) {
+    vis.selectAll('*').remove();
+    var nodes = graph.nodes.slice(),
+    links = [],
+        bilinks = [];
+    d3.select("#threshold-label").html(Math.ceil(Math.pow(value/10, 2)));
+    var slider_threshold = Math.pow(value/10, 2);
+    graph.links.forEach(function(link) {
+        if (link.value > slider_threshold) {
+            var s = nodes[link.source],
+                t = nodes[link.target],
+            i = {}; // intermediate node
+            nodes.push(i);
+            links.push({source: s, target: i, weight : link.value}, {source: i, target: t, weight: link.value});
+            bilinks.push([s, i, t, link.value, link.songs]);
+        }
+    });
+
+    force.linkStrength(function(d) {
+        return (1/d.weight^2);
+    })
+
+    force
+        .nodes(nodes)
+        .links(links)
+        .start();
+
+    var link = vis.selectAll(".link")
+        .data(bilinks)
+        .enter().append("path")
+        .attr("class", "link")
+        .attr("stroke-width", function(d) {
+            return Math.sqrt(d[3])/5
+        })
+
+    var node = vis.selectAll(".node")
+        .data(graph.nodes)
+        .enter().append("circle")
+        .attr("class", "node")
+        .attr("r", 4)
+        .style("fill", function(d) { 
+            if (d.name == artist_name) {
+                return d3.rgb(255, 0, 0);
+            } else {
+                return d3.rgb(30, 119, 180); 
+            }
+        })
+    .call(force.drag);
+
+    node.append("title")
+        .text(function(d) { return d.name; });
+
+    node.on("mouseover", function(d) {
+        svg.attr("class", "pointer-cursor")
+        d3.select(this).attr("r", 6)
+            artistName.html(d.name)
+            artistPicture.attr("src", d.image)
+
+            if (d.name == artist_name) {
+                var sentence = "<p>"
+                    sentence += d.name
+                    sentence += " doesn't need a "
+                    sentence += d.name
+                    sentence += " number, bitch."
+                    sentence += "</p>"
+                    yeezyPath.append($(sentence));
+            } else {
+                yeezyNumber.html(d.yeezy_number)
+                    $.each(d.yeezy_path, function(key, value) {
+                        var sentence = "<p>"
+                            sentence += value.from
+                            sentence += " and "
+                            sentence += value.to
+                            sentence += " collaborated on "
+                            sentence += value.song
+                            sentence += "</p>"
+                            yeezyPath.append($(sentence))
+                    })
+            }
+    }).on("mouseout", function(d) {
+        svg.attr("class", "open-hand-cursor")
+        d3.select(this).attr("r", 4)
+            artistName.html("Hover over an artist!")
+            artistPicture.attr("src", "http://a5.mzstatic.com/us/r30/Purple1/v4/bc/8e/81/bc8e8110-9b14-5e5f-a6b7-9a6d18adac6f/icon320x320.jpeg")
+            yeezyNumber.html("")
+            yeezyPath.html("")
+    });
+
+    force.on("tick", function() {
+        link.attr("d", function(d) {
+            return "M" + d[0].x + "," + d[0].y
+                + "S" + d[1].x + "," + d[1].y
+                + " " + d[2].x + "," + d[2].y;
+        });
+        node.attr("transform", function(d) {
+            return "translate(" + d.x + "," + d.y + ")";
+        });
+    });
+}
+
+    </script>
+    <footer class="blog-footer">
+
+
+        <div> 
+            <a href="http://www.github.com/arkadyark">
+                <img src="/img/github.png"/>
+            </a>
+
+            <a href="http://www.facebook.com/ArkadyArkhangorodsky">
+                <img src="/img/facebook.png"/>
+            </a>
+
+            <a href="/res/resume.pdf">
+                <img src="/img/resume.png"/>
+            </a>
+        </div>
+
+    </footer>
+</body>

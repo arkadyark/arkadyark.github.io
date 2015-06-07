@@ -1,0 +1,133 @@
+<html>
+    <title>Chess data visualization</title>
+<body>
+    <svg xmlns="http://www.w3.org/2000/svg"
+         xmlns:xlink="http://www.w3.org/1999/xlink"
+         height=500 width=550>
+        <image x="0" y="0" width="500" height="500"
+                                         xlink:href="board.gif"/>
+    </svg>
+    <h1> Win rate and frequency of opening chess moves </h1>
+    <h4> Hover over pieces to try it out! </h4>
+    <p>The size of the circles drawn represents the frequency of the move.</p>
+    <p>Chess games taken from <a href="http://www.top-5000.nl/pgn.htm">millionbase</a></p>
+    <script src="http://d3js.org/d3.v3.min.js"></script>
+    <script src='https://cdn.firebase.com/js/client/2.0.4/firebase.js'></script>
+    <script type="text/javascript" charset="utf-8">
+
+    // Main Firebase reference, lots of children from here
+    var ref = new Firebase("https://arkadyark.firebaseio.com");
+
+    // Simple hit counter
+    var hits = ref.child("hits")
+    hits.once("value", function(snapshot) {
+      var numHits = snapshot.val()
+      ref.update({hits:numHits+1});
+    })
+        
+    d3.json('results.json', function(data) {
+        var white = data.white
+        var black = data.black
+
+        var svg = d3.select('svg')
+
+        X_to_squares = {0:'a', 1:'b', 2:'c', 3:'d', 4:'e', 5:'f', 6:'g', 7:'h'}
+        squares_to_X = {'a':0, 'b':1, 'c':2, 'd':3, 'e':4, 'f':5, 'g':6, 'h':7}
+
+        function getSquare(x, y) {
+            // Given an x, y coordinate of the mouse press, gets the square
+            // that is being hovered over (in x-y coordinates)
+            // Check that its within bounds (padding)
+
+            squareX = X_to_squares[Math.floor((x - 23)/59)]
+            squareY = 8 - Math.floor((y - 23)/59)
+            return squareX + squareY
+        }
+
+        function squareToXY(square) {
+            // Go from a square (e.g. d3) to the coordinates of the
+            // centre of that square on the board
+            // A bit of a hack to make it work for knights
+            var i = square[0] == 'N';
+            var x = squares_to_X[square[i + 0]] * 59 + 23 + 20
+            var y = (8 - square[i + 1]) * 59 + 23 + 20
+            return {'x' : x, 'y' : y}
+        }
+
+        function showPossibleMoves(square) {
+            if (square[square.length - 1] < 4) {
+                possibleMoves = white[square]
+            } else {
+                possibleMoves = black[square]
+            }
+            if (possibleMoves == undefined) return
+            pixelPossibleMoves = []
+            for (var move in possibleMoves) {
+                pixelPossibleMoves.push({'move' : squareToXY(move),
+                    'results' : possibleMoves[move]})
+            }
+
+            // Add a circle for each possible move
+            var group = svg.selectAll('circle')
+                .data(pixelPossibleMoves)
+                .enter().append('g')
+            group.append('circle')
+                .attr('r', function(d) {
+                    return Math.log(d.results.wins + d.results.draws + d.results.losses)
+                })
+                .attr('cx', function(d) {return d.move.x})
+                .attr('cy', function(d) {return d.move.y})
+
+            // Show win percentage for each move
+            var textGroup = group.append('g')
+            textGroup.append('rect')
+                .attr('x', function(d) {
+                    return d.move.x + 5 + Math.log(d.results.wins + d.results.draws + d.results.losses)
+                })
+                .attr('y', function(d) {return d.move.y - 20})
+                .attr('width', 50)
+                .attr('height', 25)
+                .attr('fill', 'white')
+                .attr('rx', '5px')
+                .attr('ry', '5px')
+            textGroup.append('text')
+                .attr('x', function(d) {
+                    return d.move.x + 10 + Math.log(d.results.wins + d.results.draws + d.results.losses)
+                })
+                .attr('y', function(d) {return d.move.y})
+                .text(function(d) {
+                    return Math.round(get_win_percentage(d)*100) + '%'
+                })
+                .attr('font-size', '20px')
+                .attr('font-family', 'sans-serif')
+                .attr('background', 'white')
+        }
+
+        function get_win_percentage(d) {
+            return d.results.wins/(d.results.wins + d.results.draws + d.results.losses)
+        }
+
+        // Mouse listener for hover
+        var lastSquare = ''
+        svg.on('mousemove', function() {
+            mouseX = d3.event.x
+            mouseY = d3.event.y
+            if (24 > Math.min(mouseX, mouseY)
+                    || (493 < Math.max(mouseX, mouseY))) {
+                svg.selectAll('g').remove()
+                return
+            }
+            square = getSquare(mouseX, mouseY)
+            if (square != lastSquare) {
+                // If square changed
+                // Clear previous circles
+                svg.selectAll('g').remove()
+                showPossibleMoves(square)
+            }
+            lastSquare = square
+        })
+    })
+
+    </script>
+</body>
+</html>
