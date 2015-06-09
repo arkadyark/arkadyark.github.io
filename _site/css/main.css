@@ -1,4 +1,7 @@
 @import url(http://fonts.googleapis.com/css?family=Droid+Serif:400,700,700italic,400italic|Oxygen:400,300,700);
+@font-face {
+  font-family: Ostrich;
+  src: url(ostrich-regular.ttf); }
 /**
  * Reset some basic elements
  */
@@ -60,7 +63,7 @@ li > ol {
  */
 h1, h2, h3, h4, h5, h6 {
   font-weight: 300;
-  font-family: "Droid Serif", serif; }
+  font-family: "Ostrich", "Droid Serif", serif; }
 
 /**
  * Links
@@ -153,7 +156,7 @@ pre {
 .site-header {
   border-top: 5px solid #625f43;
   border-bottom: 1px solid #a7a37e;
-  min-height: 84px;
+  min-height: 104px;
   position: relative; }
 
 .title-wrapper {
@@ -163,7 +166,7 @@ pre {
   float: left; }
   .title-wrapper .site-title {
     display: block;
-    font-size: 36px;
+    font-size: 48px;
     margin-bottom: 0; }
     .title-wrapper .site-title, .title-wrapper .site-title:visited {
       color: #625f43; }
@@ -173,7 +176,7 @@ pre {
 
 .site-nav {
   float: right;
-  line-height: 84px; }
+  line-height: 104px; }
   .site-nav .menu-icon {
     display: none; }
   .site-nav .page-link {
@@ -181,7 +184,7 @@ pre {
     line-height: 1.5; }
     .site-nav .page-link:not(:first-child) {
       margin-left: 20px; }
-  @media screen and (max-width: 600px) {
+  @media screen and (max-width: 720px) {
     .site-nav {
       position: absolute;
       top: 9px;
@@ -264,7 +267,7 @@ pre {
   .footer-col-3 {
     width: -webkit-calc(100% - (30px / 2));
     width: calc(100% - (30px / 2)); } }
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 720px) {
   .footer-col {
     float: none;
     width: -webkit-calc(100% - (30px / 2));
@@ -278,6 +281,9 @@ pre {
 .page-heading {
   font-size: 20px; }
 
+.page-title {
+  font-size: 44px; }
+
 .post-list {
   margin-left: 0;
   list-style: none; }
@@ -290,7 +296,7 @@ pre {
 
 .post-link {
   display: block;
-  font-size: 24px; }
+  font-size: 28px; }
 
 /**
  * Posts
@@ -299,7 +305,7 @@ pre {
   margin-bottom: 30px; }
 
 .post-title {
-  font-size: 42px;
+  font-size: 62px;
   letter-spacing: -1px;
   line-height: 1; }
   @media screen and (max-width: 800px) {

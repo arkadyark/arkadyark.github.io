@@ -1,7 +1,7 @@
 /**
  * Site header
  */
-$navbar-height : 84px;
+$navbar-height : 104px;
 
 .site-header {
     border-top: 5px solid $grey-color-dark;
@@ -20,7 +20,7 @@ $navbar-height : 84px;
 
     .site-title {
         display: block;
-        font-size: 36px;
+        font-size: 48px;
         margin-bottom: 0;
 
         &,
@@ -186,6 +186,10 @@ $navbar-height : 84px;
     font-size: 20px;
 }
 
+.page-title {
+    font-size : 44px;
+}
+
 .post-list {
     margin-left: 0;
     list-style: none;
@@ -202,7 +206,7 @@ $navbar-height : 84px;
 
 .post-link {
     display: block;
-    font-size: 24px;
+    font-size: 28px;
 }
 
 
@@ -215,7 +219,7 @@ $navbar-height : 84px;
 }
 
 .post-title {
-    font-size: 42px;
+    font-size: 62px;
     letter-spacing: -1px;
     line-height: 1;
 
