@@ -166,8 +166,11 @@ pre {
   float: left; }
   .title-wrapper .site-title {
     display: block;
-    font-size: 48px;
+    font-size: 46px;
     margin-bottom: 0; }
+    .title-wrapper .site-title .first-name {
+      font-size: 52px;
+      color: black; }
     .title-wrapper .site-title, .title-wrapper .site-title:visited {
       color: #625f43; }
   .title-wrapper .site-subtitle {
