@@ -24,13 +24,15 @@ $navbar-height : 104px;
         font-size: 46px;
         margin-bottom: 0;
 
+        a {
+            &:hover {
+                text-decoration : none;
+            }
+            color: $grey-color-dark;
+        }
+
         .first-name {
             font-size : 52px;
-            color : darken($text-color, 30%);
-        }
-        &,
-        &:visited {
-            color: $grey-color-dark;
         }
     }
 
@@ -55,6 +57,10 @@ $navbar-height : 104px;
         // Gaps between nav items, but not on the first one
         &:not(:first-child) {
             margin-left: 20px;
+        }
+
+        &.active {
+            font-weight : bolder;
         }
     }
 

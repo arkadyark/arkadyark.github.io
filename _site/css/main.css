@@ -168,11 +168,12 @@ pre {
     display: block;
     font-size: 46px;
     margin-bottom: 0; }
-    .title-wrapper .site-title .first-name {
-      font-size: 52px;
-      color: black; }
-    .title-wrapper .site-title, .title-wrapper .site-title:visited {
+    .title-wrapper .site-title a {
       color: #625f43; }
+      .title-wrapper .site-title a:hover {
+        text-decoration: none; }
+    .title-wrapper .site-title .first-name {
+      font-size: 52px; }
   .title-wrapper .site-subtitle {
     display: block;
     font-size: 14px; }
@@ -187,6 +188,8 @@ pre {
     line-height: 1.5; }
     .site-nav .page-link:not(:first-child) {
       margin-left: 20px; }
+    .site-nav .page-link.active {
+      font-weight: bolder; }
   @media screen and (max-width: 720px) {
     .site-nav {
       position: absolute;
