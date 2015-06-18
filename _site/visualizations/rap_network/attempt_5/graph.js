@@ -1,6 +1,8 @@
-
 var width = 960,
-    height = 610;
+    height = 610,
+    intermediateNodes = [],
+    coloredEdges = [],
+    dashedEdges = [];
 
 var artistName = $("#autocomplete-second")
 var artistNameSuggestion = $("#artist_name_suggestion")
@@ -36,6 +38,88 @@ function rescale() {
         return;
     }
 
+
+function highlightNode(d, d3Selection) {
+    d3Selection.attr("r", 9)
+        artistName.attr("value", d.name)
+        artistPicture.attr("src", d.image)
+
+        if (d.name == artist_name) {
+            d3.select("#artist-number-label").style("display", "none")
+                var sentence = "<p>"
+                sentence += d.name
+                sentence += " doesn't need a "
+                sentence += d.name
+                sentence += " number, bitch."
+                sentence += "</p>"
+                d3.select("#bitch").html(sentence).style("display", "block");
+
+        } else {
+            d3.select("#artist-number-label").style("display", "inline")
+                yeezyNumber.html(d.yeezy_number[artist_name])
+                $.each(d.yeezy_path[artist_name], function(key, value) {
+                    // Color edges on the way to the centre
+                    var edge = d3.select("#a" + CryptoJS.SHA1(value.to) + CryptoJS.SHA1(value.from))
+                        if (edge[0][0]) {
+                            // Look for the edge from a to b
+                            edge.attr("class", "path-to-centre")
+                                .attr("stroke-width", function(d) {
+                                    return Math.sqrt(d[3])
+                                })
+                            coloredEdges.push(edge)
+                        } else {
+                            // Look for the edge from b to a
+                            var edge = d3.select("#a" + CryptoJS.SHA1(value.from) + CryptoJS.SHA1(value.to))
+                                if (edge[0][0]) {
+                                    edge.attr("class", "path-to-centre")
+                                        .attr("stroke-width", function(d) {
+                                            return Math.sqrt(d[3])
+                                        })
+                                    coloredEdges.push(edge)
+                                } else {
+                                    // Edge not found (threshold too high)
+                                    dashedEdges.push({"source" : d3.select("#a" + CryptoJS.SHA1(value.from)), "target" : d3.select("#a" + CryptoJS.SHA1(value.to))})
+
+                                        dashedLink = vis.selectAll(".dashed-link")
+                                        .data(dashedEdges)
+                                        .enter().insert("path", ":first-child")
+                                        .attr("class", "dashed-link")
+                                        .attr("stroke-dasharray", "3,6")
+                                        .attr("stroke-width", "2")
+                                        .attr("d", function(d) {
+                                            var sourceX = d.source.attr("transform").split('(')[1].split(',')[0]
+                                                var sourceY = d.source.attr("transform").split('(')[1].split(',')[1].replace(')', '')
+                                                var targetX = d.target.attr("transform").split('(')[1].split(',')[0]
+                                                var targetY = d.target.attr("transform").split('(')[1].split(',')[1].replace(')', '')
+                                                return "M" + sourceX + "," + sourceY
+                                                + "L" + targetX + "," + targetY;
+                                        });
+                                }
+                        }
+
+                    // Color nodes on the way to the centre
+                    var intermediateNode = d3.select("#a" + CryptoJS.SHA1(value.to))
+                        intermediateNode.style("fill", function(d) {
+                            if (d.name != artist_name) {
+                                return d3.rgb(255, 106, 71);
+                            } else {
+                                return d3.rgb(255, 0, 0);
+                            }
+                        })
+                    intermediateNodes.push(intermediateNode)
+
+                        // Write out the path
+                        var sentence = "<p>"
+                        sentence += value.from
+                        sentence += " and "
+                        sentence += value.to
+                        sentence += " collaborated on "
+                        sentence += "<em>" + value.song + "</em>"
+                        sentence += "</p>"
+                        yeezyPath.append($(sentence))
+                })
+        }
+}
 var force = d3.layout.force().size([width, height]);
 
 var svg = d3.select("#svg-wrapper").append("svg")
@@ -72,6 +156,23 @@ svg.call(zoom)
             select : function(event, ui) {
                 artist_name = ui.item.value;
                 makeGraph(graph, thresholdValue, artist_name);
+                artistName.focus();
+            }
+        });
+
+        $('#autocomplete-second').autocomplete({
+            source: function(request, response) {
+                var results = $.ui.autocomplete.filter(artist_names, request.term);
+                response(results.slice(0, 4));
+            },
+            select: function(event, ui) {
+                second_artist_name = ui.item.value;
+                for (var nodeIndex = 0, l = graph.nodes.length; nodeIndex < l; nodeIndex ++) {
+                    var d = graph.nodes[nodeIndex];
+                    if (d.name == second_artist_name) {
+                        highlightNode(d, d3.select("#a" + CryptoJS.SHA1(second_artist_name)))
+                    }
+                }
             }
         });
 
@@ -88,10 +189,7 @@ function makeGraph(graph, value, artist_name) {
     vis.selectAll('*').remove();
     var nodes = graph.nodes.slice(),
     links = [],
-        bilinks = [],
-        intermediateNodes = [],
-            coloredEdges = [],
-            dashedEdges = [];
+        bilinks = [];
     // Label artist/threshold
     d3.select("#artist-label").html(artist_name);
     d3.select("#threshold-label").html(Math.ceil(Math.pow(value/10, 2)) + 1);
@@ -156,84 +254,8 @@ function makeGraph(graph, value, artist_name) {
 
     node.on("mouseover", function(d) {
         svg.attr("class", "pointer-cursor")
+            highlightNode(d, d3.select(this))
 
-            d3.select(this).attr("r", 9)
-            artistName.attr("value", d.name)
-            artistPicture.attr("src", d.image)
-
-            if (d.name == artist_name) {
-                d3.select("#artist-number-label").style("display", "none")
-                    var sentence = "<p>"
-                    sentence += d.name
-                    sentence += " doesn't need a "
-                    sentence += d.name
-                    sentence += " number, bitch."
-                    sentence += "</p>"
-                    d3.select("#bitch").html(sentence).style("display", "block");
-
-            } else {
-                d3.select("#artist-number-label").style("display", "inline")
-                    yeezyNumber.html(d.yeezy_number[artist_name])
-                    $.each(d.yeezy_path[artist_name], function(key, value) {
-                        // Color edges on the way to the centre
-                        var edge = d3.select("#a" + CryptoJS.SHA1(value.to) + CryptoJS.SHA1(value.from))
-                            if (edge[0][0]) {
-                                edge.attr("class", "path-to-centre")
-                                    .attr("stroke-width", function(d) {
-                                        return Math.sqrt(d[3])
-                                    })
-                                coloredEdges.push(edge)
-                            } else {
-                                var edge = d3.select("#a" + CryptoJS.SHA1(value.from) + CryptoJS.SHA1(value.to))
-                                    if (edge[0][0]) {
-                                        edge.attr("class", "path-to-centre")
-                                            .attr("stroke-width", function(d) {
-                                                return Math.sqrt(d[3])
-                                            })
-                                        coloredEdges.push(edge)
-                                    } else {
-                                        // Edge not found (threshold too high)
-                                        dashedEdges.push({"source" : d3.select("#a" + CryptoJS.SHA1(value.from)), "target" : d3.select("#a" + CryptoJS.SHA1(value.to))})
-
-                                            dashedLink = vis.selectAll(".dashed-link")
-                                            .data(dashedEdges)
-                                            .enter().insert("path", ":first-child")
-                                            .attr("class", "dashed-link")
-                                            .attr("stroke-dasharray", "3,6")
-                                            .attr("stroke-width", "2")
-                                            .attr("d", function(d) {
-                                                var sourceX = d.source.attr("transform").split('(')[1].split(',')[0]
-                                                    var sourceY = d.source.attr("transform").split('(')[1].split(',')[1].replace(')', '')
-                                                    var targetX = d.target.attr("transform").split('(')[1].split(',')[0]
-                                                    var targetY = d.target.attr("transform").split('(')[1].split(',')[1].replace(')', '')
-                                                    return "M" + sourceX + "," + sourceY
-                                                    + "L" + targetX + "," + targetY;
-                                            });
-                                    }
-                            }
-
-                        // Color nodes on the way to the centre
-                        var intermediateNode = d3.select("#a" + CryptoJS.SHA1(value.to))
-                            intermediateNode.style("fill", function(d) {
-                                if (d.name != artist_name) {
-                                    return d3.rgb(255, 106, 71);
-                                } else {
-                                    return d3.rgb(255, 0, 0);
-                                }
-                            })
-                        intermediateNodes.push(intermediateNode)
-
-                            // Write out the path
-                            var sentence = "<p>"
-                            sentence += value.from
-                            sentence += " and "
-                            sentence += value.to
-                            sentence += " collaborated on "
-                            sentence += "<em>" + value.song + "</em>"
-                            sentence += "</p>"
-                            yeezyPath.append($(sentence))
-                    })
-            }
     }).on("mouseout", function(d) {
         d3.select("#bitch").html("").style("display", "none");
         d3.select("#artist-number-label").style("display", "none")
