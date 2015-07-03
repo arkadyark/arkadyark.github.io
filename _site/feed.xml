@@ -5,9 +5,36 @@
     <description></description>
     <link>http://arkadyark.me/</link>
     <atom:link href="http://arkadyark.me/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Wed, 17 Jun 2015 20:44:48 -0700</pubDate>
-    <lastBuildDate>Wed, 17 Jun 2015 20:44:48 -0700</lastBuildDate>
+    <pubDate>Sun, 28 Jun 2015 20:48:43 -0700</pubDate>
+    <lastBuildDate>Sun, 28 Jun 2015 20:48:43 -0700</lastBuildDate>
     <generator>Jekyll v2.5.3</generator>
+    
+      <item>
+        <title>Why online education is better</title>
+        <description>&lt;p&gt;Something was in the air at the beginning 2012. The previous fall, a Stanford professor by the name of Sebastian Thrun had announced that he would offer an online class on artificial intelligence, for free. To the surprise of Thrun and everybody else involved, 160000 eager students from around the world signed up. To put that in perspective, the entire student body of Stanford (both undergraduate and graduate) is around 16000, ten times less. In response to this, Thrun quit his job and started a company, Udacity, committed to opening up a quality educational experience to students everywhere.&lt;/p&gt;
+
+&lt;p&gt;At around the same time, the other major players in the online education game emerged, namely Coursera and EdX (at the time still MITx). Around the same time as that, my mother discovered these classes and shared them with me - one of the greatest things to ever happen to me. In the three years that have since elapsed, I’ve completed somewhere around 60 online MOOCs (massive open online classes, as these offering came to be called). Educating myself in this way has cost me a grand total of…nothing at all.&lt;/p&gt;
+
+&lt;p&gt;These classes had a massive impact on me in many ways, but what I want to focus on is why the world needs them. There are quite a few problems I encountered in my first year with the traditional approach to education that were the cause of much frustration, and firmly believe that an online medium is an improvement in several significant ways.&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;You learn at your own pace&lt;/li&gt;
+  &lt;li&gt;You study when it is convenient for you&lt;/li&gt;
+  &lt;li&gt;You don’t need to be rich to study
+    &lt;ul&gt;
+      &lt;li&gt;You can learn from the very best&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;
+</description>
+        <pubDate>Sun, 28 Jun 2015 00:00:00 -0700</pubDate>
+        <link>http://arkadyark.me/interests/online-education</link>
+        <guid isPermaLink="true">http://arkadyark.me/interests/online-education</guid>
+        
+        
+        <category>interests</category>
+        
+      </item>
     
       <item>
         <title>Jekyll == magic</title>
