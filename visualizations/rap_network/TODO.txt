@@ -1,0 +1,10 @@
+Add down chevron
+Redirect as you can see links to new tabs
+
+# Secondary artist input
+    Focus on secondary artist input after typing into first one
+    Make the secondary artist input a text box
+
+Make centralities graph
+Make collaborations over time graph
+Make wu-tang cliqueness graph
