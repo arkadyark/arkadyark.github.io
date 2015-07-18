@@ -1,20 +1,21 @@
 $(function() {
-  $('a[href*=#]:not([href=#])').click(function() {
-    if (location.pathname.replace(/^\//,'') == this.pathname.replace(/^\//,'') && location.hostname == this.hostname) {
-      var target = $(this.hash);
-      target = target.length ? target : $('[name=' + this.hash.slice(1) +']');
-      if (target.length) {
-        $('html,body').animate({
-          scrollTop: target.offset().top
-        }, 1000);
-        return false;
-      }
+    $('a[href*=#]:not([href=#])').click(function() {
+        if (location.pathname.replace(/^\//,'') == this.pathname.replace(/^\//,'') && location.hostname == this.hostname) {
+            var target = $(this.hash);
+        target = target.length ? target : $('[name=' + this.hash.slice(1) +']');
+        if (target.length) {
+            $('html,body').animate({
+                scrollTop: target.offset().top
+            }, 1000);
+            return false;
+        }
     }
-  });
+    });
 });
 
 var width = 960,
     height = 610,
+    selectedNode = undefined,
     intermediateNodes = [],
     coloredEdges = [],
     dashedEdges = [];
@@ -55,8 +56,9 @@ function rescale() {
 
 
 function highlightNode(d, d3Selection) {
+    clearHighlight(d, d3Selection)
     d3Selection.attr("r", 9)
-        artistName.attr("value", d.name)
+        artistName.val(d.name)
         artistPicture.attr("src", d.image)
 
         if (d.name == artist_name) {
@@ -135,6 +137,46 @@ function highlightNode(d, d3Selection) {
                 })
         }
 }
+
+function clearHighlight(d, d3Selection) {
+    d3.select("#bitch").html("").style("display", "none");
+    d3.select("#artist-number-label").style("display", "none")
+        svg.attr("class", "open-hand-cursor")
+        d3Selection.attr("r", 5)
+        artistName.blur();
+        artistName.val("");
+        artistPicture.attr("src", "http://a5.mzstatic.com/us/r30/Purple1/v4/bc/8e/81/bc8e8110-9b14-5e5f-a6b7-9a6d18adac6f/icon320x320.jpeg")
+        yeezyNumber.html("")
+        yeezyPath.html("")
+
+        // Uncolor edges
+        $.each(coloredEdges, function(key, value) {
+            // Color edges on the way to the centre
+            value.attr("class", "link")
+                .attr("stroke-width", function(d) {
+                    return Math.sqrt(d[3])/5
+                })
+        })
+    coloredEdges = []
+
+        // Uncolor nodes 
+        $.each(intermediateNodes, function(key, value) {
+            // Color edges on the way to the centre
+            value.style("fill", function(d) { 
+                if (d.name == artist_name) {
+                    return d3.rgb(255, 0, 0);
+                } else {
+                    return d3.rgb(30, 119, 180); 
+                }
+            })
+        })
+    intermediateNodes = []
+
+        d3.selectAll('.dashed-link').remove()
+        dashedEdges = []
+}
+
+
 var force = d3.layout.force().size([width, height]);
 
 var svg = d3.select("#svg-wrapper").append("svg")
@@ -153,7 +195,7 @@ var vis = svg.append('svg:g')
 // Set initial zoom/position
 vis.attr("transform",
         "translate(100,150)"
-        + " scale(.8)");
+        + " scale(.75)");
 
 svg.call(zoom)
     .on("dblclick.zoom", null)
@@ -272,41 +314,7 @@ function makeGraph(graph, value, artist_name) {
             highlightNode(d, d3.select(this))
 
     }).on("mouseout", function(d) {
-        d3.select("#bitch").html("").style("display", "none");
-        d3.select("#artist-number-label").style("display", "none")
-            svg.attr("class", "open-hand-cursor")
-            d3.select(this).attr("r", 5)
-            artistName.attr("value", "")
-            artistPicture.attr("src", "http://a5.mzstatic.com/us/r30/Purple1/v4/bc/8e/81/bc8e8110-9b14-5e5f-a6b7-9a6d18adac6f/icon320x320.jpeg")
-            yeezyNumber.html("")
-            yeezyPath.html("")
-
-            // Uncolor edges
-            $.each(coloredEdges, function(key, value) {
-                // Color edges on the way to the centre
-                value.attr("class", "link")
-                    .attr("stroke-width", function(d) {
-                        return Math.sqrt(d[3])/5
-                    })
-            })
-        coloredEdges = []
-
-            // Uncolor nodes 
-            $.each(intermediateNodes, function(key, value) {
-                // Color edges on the way to the centre
-                value.style("fill", function(d) { 
-                    if (d.name == artist_name) {
-                        return d3.rgb(255, 0, 0);
-                    } else {
-                        return d3.rgb(30, 119, 180); 
-                    }
-                })
-            })
-        intermediateNodes = []
-
-            d3.selectAll('.dashed-link').remove()
-            dashedEdges = []
-
+        clearHighlight(d, d3.select(this));
     });
 
     force.on("tick", function() {
