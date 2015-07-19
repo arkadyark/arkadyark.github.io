@@ -167,7 +167,7 @@ pre {
   .title-wrapper .site-title {
     display: block;
     font-size: 46px;
-    margin-bottom: 0; }
+    margin-bottom: -15px; }
     .title-wrapper .site-title a {
       color: #625f43; }
       .title-wrapper .site-title a:hover {
@@ -193,7 +193,7 @@ pre {
   @media screen and (max-width: 720px) {
     .site-nav {
       position: absolute;
-      top: 9px;
+      top: 30px;
       right: 30px;
       background-color: #efecca;
       border: 1px solid #a7a37e;
@@ -202,14 +202,14 @@ pre {
       .site-nav .menu-icon {
         display: block;
         float: right;
-        width: 36px;
-        height: 26px;
+        width: 45px;
+        height: 32px;
         line-height: 0;
         padding-top: 10px;
         text-align: center; }
         .site-nav .menu-icon > svg {
-          width: 18px;
-          height: 15px; }
+          width: 24px;
+          height: 20px; }
           .site-nav .menu-icon > svg path {
             fill: #625f43; }
       .site-nav .trigger {

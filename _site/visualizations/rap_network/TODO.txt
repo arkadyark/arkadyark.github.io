@@ -1,5 +1,4 @@
 # Secondary artist input
-    Focus on secondary artist input after typing into first one
     Make the secondary artist input a text box
 
 Load kanye network first, and only after that the full network
