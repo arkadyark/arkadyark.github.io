@@ -1,6 +1,3 @@
-# Secondary artist input
-    Make the secondary artist input a text box
-
 Load kanye network first, and only after that the full network
 Make centralities graph
 Make collaborations over time graph

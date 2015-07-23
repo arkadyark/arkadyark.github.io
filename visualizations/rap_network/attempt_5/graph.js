@@ -55,9 +55,16 @@ function rescale() {
     }
 
 
+previousSelection = undefined
+
 function highlightNode(d, d3Selection) {
+    if (previousSelection != undefined) {
+        clearHighlight(previousSelection.d, previousSelection.d3Selection)
+    }
+    previousSelection = {d : d, d3Selection : d3Selection}
     clearHighlight(d, d3Selection)
-    d3Selection.attr("r", 9)
+        svg.attr("class", "pointer-cursor")
+        d3Selection.attr("r", 9)
         artistName.val(d.name)
         artistPicture.attr("src", d.image)
 
@@ -144,8 +151,8 @@ function clearHighlight(d, d3Selection) {
         svg.attr("class", "open-hand-cursor")
         d3Selection.attr("r", 5)
         artistName.blur();
-        artistName.val("");
-        artistPicture.attr("src", "http://a5.mzstatic.com/us/r30/Purple1/v4/bc/8e/81/bc8e8110-9b14-5e5f-a6b7-9a6d18adac6f/icon320x320.jpeg")
+    artistName.val("");
+    artistPicture.attr("src", "http://a5.mzstatic.com/us/r30/Purple1/v4/bc/8e/81/bc8e8110-9b14-5e5f-a6b7-9a6d18adac6f/icon320x320.jpeg")
         yeezyNumber.html("")
         yeezyPath.html("")
 
@@ -179,7 +186,7 @@ function clearHighlight(d, d3Selection) {
 
 var force = d3.layout.force().size([width, height]);
 
-var svg = d3.select("#svg-wrapper").append("svg")
+var svg = d3.select("#graph-svg-wrapper").append("svg")
 .attr("width", width)
 .attr("height", height)
 .attr("class", "open-hand-cursor");
@@ -239,6 +246,7 @@ svg.call(zoom)
                     thresholdValue = value;
                     makeGraph(graph, value, artist_name);
                 }))
+
         makeGraph(graph, thresholdValue, artist_name);
     })
 
@@ -310,8 +318,7 @@ function makeGraph(graph, value, artist_name) {
         .text(function(d) { return d.name; });
 
     node.on("mouseover", function(d) {
-        svg.attr("class", "pointer-cursor")
-            highlightNode(d, d3.select(this))
+        highlightNode(d, d3.select(this))
 
     }).on("mouseout", function(d) {
         clearHighlight(d, d3.select(this));
