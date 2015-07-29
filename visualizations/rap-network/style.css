@@ -98,7 +98,7 @@ html, body {
 
 
 #sidebar {
-    height : 610px;
+    height : 560px;
     float : left;
     box-sizing : border-box;
     padding-right : 10px;
@@ -194,7 +194,7 @@ html, body {
 
 #graph-svg-wrapper {
     position : relative;
-    height : 610px;
+    height : 560px;
 }
 
 #loader {

@@ -14,7 +14,7 @@ $(function() {
 });
 
 var width = 960,
-    height = 610,
+    height = 560,
     selectedNode = undefined,
     intermediateNodes = [],
     coloredEdges = [],
