@@ -186,10 +186,11 @@ html, body {
     display : inline-block;
     width : 100%;
     text-align : center;
+    margin-top : 20px;
 }
 
 .down-arrow {
-    width : 70px;
+    width : 80px;
 }
 
 #graph-svg-wrapper {
