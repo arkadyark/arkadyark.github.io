@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<link href="/css/style.css" rel="stylesheet">
+<style>
+
+#main-content {
+    position : relative;
+    width : 100%;
+    box-sizing : border-box;
+}
+
+#artist-picture {
+    width : 100%;
+}
+
+#sidebar {
+    width : 25%;
+    float : left;
+    box-sizing : border-box;
+    padding-right : 10px;
+}
+
+p {
+    margin-bottom : 1rem;
+}
+
+svg {
+    width : 75%;
+    float : left;
+    border-left : solid thin;
+    box-sizing : border-box;
+}
+
+.node {
+    stroke: #fff;
+    stroke-width: 1.5px;
+}
+
+.link {
+    fill: none;
+    stroke: #bbb;
+}
+
+</style>
+<body>
+    <div id="top">
+        <h2>The Oracle of <span style="">Yeezy</span></h1>
+        <p>Made by <a href="/#about"> Arkady Arkhangorodsky </a></p>
+    </div>
+    <div id="main-content">
+        <div id="sidebar">
+            <h3 id="artist-name"> Hover over an artist! </h3>
+            <img src="http://a5.mzstatic.com/us/r30/Purple1/v4/bc/8e/81/bc8e8110-9b14-5e5f-a6b7-9a6d18adac6f/icon320x320.jpeg" alt="" id="artist-picture"/>
+            <p>Yeezy Number: <span id="yeezy-number"></span></p>
+            <div id="path-to-yeezy">
+            </div>
+        </div>
+    </div>
+    <script src="http://d3js.org/d3.v3.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+    <script>
+
+var width = 960,
+    height = 950;
+
+var artistName = $("#artist-name")
+var artistPicture = $("#artist-picture")
+var yeezyNumber = $("#yeezy-number")
+var yeezyPath = $("#path-to-yeezy")
+
+var color = d3.scale.category20();
+
+    var force = d3.layout.force()
+    .linkDistance(10)
+.linkStrength(2)
+    .size([width, height]);
+
+    var svg = d3.select("#main-content").append("svg")
+    .attr("width", width)
+    .attr("height", height);
+
+    d3.json("yeezified_network_2.json", function(error, graph) {
+        var nodes = graph.nodes.slice(),
+        links = [],
+        bilinks = [];
+
+        graph.links.forEach(function(link) {
+            var s = nodes[link.source],
+            t = nodes[link.target],
+            i = {}; // intermediate node
+            nodes.push(i);
+            links.push({source: s, target: i}, {source: i, target: t});
+            bilinks.push([s, i, t, link.value, link.songs]);
+        });
+
+        force
+            .nodes(nodes)
+            .links(links)
+            .start();
+
+        var link = svg.selectAll(".link")
+            .data(bilinks)
+            .enter().append("path")
+            .attr("class", "link")
+            .attr("stroke-width", function(d) {
+                return Math.sqrt(d[3])/3
+            })
+
+        var node = svg.selectAll(".node")
+            .data(graph.nodes)
+            .enter().append("circle")
+            .attr("class", "node")
+            .attr("r", 5)
+            .style("fill", function(d) { return color(d.group); })
+            .call(force.drag);
+
+        node.append("title")
+            .text(function(d) { return d.name; });
+
+        node.on("mouseover", function(d) {
+            d3.select(this).attr("r", 7)
+            artistName.html(d.name)
+            artistPicture.attr("src", d.image)
+            yeezyNumber.html(d.yeezy_number)
+            $.each(d.yeezy_path, function(key, value) {
+                var sentence = "<p>"
+                sentence += value.from
+                sentence += " and "
+                sentence += value.to
+                sentence += " collaborated on "
+                sentence += value.song
+                sentence += "</p>"
+                yeezyPath.append($(sentence))
+            })
+        }).on("mouseout", function(d) {
+            d3.select(this).attr("r", 5)
+            artistName.html("Hover over an artist!")
+            artistPicture.attr("src", "http://a5.mzstatic.com/us/r30/Purple1/v4/bc/8e/81/bc8e8110-9b14-5e5f-a6b7-9a6d18adac6f/icon320x320.jpeg")
+            yeezyNumber.html("")
+            yeezyPath.html("")
+        });
+
+        force.on("tick", function() {
+            link.attr("d", function(d) {
+                return "M" + d[0].x + "," + d[0].y
+                    + "S" + d[1].x + "," + d[1].y
+                    + " " + d[2].x + "," + d[2].y;
+            });
+            node.attr("transform", function(d) {
+                return "translate(" + d.x + "," + d.y + ")";
+            });
+        });
+    });
+
+    </script>
+    <footer class="blog-footer">
+
+
+        <div> 
+            <a href="http://www.github.com/arkadyark">
+                <img src="/img/github.png"/>
+            </a>
+
+            <a href="http://www.facebook.com/ArkadyArkhangorodsky">
+                <img src="/img/facebook.png"/>
+            </a>
+
+            <a href="/res/resume.pdf">
+                <img src="/img/resume.png"/>
+            </a>
+        </div>
+
+    </footer>
+</body>

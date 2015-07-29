@@ -1,0 +1,162 @@
+<!DOCTYPE html> <html>
+<head>
+    <meta charset="utf-8">
+    <link href="/css/style.css" rel="stylesheet">
+    <link href="style.css" rel="stylesheet">
+</head>
+<body>
+    <div id="fb-root"></div>
+    <div id="top" class="row">
+        <div class="banner eight columns">
+            <h2>The Oracle of 
+                <input type="text" name="centre_node" placeholder="Yeezy" id="autocomplete"/>
+            </h2>
+            <p>Made by <a target="_blank" href="/"> Arkady Arkhangorodsky </a></p>
+        </div>
+        <div class="slider-wrapper four columns">
+            <h5 id="threshold-label-wrapper"> Collaboration threshold: <span id="threshold-label"></span> </h5>
+            <div id="threshold-slider"></div>
+        </div>
+    </div>
+    <div id="graph-content" class="row">
+        <div id="sidebar" class="three columns">
+            <input type="text" name="second_artist" placeholder="Jay Z" id="autocomplete-second"/>
+            <img src="http://a5.mzstatic.com/us/r30/Purple1/v4/bc/8e/81/bc8e8110-9b14-5e5f-a6b7-9a6d18adac6f/icon320x320.jpeg" alt="" id="artist-picture"/>
+            <p id="bitch"></p>
+            <p id="artist-number-label" style="display:none"><span id="artist-label">Yeezy</span> Number: <span id="yeezy-number"></span></p>
+            <div id="path-to-yeezy"></div>
+        </div>
+        <div id="graph-svg-wrapper" class="nine columns">
+            <div id="loader">
+              <ul>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+              </ul>
+            </div>
+        </div>
+        <div class="arrow row">
+            <a href="#writing-content">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/ec/Angle_down_font_awesome.svg/512px-Angle_down_font_awesome.svg.png" class="down-arrow">
+            </a>
+        </div>
+    </div>
+    <div id="writing-content" class="container">
+        <div class="section-divider"></div>
+        <h2>
+            The Oracle of Hip-Hop
+        </h2>
+        <p>
+        We all know <a target="_blank" href="https://oracleofbacon.org">The Oracle of Bacon</a> - the game where you try to connect any actor to Kevin Bacon in as few jumps as possible. Similar Oracles have been made for other fields, with things like the Erdős number for mathematicians, or even the <a target="_blank" href="http://static.echonest.com/SixDegreesOfBlackSabbath/index.html"> Black Sabbath number</a>. 
+        </p>
+
+        <p>
+        I found the Black Sabbath site to be out of date, lacking a visualization, and not hip-hop focused. I thought it would be cool to pull data from RapGenius to show all of the collaborations between famous rappers. A <a target="_blank" href="http://arxiv.org/pdf/physics/0511215.pdf">similar study</a> was performed back in 2006, but it too had no visual component and as we are all well aware, much has changed in the game in 9 years.
+        </p>
+        <div class="section-divider"></div>
+
+        <h3>What am I looking at right now?</h3>
+        <p>
+        Every one of the 175 points in this network represents a hip-hop artist. I included some groups (even sometimes together with their constituent members - Outkast is an example of this) if they tended to be listed on RapGenius as the group. Every link between two points represents collaborations between the artists. A thicker link means more collaborations between the pair. Thicker links between two artists will bring them closer together.
+        </p>
+        <p>
+        The 'Collaboration threshold' tunes how many collaborations two artists need to have had together to be linked. Intuitively this parameter controls how 'coarse' the network is: a higher threshold leaves just the strongly linked artists together and shows the bigger picture, while a low threshold shows the small-scale interactions between more artists.
+        </p>
+        <p>
+        Hovering over an artist highlights the shortest path (potentially one of many) between them and the central artist. When a link represents fewer collaborations than the threshold, but still appears on the path to the centre, it is shown as a dotted line.
+        </p>
+        <div class="section-divider"></div>
+        <h3>Interesting observations</h3>
+        <h5><a id="wu-tang-header" href="https://youtu.be/INh0FUnCDK4?t=6m16s">The Wu got somethin'</a></h5>
+        <p>
+        Hip-hop is a genre where membership in groups means a lot. How cohesive the Wu-Tang Clan has been still remains unmatched, 20+ years on. A few more recent groups have come close, but no group has been so large, while still remaining so connected.
+        </p>
+        <p>
+        You can see this by bumping the threshold up higher, to about 10 or so. At this point, every single one of the 10 Wu-Tang members (counting the "Unofficial Tenth" Cappadonna) stays connected. Looking at other connected groups of a similar size, they tend to be dominated by a central node (take a look at the Young Money collective to see this). Despite the solo careers of some members being more fruitful than others, when you look at the collaborations they remain an amazingly balanced group.
+        </p>
+
+        <h5>Hip-hop has no centre</h5>
+        <p>
+        While the '06 study found Snoop Dogg to be the most central artist, my initial guess was that a study in 2015 would find Kanye at the centre - the Kevin Bacon of Hip Hop.
+        </p>
+        <p>Measuring centrality in connected networks is not a trivial thing to do, there is no single measure. That said, a commonly used metric that has the advantages of being intuitive and easy to compute is the 'average X number', or the average number of hops from a given artist to any other artist in the network.
+        </p>
+        <p>The average, for all of the 175 artists in the network, is 2.2 with a standard deviation of only 0.35. This shows that the network is both tightly connected, but also quite balanced. Only 39 artists have an average path length of under 2, and only 26 are above 2.5</p>
+        <p>The most central artist, believe it or not, is Game, with a centrality of 1.63. Others who are close are Rick Ross, Busta Rhymes, T.I., Raekwon, Snoop Dogg, and Nas. Kanye turned out to be quite central, with a centrality of 1.9, but was probably hurt by my limiting the network to exclude producer-rapper collaborations.</p>
+        <p>
+        On the low end of the centralities, I found there to be quite a few artists who tragically died before really making the mark they probably could have. Eyedea, Capital STEEZ, and Eazy-E all rank near the bottom of centrality, though every one of them would have been considerably more central.
+        </p><p>
+        Also, Kool Keith, as we probably already knew, is <em>way</em> out there, with a centrality of 3.14.
+        </p>
+        <h5>Krizz Kaliko and Tech N9ne, <em>damn</em>.</h5>
+        <p>
+        Cranking the threshold up to 65, and slowly bringing it up past that, you start to witness an epic showdown between Ghostface-Raekwon and Krizz Kaliko-Tech N9ne. Both pairs of artists have done an insane amount of work together. Taking it all the way up, though, Krizz Kaliko and Tech N9ne are the last pair standing, and come in with a whopping 119 collaborations together listed on RapGenius.
+        </p>
+        <p>
+        This is especially impressive when you consider that they were never formally a duo/members of a larger group. Also, for my network I left out producer collaborations, so on every one of the 119 collaborations, both artists contribute vocals. Both artists (Tech N9ne in particular) look like their fanbases continue to steadily grow late in their careers, so this number is probably going to keep on rising even higher.
+        </p>
+        <div class="section-divider"></div>
+        <p>
+        Thanks a bunch for checking this out. I hope you enjoyed it as much as I enjoyed putting it together. Any feedback is much appreciated.
+        </p>
+        <div class="fb-like" data-href="http://www.arkadyark.me/visualizations/oracle" data-layout="standard" data-action="like" data-show-faces="true" data-share="true"></div>
+        <a class="twitter-share-button" data-size=large
+           href="https://twitter.com/intent/tweet?text=hella%20cool%20data%20visualization">
+            Tweet</a>
+        <div class="section-divider"></div>
+        <p><a href="http://www.arkadyark.me/visualizations/rap-network/attempt_1" target="_blank">As</a> <a href="http://www.arkadyark.me/visualizations/rap-network/attempt_2" target="_blank">you</a> <a href="http://www.arkadyark.me/visualizations/rap-network/attempt_3" target="_blank">can</a> <a href="http://www.arkadyark.me/visualizations/rap-network/attempt_4" target="_blank">see</a>, this project went through several iterations before it became what it currently is. For the more tech-interested readers, all of the source code is over <a href="https://github.com/arkadyark/arkadyark.github.io/tree/master/visualizations/rap-network">on my Github</a>. Fork this and make something cool!
+        <div class="section-divider"></div>
+        <div id="disqus_thread"></div>
+        <script type="text/javascript">
+/* * * CONFIGURATION VARIABLES * * */
+var disqus_shortname = 'arkadyark';
+
+/* * * DON'T EDIT BELOW THIS LINE * * */
+(function() {
+    var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+})();
+        </script>
+        <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+
+    </div>
+    </div>
+
+    <link rel="stylesheet" href="/visualizations/rap-network/d3.slider.css" />
+    <script src="http://d3js.org/d3.v3.min.js"></script>
+    <script src="/visualizations/rap-network/d3.slider.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.11.3/jquery-ui.min.js"></script>
+    <script src="http://crypto-js.googlecode.com/svn/tags/3.1.2/build/rollups/sha1.js"></script>
+    <script>window.twttr = (function(d, s, id) {
+var js, fjs = d.getElementsByTagName(s)[0],
+        t = window.twttr || {};
+if (d.getElementById(id)) return t;
+js = d.createElement(s);
+js.id = id;
+js.src = "https://platform.twitter.com/widgets.js";
+fjs.parentNode.insertBefore(js, fjs);
+
+t._e = [];
+t.ready = function(f) {
+    t._e.push(f);
+};
+
+return t;
+}(document, "script", "twitter-wjs"));</script>
+    <script>
+(function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.3";
+    fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));
+    </script>
+    <script src="graph.js"></script>
+</body>
+</html>
