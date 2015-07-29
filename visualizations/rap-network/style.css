@@ -29,6 +29,10 @@ html, body {
     font-size : 1.2em;
 }
 
+#writing-content p:last-child {
+    margin-bottom : 5.0rem;
+}
+
 #wu-tang-header {
     text-decoration : none;
     color : black;
@@ -190,7 +194,6 @@ html, body {
 
 #graph-svg-wrapper {
     position : relative;
-    width : 960px;
     height : 610px;
 }
 
