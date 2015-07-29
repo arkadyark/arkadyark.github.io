@@ -207,17 +207,9 @@ vis.attr("transform", "translate(100,150)" + " scale(.75)");
 svg.call(zoom)
 .on("dblclick.zoom", null)
 
-d3.json("yeezy_network.json", function(error, graph) {
-    yeezy_only = true;
-    console.log("Loaded yeezied");
-    thresholdValue = 10;
-    artist_name = "Kanye West";
-    makeGraph(graph, thresholdValue, artist_name);
-});
-
 d3.json("yeezified_network.json", function(error, graph) {
+    $("#loader").remove();
     yeezy_only = false;
-    console.log("Loaded yeezified")
 
     thresholdValue = 10;
     artist_name = "Kanye West";
