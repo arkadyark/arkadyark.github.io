@@ -30,7 +30,7 @@ html, body {
 }
 
 #writing-content p:last-child {
-    margin-bottom : 4.0rem;
+    margin-bottom : 5.0rem;
 }
 
 #wu-tang-header {
@@ -98,7 +98,7 @@ html, body {
 
 
 #sidebar {
-    height : 610px;
+    height : 560px;
     float : left;
     box-sizing : border-box;
     padding-right : 10px;
@@ -186,15 +186,16 @@ html, body {
     display : inline-block;
     width : 100%;
     text-align : center;
+    margin-top : 20px;
 }
 
 .down-arrow {
-    width : 70px;
+    width : 80px;
 }
 
 #graph-svg-wrapper {
     position : relative;
-    height : 610px;
+    height : 560px;
 }
 
 #loader {

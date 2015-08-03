@@ -1,4 +1,3 @@
-Make centralities graph
-Make collaborations over time graph
-Make wu-tang cliqueness graph
-Get a read-over/style-over from Abe
+Implement filtering/highlighting groups
+Show artist nickname/canonical name for <x> number
+Vic Mensa, Watsky

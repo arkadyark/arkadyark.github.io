@@ -168,7 +168,7 @@ fs.readFile('network_handpicked.json', 'utf8', function (err,data) {
         //console.log(central_artist + ": " + sum);
     }
     //console.log(JSON.stringify(artist_centralities));
-    console.log(JSON.stringify(centralities_frequency));
-    //console.log(JSON.stringify({"nodes":nodes, "links":links}))
+    //console.log(JSON.stringify(centralities_frequency));
+    console.log(JSON.stringify({"nodes":nodes, "links":links}))
 });
 
