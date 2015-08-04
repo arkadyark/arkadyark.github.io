@@ -116,7 +116,7 @@ html {
 }
 
 body {
-  background-color: rgba(214,241,146,0.7);
+    background-color : #efecca;
   font-size: 1.5em; /* currently ems cause chrome bug misinterpreting rems on body element */
   line-height: 1.6;
   font-weight: 400;

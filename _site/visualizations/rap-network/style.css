@@ -60,7 +60,7 @@ html, body {
 }
 
 #top {
-    border-bottom : solid;
+    border-bottom : solid 2px;
 }
 
 .open-hand-cursor {
@@ -102,7 +102,7 @@ html, body {
     float : left;
     box-sizing : border-box;
     padding-right : 10px;
-    border-right : solid;
+    border-right : solid 2px;
 }
 
 .node {
@@ -190,12 +190,18 @@ html, body {
 }
 
 .down-arrow {
-    width : 80px;
+    width : 100px;
 }
 
 #graph-svg-wrapper {
     position : relative;
     height : 560px;
+    width : 78%;
+    margin-left : 0;
+}
+
+#graph-svg-wrapper svg {
+    width : 100%;
 }
 
 #loader {

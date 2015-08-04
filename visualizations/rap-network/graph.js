@@ -13,7 +13,7 @@ $(function() {
     });
 });
 
-var width = 960,
+var width = 1100,
     height = 560,
     selectedNode = undefined,
     intermediateNodes = [],
