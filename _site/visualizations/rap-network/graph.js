@@ -1,3 +1,4 @@
+// Smooth scrolling for '#' link
 $(function() {
     $('a[href*=#]:not([href=#])').click(function() {
         if (location.pathname.replace(/^\//,'') == this.pathname.replace(/^\//,'') && location.hostname == this.hostname) {
@@ -28,11 +29,9 @@ var yeezyPath = $("#path-to-yeezy")
 
 var artist_names = ["Kanye West", "Jay Z", "Kendrick Lamar", "Diddy", "Drake", "Lil Wayne", "Big Sean", "Jeezy", "Pusha T", "J. Cole", "Common", "2 Chainz", "Nicki Minaj", "Tyler, The Creator", "Ludacris", "Talib Kweli", "Cam'ron", "Nas", "KRS-ONE", "RZA", "T.I.", "Rick Ross", "Lupe Fiasco", "Yasiin Bey", "Eminem", "Raekwon", "Scarface", "Busta Rhymes", "Chief Keef", "E-40", "Jadakiss", "Future", "Ol' Dirty Bastard", "Frank Ocean", "Ghostface Killah", "Twista", "Pete Rock", "Wale", "Ty Dolla $ign", "Dr. Dre", "The Notorious B.I.G.", "Ja Rule", "Outkast", "Killer Mike", "DMX", "50 Cent", "Meek Mill", "Lil Kim", "Kurupt", "YG", "Nipsey Hu$$le", "Birdman", "ScHoolboy Q", "Wiz Khalifa", "2Pac", "Young Thug", "Juicy J", "Master P", "Boosie Badazz", "Rich Homie Quan", "A$AP Rocky", "Royce Da 5'9\"", "Yelawolf", "Big KRIT", "Danny Brown", "Action Bronson", "Joey BADA$$", "Ab-Soul", "Ace Hood", "Jay Rock", "Tech N9ne", "B.o.B", "Mac Miller", "Snoop Dogg", "Childish Gambino", "Curren$y", "Murs", "The Roots", "Gucci Mane", "Logic", "Fat Joe", "LL Cool J", "Nelly", "Bone Thugs-n-Harmony", "Waka Flocka Flame", "Trey Songz", "Mystikal", "Bun B", "Soulja Boy", "Krizz Kaliko", "Lil B", "Wyclef Jean", "Chance The Rapper", "Kevin Gates", "Hodgy Beats", "Prodigy (Mobb Deep)", "Asher Roth", "Ice Cube", "Nate Dogg", "El-P", "AZ", "Mobb Deep", "Havoc", "De La Soul", "Beastie Boys", "Xzibit", "Kool G. Rap", "Inspectah Deck", "MC Guru", "Freddie Gibbs", "Killah Priest", "Method Man", "MF DOOM", "Cappadonna", "Madlib", "RiFF RAFF", "Masta Ace", "Krayzie Bone", "Brother Ali", "Redman", "Outlawz", "Ice-T", "Three 6 Mafia", "Ras Kass", "Aesop Rock", "Cunninlynguists", "Prince Paul", "Erick Sermon", "E.P.M.D.", "Atmosphere", "Rakim", "A Tribe Called Quest", "Run-D.M.C.", "Eyedea", "Cannibal Ox", "UGK", "Pimp C", "GZA", "Kool Keith", "Das EFX", "Gang Starr", "Goodie Mob", "Cypress Hill", "Clipse", "Biz Markie", "Jungle Brothers", "Jay Electronica", "Jeru the Damaja", "Canibus", "Earl Sweatshirt", "U-God", "Masta Killa", "Eazy-E", "Big L", "Lauryn Hill", "Big Punisher", "Slick Rick", "Public Enemy", "Chuck D", "Big Boi", "Andre 3000", "Black Thought", "The Underachievers", "Flatbush Zombies", "Capital STEEZ", "CJ Fly", "Casey Veggies", "Big Daddy Kane", "Immortal Technique", "Pharoahe Monch", "MC Lyte", "Kool Moe Dee", "Queen Latifah", "Beanie Sigel", "Domo Genesis", "Game", "Rae Sremmurd"];
 
-$(document).ready(function () {  
-    $("#autocomplete").focus()
-});
-
 var color = d3.scale.category20();
+
+
 
 // rescale g
 function rescale() {
@@ -54,8 +53,10 @@ function mousedown() {
 }
 
 
+// Used to clear previous selection on new highlight
 previousSelection = undefined
 
+// Called when selecting a node
 function highlightNode(d, d3Selection) {
     if (previousSelection != undefined) {
         clearHighlight(previousSelection.d, previousSelection.d3Selection)
@@ -80,9 +81,6 @@ function highlightNode(d, d3Selection) {
     } else {
         d3.select("#artist-number-label").style("display", "inline")
         yeezyNumber.html(d.yeezy_number[artist_name])
-        if (yeezy_only) {
-            d.yeezy_path = {"Kanye West": d.yeezy_path};
-        }
         $.each(d.yeezy_path[artist_name], function(key, value) {
             // Color edges on the way to the centre
             var edge = d3.select("#a" + CryptoJS.SHA1(value.to) + CryptoJS.SHA1(value.from))
@@ -147,6 +145,8 @@ function highlightNode(d, d3Selection) {
     }
 }
 
+
+// Called when unselecting a node
 function clearHighlight(d, d3Selection) {
     d3.select("#bitch").html("").style("display", "none");
     d3.select("#artist-number-label").style("display", "none")
@@ -189,9 +189,9 @@ function clearHighlight(d, d3Selection) {
 var force = d3.layout.force().size([width, height]);
 
 var svg = d3.select("#graph-svg-wrapper").append("svg")
-.attr("width", width)
-.attr("height", height)
-.attr("class", "open-hand-cursor");
+    .attr("width", width)
+    .attr("height", height)
+    .attr("class", "open-hand-cursor");
 
 svg.on("mousedown.drag", function() {
     svg.attr("class", "closed-hand-cursor");
@@ -205,15 +205,16 @@ var vis = svg.append('svg:g')
 vis.attr("transform", "translate(100,150)" + " scale(.75)");
 
 svg.call(zoom)
-.on("dblclick.zoom", null)
+    .on("dblclick.zoom", null)
 
+// Load network
 d3.json("yeezified_network.json", function(error, graph) {
     $("#loader").remove();
-    yeezy_only = false;
 
     thresholdValue = 10;
     artist_name = "Kanye West";
 
+    // Recenter node on choosing from autocomplete menu
     $('#autocomplete').autocomplete({
         source: function(request, response) {
             var results = $.ui.autocomplete.filter(artist_names, request.term);
@@ -226,6 +227,7 @@ d3.json("yeezified_network.json", function(error, graph) {
         }
     });
 
+    // Link central node to second autocomplete node on search
     $('#autocomplete-second').autocomplete({
         source: function(request, response) {
             var results = $.ui.autocomplete.filter(artist_names, request.term);
@@ -242,15 +244,22 @@ d3.json("yeezified_network.json", function(error, graph) {
         }
     });
 
-    d3.select('#threshold-slider').call(d3.slider().value(thresholdValue).on("slide", function(evt, value) {
-        thresholdValue = value;
-        makeGraph(graph, value, artist_name);
-    }))
+    d3.select('#threshold-slider')
+        .call(d3.slider().value(thresholdValue)
+            .on("slide", function(evt, value) {
+                thresholdValue = value;
+                makeGraph(graph, value, artist_name);
+            })
+        )
 
     makeGraph(graph, thresholdValue, artist_name);
 })
 
 function makeGraph(graph, value, artist_name) {
+    if (selectedNode != undefined) {
+        highlightNode(selectedNode.d, selectedNode.d3Selection)
+        nodeSelected = true;    
+    }
     vis.selectAll('*').remove();
     var nodes = graph.nodes.slice(),
         links = [],
@@ -317,13 +326,6 @@ function makeGraph(graph, value, artist_name) {
     node.append("title")
     .text(function(d) { return d.name; });
 
-    node.on("mouseover", function(d) {
-        highlightNode(d, d3.select(this))
-
-    }).on("mouseout", function(d) {
-        clearHighlight(d, d3.select(this));
-    });
-
     force.on("tick", function() {
         link.attr("d", function(d) {
             return "M" + d[0].x + "," + d[0].y
@@ -342,4 +344,41 @@ function makeGraph(graph, value, artist_name) {
             + "L" + targetX + "," + targetY;
         });
     });
+
+
+    nodeSelected = false;
+
+    clickNode = function(d, d3Selection) {
+        if (nodeSelected) {
+            clearHighlight(selectedNode.d, selectedNode.selectEvent);
+            // If clicked on another node, select it
+            if (selectedNode.d != d && selectedNode.selectEvent != d3Selection) {
+                selectedNode = {d : d, selectEvent : d3Selection};
+                highlightNode(d, d3Selection)
+                nodeSelected = !nodeSelected;
+            } else {
+                selectedNode = undefined;
+            }
+        } else {
+            selectedNode = {d : d, selectEvent : d3Selection};
+            highlightNode(d, d3Selection)
+        }
+        nodeSelected = !nodeSelected;
+    }
+
+    node.on("mouseover", function(d) {
+        if (!nodeSelected) {
+            highlightNode(d, d3.select(this))
+        }
+    }).on("click", function(d) {
+        clickNode(d, d3.select(this));
+    }).on("mouseout", function(d) {
+        if (!nodeSelected) {
+            clearHighlight(d, d3.select(this));
+        }
+    });
 }
+
+$(document).ready(function () {  
+    $("#autocomplete").focus()
+});
