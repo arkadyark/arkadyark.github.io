@@ -5,9 +5,39 @@
     <description></description>
     <link>http://arkadyark.me/</link>
     <atom:link href="http://arkadyark.me/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Sat, 29 Aug 2015 12:23:20 -0700</pubDate>
-    <lastBuildDate>Sat, 29 Aug 2015 12:23:20 -0700</lastBuildDate>
+    <pubDate>Fri, 23 Oct 2015 09:34:16 -0400</pubDate>
+    <lastBuildDate>Fri, 23 Oct 2015 09:34:16 -0400</lastBuildDate>
     <generator>Jekyll v2.5.3</generator>
+    
+      <item>
+        <title>MHacks and Hack the North</title>
+        <description>&lt;p&gt;A couple more hackathons to kick off the year :) These two were also ones that I’d missed out on last year, namely MHacks and Hack the North. One nice thing at these was that my roommate and good friend &lt;a href=&quot;http://kkoushan.com/&quot;&gt;Kasra Koushan&lt;/a&gt; came out, and they were his first two. I’ve been told quite a few times by multiple people about the joys of being the one to introduce people to hackathons, and I definitely felt that. So here’s what I got up to for the two weekends:&lt;/p&gt;
+
+&lt;h3 id=&quot;mhacks---glas4httpglas4co&quot;&gt;MHacks - &lt;a href=&quot;http://glas4.co&quot;&gt;glas4&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;MHacks was pretty cool. First there was the obligatory longer-than-predicted bus ride, not getting there until 7pm or so after leaving at noon. After that Kasra and I grabbed some food and sat down to start doing a bit of brainstorming for what to do. Out of nowhere, a guy (Dev Chakraborty) came up to us and asked if we had a team, idea, and would we let him join. So then we were three. Later on, in the opening ceremonies, I ran into a friend I’d made on the way back to the airport from Hack the Planet this summer, Sharon Roy. Now, with a proper team, we just needed an idea.&lt;/p&gt;
+
+&lt;p&gt;Then we had some frustrations. What followed for about 5ish hours was some of the most intense “creative block” I’d ever experienced. We sat at a table trying to come up with something. For a time it almost felt like we’d just go on like this, unable to come up with anything, for the entire 36 hours. Fortunately that didn’t happen, right as we were about to sleep we came up with something and solidified it in the early hours of the next day.&lt;/p&gt;
+
+&lt;p&gt;We decided to make what we called ‘glas4’ (glas coming from doing some Google Translates of words like ‘vote’, ‘democracy’, ‘freedom’ to Eastern European languages (I think in the end we chose ‘vote’ in Croatian), 4 coming from there being 4 of us). The basic idea was that it would take videos of top political candidates, and isolate the specific bits where they’re identified as speaking on a specific issue. In theory this would turn informing oneself, at least at a basic level, from a several hour process to a few minute process. We used some React (mostly Dev), Parse (mostly Sharon), and Python (mostly Kasra and I) to scrape it together.&lt;/p&gt;
+
+&lt;p&gt;Turned out people actually liked it, and we won a prize! Awesome for Kasra at his first hackathon, a very different experience from my first where we never submitted anything.&lt;/p&gt;
+
+&lt;h3 id=&quot;hack-the-north---&quot;&gt;Hack the North - ???&lt;/h3&gt;
+&lt;p&gt;The next weekend was a bit different. First of all it was in Waterloo, which meant a two hour bus ride rather than the 8-12 hours that I’d been used to. That weekend I was feeling really out of it (for multiple reasons, which I don’t want to get into here) and also wanted to try something different, working by myself for a change. I’d always worked in teams and felt confident enough in my own abilities that I could pull something off on my own. Though I didn’t end up making anything, mostly because I was a bit ambitious and tried to play with game development and the Unreal Engine (which my poor Macbook Air could NOT handle), I still feel that I could pull something off on my own.&lt;/p&gt;
+
+&lt;p&gt;Huge huge praise is deserved by the Hack the North team, who ran the thing incredibly well. Everything was just so tight, quick food lines and hundreds of volunteers actually working efficiently, a really inspirational opening ceremony, clean and timely awards. Good stuff.&lt;/p&gt;
+
+&lt;h3 id=&quot;up-next&quot;&gt;Up next&lt;/h3&gt;
+&lt;p&gt;Next up looks to be YHack, which should be fun because my sister will also be there! And also Yale. Looking forward to it.&lt;/p&gt;
+</description>
+        <pubDate>Sun, 27 Sep 2015 00:00:00 -0400</pubDate>
+        <link>http://arkadyark.me/projects/mhacks-and-htn</link>
+        <guid isPermaLink="true">http://arkadyark.me/projects/mhacks-and-htn</guid>
+        
+        
+        <category>projects</category>
+        
+      </item>
     
       <item>
         <title>Duke Kendrick</title>
@@ -15,7 +45,7 @@
 
 &lt;p&gt;When the Duke came around, he was &lt;em&gt;exactly&lt;/em&gt; what jazz needed at the time.&lt;/p&gt;
 </description>
-        <pubDate>Sun, 26 Jul 2015 00:00:00 -0700</pubDate>
+        <pubDate>Sun, 26 Jul 2015 00:00:00 -0400</pubDate>
         <link>http://arkadyark.me/duke-kendrick</link>
         <guid isPermaLink="true">http://arkadyark.me/duke-kendrick</guid>
         
@@ -47,7 +77,7 @@ This may be a harder thing for supporters of the current system to appreciate. S
 
 &lt;p&gt;Discovering open online education has been one of the best things to ever happen to me and if this helps share that experience with anybody, I’m happy.&lt;/p&gt;
 </description>
-        <pubDate>Sun, 28 Jun 2015 00:00:00 -0700</pubDate>
+        <pubDate>Sun, 28 Jun 2015 00:00:00 -0400</pubDate>
         <link>http://arkadyark.me/interests/online-education</link>
         <guid isPermaLink="true">http://arkadyark.me/interests/online-education</guid>
         
@@ -73,7 +103,7 @@ This may be a harder thing for supporters of the current system to appreciate. S
 
 &lt;p&gt;These things make writing to and extending my site much more enjoyable, meaning I’ll actually touch it more often I hope. I still 100% stand by my previous decision of doing it the hard way first, because I wouldn’t have learned nearly as much by jumping straight to Jekyll and Jekyll would be much more mysterious whereas now I feel like I have a pretty solid grasp on how it works.&lt;/p&gt;
 </description>
-        <pubDate>Sun, 07 Jun 2015 00:00:00 -0700</pubDate>
+        <pubDate>Sun, 07 Jun 2015 00:00:00 -0400</pubDate>
         <link>http://arkadyark.me/projects/jekyll-rewrite</link>
         <guid isPermaLink="true">http://arkadyark.me/projects/jekyll-rewrite</guid>
         
@@ -92,7 +122,7 @@ This may be a harder thing for supporters of the current system to appreciate. S
 
 &lt;p&gt;Just one more case of evolution working against us in our day-to-day lives. It did wonderfully to get us this far, but our innate instincts are a bit out of place now in a world of skyscrapers and international flights.&lt;/p&gt;
 </description>
-        <pubDate>Sun, 10 May 2015 00:00:00 -0700</pubDate>
+        <pubDate>Sun, 10 May 2015 00:00:00 -0400</pubDate>
         <link>http://arkadyark.me/thoughts/uses-and-thems</link>
         <guid isPermaLink="true">http://arkadyark.me/thoughts/uses-and-thems</guid>
         
@@ -111,7 +141,7 @@ This may be a harder thing for supporters of the current system to appreciate. S
 
 &lt;p&gt;Just one more case of evolution working against us in our day-to-day lives. It did wonderfully to get us this far, but our innate instincts are a bit out of place now in a world of skyscrapers and international flights.&lt;/p&gt;
 </description>
-        <pubDate>Sun, 10 May 2015 00:00:00 -0700</pubDate>
+        <pubDate>Sun, 10 May 2015 00:00:00 -0400</pubDate>
         <link>http://arkadyark.me/uses-and-thems</link>
         <guid isPermaLink="true">http://arkadyark.me/uses-and-thems</guid>
         
@@ -134,7 +164,7 @@ This may be a harder thing for supporters of the current system to appreciate. S
 
 &lt;p&gt;You can find all of the source for this project, as per usual, on &lt;a href=&quot;https://github.com/arkadyark/arkadyark.github.io/tree/master/visualizations/chess&quot;&gt;my Github&lt;/a&gt;. As you can see I did a bit more work afterwards to extend it a bit, since it really screams out for a full gameplay mode where you can see the probabilities/frequencies for any board state. Stay tuned for that, and another project I’m doing with d3 coming somewhat soon.&lt;/p&gt;
 </description>
-        <pubDate>Tue, 28 Apr 2015 00:00:00 -0700</pubDate>
+        <pubDate>Tue, 28 Apr 2015 00:00:00 -0400</pubDate>
         <link>http://arkadyark.me/projects/data-visualization-chess</link>
         <guid isPermaLink="true">http://arkadyark.me/projects/data-visualization-chess</guid>
         
@@ -159,7 +189,7 @@ This may be a harder thing for supporters of the current system to appreciate. S
 
 &lt;p&gt;That’s all of the time I have for now, but I have a lot more to write on the subject and I plan to do so soon.&lt;/p&gt;
 </description>
-        <pubDate>Tue, 07 Apr 2015 00:00:00 -0700</pubDate>
+        <pubDate>Tue, 07 Apr 2015 00:00:00 -0400</pubDate>
         <link>http://arkadyark.me/interests/music-expressing-oneself</link>
         <guid isPermaLink="true">http://arkadyark.me/interests/music-expressing-oneself</guid>
         
@@ -180,7 +210,7 @@ This may be a harder thing for supporters of the current system to appreciate. S
 
 &lt;p&gt;I probably wouldn’t have paid for it myself ever, but having Treehouse now makes me respect anew the ‘not 100% free’ model of open online education. Online education has had a massive positive impact on my life and a huge number of others. It absolutely has the power to cause a societal level change, that’s becoming increasingly urgent. This is something I firmly believe.&lt;/p&gt;
 </description>
-        <pubDate>Sun, 15 Mar 2015 00:00:00 -0700</pubDate>
+        <pubDate>Sun, 15 Mar 2015 00:00:00 -0400</pubDate>
         <link>http://arkadyark.me/thoughts/treehouse-review</link>
         <guid isPermaLink="true">http://arkadyark.me/thoughts/treehouse-review</guid>
         
@@ -201,24 +231,9 @@ This may be a harder thing for supporters of the current system to appreciate. S
 
 &lt;p&gt;I probably wouldn’t have paid for it myself ever, but having Treehouse now makes me respect anew the ‘not 100% free’ model of open online education. Online education has had a massive positive impact on my life and a huge number of others. It absolutely has the power to cause a societal level change, that’s becoming increasingly urgent. This is something I firmly believe.&lt;/p&gt;
 </description>
-        <pubDate>Sun, 15 Mar 2015 00:00:00 -0700</pubDate>
+        <pubDate>Sun, 15 Mar 2015 00:00:00 -0400</pubDate>
         <link>http://arkadyark.me/treehouse-review</link>
         <guid isPermaLink="true">http://arkadyark.me/treehouse-review</guid>
-        
-        
-      </item>
-    
-      <item>
-        <title>Things That Suck</title>
-        <description>&lt;p&gt;A while back, at deltaHacks, there was a pretty awesome talk given to us, courtesy of the inimitable &lt;a href=&quot;http://www.joelhilchey.com/&quot;&gt;Joel Hilchey&lt;/a&gt;. He had a lot of cool ideas about ideas - how to have them, how to develop them, etc. One of the things he said stuck a bit, and playing with it in my head more recently I discovered some issues I have with it. One of his ‘hacks’ to coming up with lots of ideas, some of which will be good (presumably), is to &lt;em&gt;focus on what sucks&lt;/em&gt;. He’s not the first to give the suggestion, it’s pretty much the most common solution for coming up with start-up/products ideas (&lt;a href=&quot;http://www.entrepreneur.com/article/225513&quot;&gt;here&lt;/a&gt;, &lt;a href=&quot;http://www.quora.com/How-do-entrepreneurs-come-up-with-new-startup-ideas&quot;&gt;here&lt;/a&gt;, and &lt;a href=&quot;http://www.lifehack.org/articles/work/7-ways-think-great-startup-ideas.html&quot;&gt;here&lt;/a&gt;)&lt;/p&gt;
-
-&lt;p&gt;So I tried that for a while, and have been doing so for a while pretty actively and writing down what I think of. I was definitely having lots of ideas, probably more than ever before. But I was noticing a whole lot of these ideas sucked, or were mediocre at best. A lot of them were hackathon type of stuff, that seem very appealing for a short time but could never be life-changing, a thing that people come back to and keep coming back to.&lt;/p&gt;
-
-&lt;p&gt;While this is a great way to come up with lots of ideas, and some mediocre ones that people can appreciate, it isn’t a way to make something really big, really life-changing. Facebook wasn’t a response to ‘connecting to people sucks’, Google wasn’t a response to ‘finding things on the internet sucks’, and Snapchat isn’t a response to ‘sharing pictures with people sucks’. These big ideas (and try thinking of other &lt;em&gt;really&lt;/em&gt; big ideas, you’ll find the same) were people thinking in the future, and seeing how the world could be better. There’s a difference there - focusing on today’s problems is bound to be short-sighted, while focusing on the future is how you change people’s lives. I like Paul Graham’s &lt;a href=&quot;http://paulgraham.com/startupideas.html&quot;&gt;advice&lt;/a&gt; of &quot;Live in the future, then build what’s missing.&quot;&lt;/p&gt;
-</description>
-        <pubDate>Wed, 04 Mar 2015 00:00:00 -0800</pubDate>
-        <link>http://arkadyark.me/things-that-suck</link>
-        <guid isPermaLink="true">http://arkadyark.me/things-that-suck</guid>
         
         
       </item>

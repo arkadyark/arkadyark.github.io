@@ -14,6 +14,13 @@ $(function() {
     });
 });
 
+// Tutorial overlay
+var tutorialDone = sessionStorage.getItem('tutorialDone');
+if (!tutorialDone) {
+    sessionStorage.setItem('tutorialDone', tutorialDone);
+    console.log("Tutoring");
+}
+
 var width = 1100,
     height = 560,
     selectedNode = undefined,

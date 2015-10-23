@@ -1,3 +1,5 @@
-Implement filtering/highlighting groups
+Tutorial/walkthrough first time
 Show artist nickname/canonical name for <x> number
-Vic Mensa, Watsky
+Vic Mensa, Watsky, remove Prince Paul
+Implement filtering/highlighting groups
+Semicolon somewhere in the text
