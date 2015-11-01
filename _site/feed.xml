@@ -5,9 +5,33 @@
     <description></description>
     <link>http://arkadyark.me/</link>
     <atom:link href="http://arkadyark.me/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Fri, 23 Oct 2015 09:34:16 -0400</pubDate>
-    <lastBuildDate>Fri, 23 Oct 2015 09:34:16 -0400</lastBuildDate>
+    <pubDate>Fri, 23 Oct 2015 09:56:10 -0400</pubDate>
+    <lastBuildDate>Fri, 23 Oct 2015 09:56:10 -0400</lastBuildDate>
     <generator>Jekyll v2.5.3</generator>
+    
+      <item>
+        <title>Some inspiration this morning</title>
+        <description>&lt;p&gt;Got some inspiration when I’d been lacking some for a while this morning. For a piece of writing for my Engineering and Society course, I had been reading up on Netscape Mosaic and early versions of Internet Explorer. I wanted to actually try running Mosaic on my machine now, so I went and downloaded it. Naturally I went for the oldest version I could find, from 1995. Installation involved building the source, so I have the source code of Mosaic sitting on my computer.&lt;/p&gt;
+
+&lt;p&gt;It had been getting a bit stale and sitting around for a week or so when I was cleaning up my downloads folder and looked through it again. From just a cursory first perusal I found a few gems in the comments.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;http://arkadyark.me/res/code-snip.png&quot; alt=&quot;&amp;quot;Marc = Marc Andreessen&amp;quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;First just some notes about the code itself: the entire src folder weighs in at under 1MB. That’s surprisingly close to the ‘weight’ of this website, also close to 1MB (makes me feel just a bit inadequate). The entire thing is written in C and is actually quite digestible. I would recommend reading this to a lot of people given it’s enormous impact.&lt;/p&gt;
+
+&lt;p&gt;What I found inspirational about this whole thing was that in the comments there were things like ‘HORRIBLE HACK @@@@’ and ‘Marc [Andreessen], I imagine you might want to do something cleaner with these?’ and ‘Sheesh, this is not pretty’. This isn’t some hackathon project we’re looking at, though, this is frigging Mosaic. If it weren’t for Microsoft taking drastic and shady measures, we’d probably still be using this browser, and for a time it commanded a bigger browser market share than Chrome does now. The point I took from this is that it’s all hacks, things that can be done cleaner, things that are not pretty. And it doesn’t matter. What matters is that it really really worked, and came at the right place and time. From a technical perspective ~3-4 years of programming education would give somebody enough to be able to understand and produce something like this.&lt;/p&gt;
+
+&lt;p&gt;What a time to be alive.&lt;/p&gt;
+
+</description>
+        <pubDate>Fri, 23 Oct 2015 00:00:00 -0400</pubDate>
+        <link>http://arkadyark.me/thoughts/inspiration</link>
+        <guid isPermaLink="true">http://arkadyark.me/thoughts/inspiration</guid>
+        
+        
+        <category>thoughts</category>
+        
+      </item>
     
       <item>
         <title>MHacks and Hack the North</title>
@@ -216,25 +240,6 @@ This may be a harder thing for supporters of the current system to appreciate. S
         
         
         <category>thoughts</category>
-        
-      </item>
-    
-      <item>
-        <title>Treehouse Review</title>
-        <description>&lt;p&gt;About a month ago, my team and I came second at a hackathon at McMaster and won, among other awesome things, a 6 month subscription to an online education/training site, &lt;a href=&quot;https://teamtreehouse.com/&quot;&gt;Treehouse&lt;/a&gt;. Honestly, of the prizes we won that day that was the one I though least of - others included a year long Github plan and a super cool &lt;a href=&quot;https://store.spark.io/?product=spark-maker-kit&quot;&gt;Spark Core kit&lt;/a&gt;.&lt;/p&gt;
-
-&lt;p&gt;But now that the subscription finally has been sent to us, it seems like this will probably be the prize I remember best. Since starting, I’ve completed 3 classes (making a simple PHP application, using databases in Python with the peewee library, and introductory Objective-C) and am working on another on introductory CSS. In less than a week, I’ve learned enough to be able to create a whole host of pretty cool things, and am filled with a tremendous excitement about what I’ll be able to do with 6 months of this.&lt;/p&gt;
-
-&lt;p&gt;Construal levels. What? In my engineering design class, &lt;a href=&quot;http://www.ncbi.nlm.nih.gov/pmc/articles/PMC3152826/&quot;&gt;an interesting paper&lt;/a&gt; came up. The main take-away was that what determines how long people procrastinate a task is not really how daunting it seems to be, but how precisely we can think about what needs to be done. I’m finding that this explains why I’d rather spend hours on Treehouse yesterday, rather than spend just a bit of time studying for my Calculus test tomorrow, which promises to be &lt;a href=&quot;http://skule.ca/courses/exams/MAT195H1_20141_621398541320mat195_t2_2014_solutions.pdf&quot;&gt;quite intense&lt;/a&gt;. Treehouse, and online education in general, leverage this to make you want to keep going, rather than put it off. You know exactly what you need to do next, at all times. If education is to be fixed (because it is badly broken), it will have to incorporate more of these amazing results about how we learn.&lt;/p&gt;
-
-&lt;p&gt;Treehouse is making me remember all of the things I loved about Coursera and EdX, back in the salad days of high school when I’d take ~10 classes at a time. What you pay for with Treehouse, and you don’t really get with Coursera and EdX, is a guaranteed quality. While I absolutely loved what I was able to study before, part of the reason I would take so many classes was (in a way weirdly reminiscent of astronomically high birth rates in developing countries) that I would expect to drop many of them. This was fine back when I had plenty of time, but now that school has become real I don’t quite have the same time to be so loose. I haven’t yet found a class on Treehouse to be anything less than expertly done and carefully crafted so as to be most engaging. We’ll see if this changes.&lt;/p&gt;
-
-&lt;p&gt;I probably wouldn’t have paid for it myself ever, but having Treehouse now makes me respect anew the ‘not 100% free’ model of open online education. Online education has had a massive positive impact on my life and a huge number of others. It absolutely has the power to cause a societal level change, that’s becoming increasingly urgent. This is something I firmly believe.&lt;/p&gt;
-</description>
-        <pubDate>Sun, 15 Mar 2015 00:00:00 -0400</pubDate>
-        <link>http://arkadyark.me/treehouse-review</link>
-        <guid isPermaLink="true">http://arkadyark.me/treehouse-review</guid>
-        
         
       </item>
     
